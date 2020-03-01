@@ -8,6 +8,11 @@ function APIHookTest() {
     doFetch
   ] = useHNApi('http://hn.algolia.com/api/v1/search?query=redux', {hits: []});
 
+  const [{localData, localIsLoading, localIsError}, localDoFetch] = useHNApi(
+    '',
+    {}
+  );
+
   return (
     <Fragment>
       <form
@@ -24,6 +29,14 @@ function APIHookTest() {
         />
         <button type="submit">Search</button>
       </form>
+
+      <button
+        onClick={() => {
+          doFetch('http://localhost:8080/api/v1/author');
+        }}
+      >
+        Fetch
+      </button>
 
       {isError && <div>Something went wrong ...</div>}
 

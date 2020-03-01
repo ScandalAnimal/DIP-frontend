@@ -4,13 +4,15 @@ import React from 'react';
 // import MaterialComponent from './components/MaterialComponent';
 import Dashboard from './components/dashboard/Dashboard';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import APIHookTest from './components/APIHookTest';
 
 const App = () => {
   return (
     <Router>
       <Switch>
         <Route path="/">
-          <Dashboard />
+          {/*<Dashboard />*/}
+          <APIHookTest />
         </Route>
       </Switch>
     </Router>
