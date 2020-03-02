@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 import {connectRouter} from 'connected-react-router';
-import {registrationProcessReducer} from './reducers/registrationProcessReducer';
+import {exampleReducer} from './real/reducers/exampleReducer';
 
 export default (history) =>
   combineReducers({
     router: connectRouter(history),
-    registration: registrationProcessReducer,
+    example: exampleReducer,
   });

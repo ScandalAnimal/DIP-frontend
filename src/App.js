@@ -1,26 +1,48 @@
-import React from 'react';
-// import CountriesContainer from './components/CountriesContainer';
-// import Demo1Container from './components/Demo1Container';
-// import MaterialComponent from './components/MaterialComponent';
-import Dashboard from './components/dashboard/Dashboard';
+import React, {useState} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import APIHookTest from './components/APIHookTest';
+import {Redirect} from 'react-router';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import './App.css';
 
 const App = () => {
+  const [isAuthenticated, setAuthenticated] = useState(false);
+
   return (
     <Router>
       <Switch>
-        <Route path="/">
-          {/*<Dashboard />*/}
-          <APIHookTest />
+        <Route path="/login">
+          <Login fakeLogging={setAuthenticated} />
         </Route>
+        <ProtectedRoute path="/optimize" isAuth={isAuthenticated}>
+          OPTIMIZE
+        </ProtectedRoute>
+        <ProtectedRoute path="/" isAuth={isAuthenticated}>
+          <Dashboard fakeLogging={setAuthenticated} />
+        </ProtectedRoute>
       </Switch>
     </Router>
-    // <APIHookTest />
-    // <Demo1Container />
-    // <CountriesContainer />
-    // <MaterialComponent />
   );
 };
+
+function ProtectedRoute({isAuth, children, ...rest}) {
+  return (
+    <Route
+      {...rest}
+      render={({location}) =>
+        isAuth ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: {from: location},
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 
 export default App;
