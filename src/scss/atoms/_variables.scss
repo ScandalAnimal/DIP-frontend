@@ -1,0 +1,33 @@
+// bootstrap vars overrides
+
+///////////////////////////////////
+
+// fonts
+$font-heading: 'Roboto',
+  sans-serif;
+$font-base: 'Roboto',
+  sans-serif;
+
+// colors
+$color-green: #4ba82e;
+$color-black: #000;
+$color-white: #eee;
+$color-darkgrey: #6a6a6a;
+$color-lightgrey: #b8b8b8;
+
+$color-opal: #a9c8c0;
+
+$color-lynch: #698396;
+$color-brandy: #dbbc8e;
+$color-del-rio: #ae8a8c;
+$color-bali-hai: #7c98ab;
+
+// shadows
+$shadow-card: 0 4px 60px rgba(0, 0, 0, 0.05);
+
+// breakpoints
+$screen-xs: 320px;
+$screen-sm: 768px;
+$screen-md: 1024px;
+$screen-lg: 1360px;
+$screen-xl: 1920px;

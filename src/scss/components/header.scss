@@ -1,0 +1,15 @@
+@import '../atoms/variables';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  padding: 0;
+  background-color: $color-opal;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+}

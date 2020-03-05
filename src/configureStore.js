@@ -1,11 +1,11 @@
 // configureStore.js
 
-import {createBrowserHistory} from 'history';
-import {applyMiddleware, compose, createStore} from 'redux';
-import {routerMiddleware} from 'connected-react-router';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { createBrowserHistory } from 'history';
+import { routerMiddleware } from 'connected-react-router';
 import createRootReducer from './reducers';
+import thunk from 'redux-thunk';
 
 export const history = createBrowserHistory();
 

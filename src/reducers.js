@@ -1,8 +1,8 @@
-import {combineReducers} from 'redux';
-import {connectRouter} from 'connected-react-router';
-import {exampleReducer} from './real/reducers/exampleReducer';
+import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router';
+import { exampleReducer } from './reducers/exampleReducer';
 
-export default (history) =>
+export default history =>
   combineReducers({
     router: connectRouter(history),
     example: exampleReducer,
