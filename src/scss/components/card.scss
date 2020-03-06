@@ -4,8 +4,8 @@
   padding: 2rem;
   width: 100%;
   margin-bottom: 2rem;
-  background-color: $color-bali-hai;
-  box-shadow: 0 4px 60px rgba(0, 0, 0, 0.1);
+  background-color: $color-opal;
+  box-shadow: $shadow-card;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,7 +16,7 @@
 }
 
 .card__title {
-  color: $color-white;
+  color: $color-ash;
   font-weight: 300;
   font-size: 18px;
 }

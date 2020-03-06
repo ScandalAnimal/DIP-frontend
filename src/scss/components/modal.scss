@@ -1,0 +1,14 @@
+@import '../atoms/variables';
+
+.modal-dialog {
+  .modal-content {
+    background-color: $color-egg;
+    border-radius: 10px;
+    border: 1px solid $color-ash;
+    box-shadow: $shadow-popup;
+
+    .modal-title {
+      font-size: 20px;
+    }
+  }
+}

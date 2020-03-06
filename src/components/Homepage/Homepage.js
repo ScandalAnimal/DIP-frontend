@@ -2,7 +2,7 @@ import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import Card from '../Common/Card';
 import Loader from './Loader';
-import Popup from '../Common/Popup';
+import Popup from '../Popup/Popup';
 import React, { useState } from 'react';
 
 const Home = () => {

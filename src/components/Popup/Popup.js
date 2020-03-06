@@ -1,10 +1,11 @@
 import { Button, Modal } from 'react-bootstrap';
+import PopupButton from './PopupButton';
 import React from 'react';
 
 function Popup(props) {
   return (
     <Modal {...props} aria-labelledby='contained-modal-title-vcenter'>
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title id='contained-modal-title-vcenter'>{props.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -17,7 +18,8 @@ function Popup(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <PopupButton onClick={props.onHide} text='Confirm' primary={true} />
+        <PopupButton onClick={props.onHide} text='Cancel' primary={false} />
       </Modal.Footer>
     </Modal>
   );

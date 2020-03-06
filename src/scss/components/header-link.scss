@@ -1,15 +1,15 @@
 @import '../atoms/variables';
 
 .header-link {
-  color: $color-darkgrey;
+  color: $color-ash;
 
   a {
-    color: $color-darkgrey;
+    color: $color-ash;
     font-size: 16px;
     font-weight: bold;
   }
 
   a:hover {
-    color: $color-white;
+    color: $color-light-red;
   }
 }
