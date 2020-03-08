@@ -1,32 +1,61 @@
 import { Link, useParams } from 'react-router-dom';
 import ChangeLanguage from './ChangeLanguage';
+import HamburgerIcon from './HamburgerIcon';
 import HeaderLink from './HeaderLink';
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../assets/images/logoNew.png';
 
 const Header = () => {
   const params = useParams();
+  const [mobileMenuOpened, setMobileMenuOpened] = useState(false);
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpened(!mobileMenuOpened);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpened(false);
+  };
+
+  const mobileMenuClass = mobileMenuOpened ? 'nav-hidden--opened' : 'nav-hidden';
   return (
     <header className='header'>
       <div className='container'>
         <div className='row justify-content-space-between'>
-          <div className='col-auto d-flex align-items-center'>
+          <div className='col-auto d-flex align-items-center' onClick={closeMobileMenu}>
             <Link to={`/${params.langId}/`}>
               <img src={logo} alt='App logo' width={175} />
             </Link>
           </div>
-          <div className='col-auto d-flex align-items-center'>
+          <div className='col justify-content-end nav-hamburger'>
+            <HamburgerIcon action={toggleMobileMenu} />
+          </div>
+          <div className='col-auto align-items-center nav-link'>
             <HeaderLink title={'Optimize'} url={'optimize'} />
           </div>
-          <div className='col-auto d-flex align-items-center'>
+          <div className='col-auto align-items-center nav-link'>
             <HeaderLink title={'Fixtures'} url={'fixtures'} />
           </div>
-          <div className='col-auto d-flex align-items-center'>
+          <div className='col-auto align-items-center nav-link'>
             <HeaderLink title={'Injuries & Suspensions'} url={'injuries'} />
           </div>
-          <div className='col d-flex align-items-center justify-content-end'>
+          <div className='col align-items-center justify-content-end nav-link'>
             <ChangeLanguage />
+          </div>
+        </div>
+        <div className={`row justify-content-space-between ` + mobileMenuClass}>
+          <div className='col-auto align-items-center'>
+            <HeaderLink title={'Optimize'} url={'optimize'} action={closeMobileMenu} />
+          </div>
+          <div className='col-auto align-items-center'>
+            <HeaderLink title={'Fixtures'} url={'fixtures'} action={closeMobileMenu} />
+          </div>
+          <div className='col-auto align-items-center'>
+            <HeaderLink
+              title={'Injuries & Suspensions'}
+              url={'injuries'}
+              action={closeMobileMenu}
+            />
           </div>
         </div>
       </div>

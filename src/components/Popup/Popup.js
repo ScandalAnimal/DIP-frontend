@@ -1,4 +1,4 @@
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import PopupButton from './PopupButton';
 import React from 'react';
 
