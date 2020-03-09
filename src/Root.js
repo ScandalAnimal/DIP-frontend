@@ -10,6 +10,7 @@ import {
   useRouteMatch,
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import FootballField from './components/FootballField';
 import Header from './components/Header/Header.js';
 import Homepage from './components/Homepage/Homepage';
 import React from 'react';
@@ -59,9 +60,10 @@ const DIPRoutes = () => {
       <Wrapper>
         <div className='position-relative'>
           <Header />
-          <div className='container'>
+          <div className='container app-body'>
             <Switch>
               <Route exact path={`${match.path}/`} children={<Homepage />} />
+              <Route exact path={`${match.path}/optimize`} children={<FootballField />} />
             </Switch>
           </div>
           <div className='d-flex flex-column'>

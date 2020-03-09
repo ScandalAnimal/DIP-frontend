@@ -20,7 +20,7 @@ const Home = () => {
         <Popup show={modalShow} onHide={() => setModalShow(false)} title='This is a modal' />
       </ButtonToolbar>
       <div className='row'>
-        <div className='col-sm-6 d-flex flex-column'>
+        <div className='col-lg-6 d-flex flex-column'>
           <Card />
           <Card />
           <Card />
@@ -32,7 +32,7 @@ const Home = () => {
           <Card />
           <Card />
         </div>
-        <div className='col-sm-6 d-flex flex-column'>
+        <div className='col-lg-6 d-flex flex-column'>
           <Card />
           <Card />
           <Card />
