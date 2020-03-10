@@ -4,37 +4,32 @@ import React from 'react';
 import useLocalStorage from './hooks/useLocalStorage';
 
 const initialState = {
-  items: [],
+  modalShow: false,
+  selectedPlayer: {},
 };
-export const BasketContext = React.createContext(initialState);
+export const WrapperContext = React.createContext(initialState);
 
 const Wrapper = ({ children }) => {
-  const [items, setItems] = useLocalStorage('basket.items', []);
   const intl = useIntl();
+  const [modalShow, setModalShow] = useLocalStorage('modal.show', false);
+  const [selectedPlayer, setSelectedPlayer] = useLocalStorage('modal.player', undefined);
 
   return (
-    <BasketContext.Provider
+    <WrapperContext.Provider
       value={{
-        items,
-        addItem: newItem => {
-          setItems(prevItems => [...prevItems, newItem]);
-          toast.success(intl.formatMessage({ id: 'basket.alert.successfully.adeed' }), {
-            position: toast.POSITION.BOTTOM_LEFT,
-          });
+        modalShow,
+        selectedPlayer,
+        openPlayerInfo: newPlayer => {
+          setSelectedPlayer(() => newPlayer);
+          setModalShow(true);
         },
-        deleteCarByIndex: indexToRemove => {
-          setItems(prevItems => prevItems.filter((item, index) => index !== indexToRemove));
-          toast.success(intl.formatMessage({ id: 'basket.alert.successfully.deleted' }), {
-            position: toast.POSITION.BOTTOM_LEFT,
-          });
-        },
-        clear: () => {
-          setItems([]);
+        closeModal: () => {
+          setModalShow(false);
         },
       }}
     >
       {children}
-    </BasketContext.Provider>
+    </WrapperContext.Provider>
   );
 };
 

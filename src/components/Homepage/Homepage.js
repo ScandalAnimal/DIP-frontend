@@ -1,27 +1,17 @@
-import { Button, ButtonToolbar } from 'react-bootstrap';
-// import { useParams } from 'react-router';
 import Card from '../Common/Card';
+import FootballField from '../TeamOverview/FootballField';
 import Loader from './Loader';
-import Popup from '../Popup/Popup';
-import React, { useState } from 'react';
+import React from 'react';
 
 const Home = () => {
-  // const params = useParams();
-  const [modalShow, setModalShow] = useState(false);
-
   return (
     <div className='main container homepage'>
       <Loader />
-      <ButtonToolbar>
-        <Button variant='primary' onClick={() => setModalShow(true)}>
-          Launch modal with grid
-        </Button>
-
-        <Popup show={modalShow} onHide={() => setModalShow(false)} title='This is a modal' />
-      </ButtonToolbar>
       <div className='row'>
-        <div className='col-lg-6 d-flex flex-column'>
-          <Card />
+        <div className='col-xl-6 d-flex flex-column'>
+          <Card title='Team Overview'>
+            <FootballField />
+          </Card>
           <Card />
           <Card />
           <Card />
@@ -32,7 +22,7 @@ const Home = () => {
           <Card />
           <Card />
         </div>
-        <div className='col-lg-6 d-flex flex-column'>
+        <div className='col-xl-6 d-flex flex-column'>
           <Card />
           <Card />
           <Card />

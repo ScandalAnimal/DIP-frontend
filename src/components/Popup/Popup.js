@@ -10,11 +10,7 @@ function Popup(props) {
       </Modal.Header>
       <Modal.Body>
         <div className='container'>
-          <div className='row show-grid'>
-            <div className='col col-xs-12 col-md-8'>
-              <code>.col-xs-12 .col-md-8</code>
-            </div>
-          </div>
+          <div className='row show-grid'>{props.children}</div>
         </div>
       </Modal.Body>
       <Modal.Footer>
