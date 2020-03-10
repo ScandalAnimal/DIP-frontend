@@ -1,22 +1,8 @@
 import { WrapperContext } from '../../Wrapper';
 import { players } from '../../mocks/mockFootballers';
 import PlayerDetailPopup from './PlayerDetailPopup';
+import PlayerIcon from './PlayerIcon';
 import React, { useContext } from 'react';
-
-const ASSET_URL = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/';
-
-function renderPlayer(player, context) {
-  return (
-    <div className='player col' key={player.id}>
-      <div className='player__img' onClick={() => context.openPlayerInfo(player)}>
-        <img src={ASSET_URL + player.asset} alt='img' />
-      </div>
-      <div className='player__label'>
-        <span>{player.name}</span>
-      </div>
-    </div>
-  );
-}
 
 function renderPlayers(context) {
   const gks = players.filter(player => player.pos === 'Goalie');
@@ -29,22 +15,22 @@ function renderPlayers(context) {
       <PlayerDetailPopup show={context.modalShow} onHide={() => context.closeModal()} />
       <div className='players-row'>
         {gks.map(player => {
-          return renderPlayer(player, context);
+          return <PlayerIcon player={player} key={player.id} />;
         })}
       </div>
       <div className='players-row'>
         {defs.map(player => {
-          return renderPlayer(player, context);
+          return <PlayerIcon player={player} key={player.id} />;
         })}
       </div>
       <div className='players-row'>
         {mids.map(player => {
-          return renderPlayer(player, context);
+          return <PlayerIcon player={player} key={player.id} />;
         })}
       </div>
       <div className='players-row'>
         {fws.map(player => {
-          return renderPlayer(player, context);
+          return <PlayerIcon player={player} key={player.id} />;
         })}
       </div>
     </div>

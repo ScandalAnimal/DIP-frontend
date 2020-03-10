@@ -15,13 +15,46 @@ function PlayerDetailPopup(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div className='container player-detail-popup-body'>
-          <div className='row show-grid'>{player && player.name}</div>
-        </div>
+        {player && (
+          <div className='container player-detail-popup-body'>
+            <div className='row'>
+              <div className='col'>Name:</div>
+              <div className='col'>{player.name}</div>
+            </div>
+            <div className='row'>
+              <div className='col'>Position:</div>
+              <div className='col'>{player.pos}</div>
+            </div>
+            <div className='row'>
+              <div className='col'>Games played:</div>
+              <div className='col'>{player.games}</div>
+            </div>
+            <div className='row'>
+              <div className='col'>Points per game:</div>
+              <div className='col'>{player.goals}</div>
+            </div>
+            <div className='row spacing' />
+            <div className='row player-detail-popup-button-row'>
+              <PopupButton onClick={props.onHide} text='Substitute' primary={true} />
+            </div>
+            <div className='row player-detail-popup-button-row'>
+              <PopupButton onClick={props.onHide} text='Remove from team' primary={true} />
+            </div>
+            <div className='row player-detail-popup-button-row'>
+              <PopupButton onClick={props.onHide} text='Select as captain' primary={true} />
+            </div>
+            <div className='row player-detail-popup-button-row'>
+              <PopupButton onClick={props.onHide} text='Select as vicecaptain' primary={true} />
+            </div>
+            <div className='row spacing' />
+            <div className='row player-detail-popup-button-row'>
+              <PopupButton onClick={props.onHide} text='Show gamedata' primary={true} />
+            </div>
+          </div>
+        )}
       </Modal.Body>
       <Modal.Footer>
-        <PopupButton onClick={props.onHide} text='Confirm' primary={true} />
-        <PopupButton onClick={props.onHide} text='Cancel' primary={false} />
+        <PopupButton onClick={props.onHide} text='Close' primary={false} />
       </Modal.Footer>
     </Modal>
   );

@@ -2,6 +2,7 @@ import Card from '../Common/Card';
 import FootballField from '../TeamOverview/FootballField';
 import Loader from './Loader';
 import React from 'react';
+import TeamOverview from '../TeamOverview/TeamOverview';
 
 const Home = () => {
   return (
@@ -10,7 +11,7 @@ const Home = () => {
       <div className='row'>
         <div className='col-xl-6 d-flex flex-column'>
           <Card title='Team Overview'>
-            <FootballField />
+            <TeamOverview />
           </Card>
           <Card />
           <Card />

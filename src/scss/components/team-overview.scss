@@ -236,3 +236,35 @@
 .player-detail-popup-body {
   color: $color-black;
 }
+
+.player-detail-popup-button-row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .button {
+    width: 100%;
+  }
+}
+
+.player .player__options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 20px;
+  margin-top: 5px;
+}
+
+.player .player__option-captain {
+  display: flex;
+  width: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: $color-lynch;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.spacing {
+  height: 20px;
+}
