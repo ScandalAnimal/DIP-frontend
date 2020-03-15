@@ -1,6 +1,6 @@
 @import "../atoms/variables";
 
-.button {
+.popup-button {
   display: inline-block;
   font-size: 12px;
   white-space: nowrap;
@@ -40,6 +40,42 @@
   }
 }
 
-.btn {
-  border-radius: 999px;
+.fixture-button {
+  display: inline-block;
+  font-size: 12px;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  border-radius: 13px;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  padding: 8px 24px;
+  text-transform: uppercase;
+  transition: all 150ms;
+
+  &:hover {
+    border-color: $color-brown;
+    color: white;
+  }
+
+  &--primary {
+    background-color: $color-brown;
+    border: none;
+
+    &:hover {
+      color: $color-black;
+      background-color: $color-opal;
+    }
+  }
+
+  &--secondary {
+    background-color: white;
+    border: none;
+    color: $color-black;
+
+    &:hover {
+      background-color: $color-egg;
+      color: $color-black;
+    }
+  }
 }

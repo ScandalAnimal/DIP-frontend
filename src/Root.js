@@ -10,6 +10,8 @@ import {
   useRouteMatch,
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import Fixtures from './components/Fixtures/Fixtures';
+import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header.js';
 import Homepage from './components/Homepage/Homepage';
 import React from 'react';
@@ -62,15 +64,10 @@ const DIPRoutes = () => {
           <div className='container app-body'>
             <Switch>
               <Route exact path={`${match.path}/`} children={<Homepage />} />
+              <Route path={`${match.path}/fixtures`} children={<Fixtures />} />
             </Switch>
           </div>
-          <div className='d-flex flex-column'>
-            <footer className='footer footer-bottom position-absolute'>
-              <div className='ml-auto'>
-                <div>Made by Maros</div>
-              </div>
-            </footer>
-          </div>
+          <Footer />
         </div>
       </Wrapper>
     </IntlProvider>

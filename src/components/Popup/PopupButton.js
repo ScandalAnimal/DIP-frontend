@@ -1,7 +1,9 @@
 import React from 'react';
 
 function PopupButton({ onClick, text, primary }) {
-  const className = primary ? 'button button--primary' : 'button button--secondary';
+  const className = primary
+    ? 'popup-button popup-button--primary'
+    : 'popup-button popup-button--secondary';
 
   return (
     <button onClick={onClick} className={className}>

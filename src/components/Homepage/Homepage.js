@@ -1,5 +1,4 @@
 import Card from '../Common/Card';
-import FootballField from '../TeamOverview/FootballField';
 import Loader from './Loader';
 import React from 'react';
 import TeamOverview from '../TeamOverview/TeamOverview';
@@ -13,15 +12,6 @@ const Home = () => {
           <Card title='Team Overview'>
             <TeamOverview />
           </Card>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
         </div>
         <div className='col-xl-6 d-flex flex-column'>
           <Card />

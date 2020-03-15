@@ -1,0 +1,27 @@
+@import '../atoms/variables';
+
+.fixture-wrapper {
+  padding: 1.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: $color-lynch;
+  box-shadow: $shadow-card;
+  display: flex;
+  flex-direction: row;
+}
+
+.fixture-header {
+  padding: 0.8rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+}
+
+.fixture-header-title {
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  color: $color-darkgrey;
+}
