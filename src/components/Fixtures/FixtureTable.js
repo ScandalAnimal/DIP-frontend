@@ -1,6 +1,6 @@
 import { mockFixtures } from '../../mocks/mockFixtures';
 import { mockTeams } from '../../mocks/mockTeams';
-import FixtureTableButton from './FixtureTableButton';
+import Button from '../Button/Button';
 import React from 'react';
 
 function renderFixture(fixture) {
@@ -22,13 +22,13 @@ function renderFixtureHeader(gameWeek) {
   return (
     <div className='fixture-header row'>
       <div className='col-xl-4 text-left'>
-        <FixtureTableButton onClick={() => {}} text={'Week ' + prev} primary={false} />
+        <Button onClick={() => {}} text={'Week ' + prev} variant='darkPrimary' />
       </div>
       <div className='col-xl-4 text-center fixture-header-title'>
         {'Week ' + gameWeek + ' fixtures'}
       </div>
       <div className='col-xl-4 text-right'>
-        <FixtureTableButton onClick={() => {}} text={'Week ' + next} primary={false} />
+        <Button onClick={() => {}} text={'Week ' + next} variant='darkPrimary' />
       </div>
     </div>
   );

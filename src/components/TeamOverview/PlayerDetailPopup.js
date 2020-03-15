@@ -1,6 +1,6 @@
 import { Modal } from 'react-bootstrap';
 import { WrapperContext } from '../../Wrapper';
-import PopupButton from '../Popup/PopupButton';
+import Button from '../Button/Button';
 import React, { useContext } from 'react';
 
 function PlayerDetailPopup(props) {
@@ -35,26 +35,26 @@ function PlayerDetailPopup(props) {
             </div>
             <div className='row spacing' />
             <div className='row player-detail-popup-button-row'>
-              <PopupButton onClick={props.onHide} text='Substitute' primary={true} />
+              <Button onClick={props.onHide} text='Substitute' variant='lightPrimary' />
             </div>
             <div className='row player-detail-popup-button-row'>
-              <PopupButton onClick={props.onHide} text='Remove from team' primary={true} />
+              <Button onClick={props.onHide} text='Remove from team' variant='lightPrimary' />
             </div>
             <div className='row player-detail-popup-button-row'>
-              <PopupButton onClick={props.onHide} text='Select as captain' primary={true} />
+              <Button onClick={props.onHide} text='Select as captain' variant='lightPrimary' />
             </div>
             <div className='row player-detail-popup-button-row'>
-              <PopupButton onClick={props.onHide} text='Select as vicecaptain' primary={true} />
+              <Button onClick={props.onHide} text='Select as vicecaptain' variant='lightPrimary' />
             </div>
             <div className='row spacing' />
             <div className='row player-detail-popup-button-row'>
-              <PopupButton onClick={props.onHide} text='Show gamedata' primary={true} />
+              <Button onClick={props.onHide} text='Show gamedata' variant='lightPrimary' />
             </div>
           </div>
         )}
       </Modal.Body>
       <Modal.Footer>
-        <PopupButton onClick={props.onHide} text='Close' primary={false} />
+        <Button onClick={props.onHide} text='Close' variant='lightSecondary' />
       </Modal.Footer>
     </Modal>
   );

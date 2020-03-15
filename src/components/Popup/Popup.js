@@ -1,5 +1,5 @@
 import { Modal } from 'react-bootstrap';
-import PopupButton from './PopupButton';
+import Button from '../Button/Button';
 import React from 'react';
 
 function Popup(props) {
@@ -14,8 +14,8 @@ function Popup(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <PopupButton onClick={props.onHide} text='Confirm' primary={true} />
-        <PopupButton onClick={props.onHide} text='Cancel' primary={false} />
+        <Button onClick={props.onHide} text='Confirm' variant='lightPrimary' />
+        <Button onClick={props.onHide} text='Cancel' variant='lightSecondary' />
       </Modal.Footer>
     </Modal>
   );
