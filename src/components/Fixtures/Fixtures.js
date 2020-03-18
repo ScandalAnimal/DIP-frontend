@@ -1,8 +1,11 @@
 import Card from '../Common/Card';
 import FixtureTable from './FixtureTable';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Fixtures = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className='main container'>
       <div className='row'>

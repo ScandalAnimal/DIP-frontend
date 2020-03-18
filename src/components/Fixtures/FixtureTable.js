@@ -20,7 +20,7 @@ function renderFixture(fixture) {
   const teams = mockTeams; // TODO replace with API call
 
   return (
-    <div className='fixture-wrapper row'>
+    <div className='fixture-wrapper row' key={fixture.home + '-' + fixture.away}>
       <div className='col-xl-4 text-left'>{renderTeamName(teams, fixture.home, true)}</div>
       <div className='col-xl-4 text-center'> - </div>
       <div className='col-xl-4 text-right'>{renderTeamName(teams, fixture.away, false)}</div>

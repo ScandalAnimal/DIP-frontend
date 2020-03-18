@@ -1,9 +1,13 @@
 import Card from '../Common/Card';
 import Loader from './Loader';
-import React from 'react';
+import React, { useEffect } from 'react';
 import TeamOverview from '../TeamOverview/TeamOverview';
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className='main container homepage'>
       <Loader />

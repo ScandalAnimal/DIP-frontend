@@ -15,7 +15,7 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header.js';
 import Homepage from './components/Homepage/Homepage';
 import Optimize from './components/Optimize/Optimize';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Wrapper from './Wrapper';
 import csTranslations from './translations/cs.json';
 import enTranslations from './translations/en.json';
