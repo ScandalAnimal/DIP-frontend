@@ -1,7 +1,6 @@
 import { WrapperContext } from '../../Wrapper';
 import React, { useContext } from 'react';
-
-const ASSET_URL = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/';
+import kitLogoService from '../../service/kitLogoService';
 
 const PlayerIcon = ({ player }) => {
   const context = useContext(WrapperContext);
@@ -10,7 +9,7 @@ const PlayerIcon = ({ player }) => {
   return (
     <div className='player col' key={player.id}>
       <div className='player__img' onClick={() => context.openPlayerInfo(player)}>
-        <img src={ASSET_URL + player.asset} alt='img' />
+        <img src={kitLogoService.getTeamKit(1)} alt='img' />
       </div>
       <div className='player__label'>
         <span>{player.name}</span>
