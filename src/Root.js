@@ -14,9 +14,10 @@ import Fixtures from './components/Fixtures/Fixtures';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header.js';
 import Homepage from './components/Homepage/Homepage';
+import Login from './components/Login/Login';
 import Optimize from './components/Optimize/Optimize';
-import React, { useEffect } from 'react';
-import Wrapper from './Wrapper';
+import React, { useContext } from 'react';
+import Wrapper, { WrapperContext } from './Wrapper';
 import csTranslations from './translations/cs.json';
 import enTranslations from './translations/en.json';
 
@@ -64,9 +65,10 @@ const DIPRoutes = () => {
           <Header />
           <div className='container app-body'>
             <Switch>
-              <Route exact path={`${match.path}/`} children={<Homepage />} />
-              <Route path={`${match.path}/fixtures`} children={<Fixtures />} />
-              <Route path={`${match.path}/optimize`} children={<Optimize />} />
+              <Route exact path={`${match.path}/`} children={<Login />} />
+              <ProtectedRoute path={`${match.path}/home`} children={<Homepage />} />
+              <ProtectedRoute path={`${match.path}/fixtures`} children={<Fixtures />} />
+              <ProtectedRoute path={`${match.path}/optimize`} children={<Optimize />} />
             </Switch>
           </div>
           <Footer />
@@ -75,5 +77,26 @@ const DIPRoutes = () => {
     </IntlProvider>
   );
 };
+
+function ProtectedRoute({ children, ...rest }) {
+  const context = useContext(WrapperContext);
+  const isAuth = context.teamId !== null;
+  return (
+    <Route
+      {...rest}
+      render={() =>
+        isAuth ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/',
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 
 export default Root;

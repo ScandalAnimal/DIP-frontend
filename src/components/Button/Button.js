@@ -15,11 +15,11 @@ function getClassName(variant) {
   }
 }
 
-function Button({ onClick, text, variant }) {
+function Button({ onClick, text, variant, ...rest }) {
   const className = getClassName(variant);
 
   return (
-    <button onClick={onClick} className={className}>
+    <button onClick={onClick} className={className} {...rest}>
       {text}
     </button>
   );

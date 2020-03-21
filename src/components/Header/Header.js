@@ -1,13 +1,14 @@
-import { Link, useParams } from 'react-router-dom';
+import { WrapperContext } from '../../Wrapper';
 import ChangeLanguage from './ChangeLanguage';
 import HamburgerIcon from './HamburgerIcon';
 import HeaderLink from './HeaderLink';
-import React, { useState } from 'react';
-import logo from '../../assets/images/logoNew.png';
+import HomeLogo from './HomeLogo';
+import Logout from '../Login/Logout';
+import React, { useContext, useState } from 'react';
 
 const Header = () => {
-  const params = useParams();
   const [mobileMenuOpened, setMobileMenuOpened] = useState(false);
+  const context = useContext(WrapperContext);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpened(!mobileMenuOpened);
@@ -23,25 +24,30 @@ const Header = () => {
       <div className='container'>
         <div className='row justify-content-space-between'>
           <div className='col-auto d-flex align-items-center' onClick={closeMobileMenu}>
-            <Link to={`/${params.langId}/`}>
-              <img src={logo} alt='App logo' width={175} />
-            </Link>
+            <HomeLogo />
           </div>
-          <div className='col justify-content-end nav-hamburger'>
-            <HamburgerIcon action={toggleMobileMenu} />
-          </div>
-          <div className='col-auto align-items-center nav-link'>
-            <HeaderLink title={'Optimize'} url={'optimize'} />
-          </div>
-          <div className='col-auto align-items-center nav-link'>
-            <HeaderLink title={'Fixtures'} url={'fixtures'} />
-          </div>
-          <div className='col-auto align-items-center nav-link'>
-            <HeaderLink title={'Injuries & Suspensions'} url={'injuries'} />
-          </div>
-          <div className='col align-items-center justify-content-end nav-link'>
-            <ChangeLanguage />
-          </div>
+          {context.teamId !== null && (
+            <>
+              <div className='col justify-content-end nav-hamburger'>
+                <HamburgerIcon action={toggleMobileMenu} />
+              </div>
+              <div className='col-auto align-items-center nav-link'>
+                <HeaderLink title={'Optimize'} url={'optimize'} />
+              </div>
+              <div className='col-auto align-items-center nav-link'>
+                <HeaderLink title={'Fixtures'} url={'fixtures'} />
+              </div>
+              <div className='col-auto align-items-center nav-link'>
+                <HeaderLink title={'Injuries & Suspensions'} url={'injuries'} />
+              </div>
+              <div className='col align-items-center justify-content-end nav-link'>
+                <ChangeLanguage />
+              </div>
+              <div className='col-auto align-items-center justify-content-end nav-link'>
+                <Logout />
+              </div>
+            </>
+          )}
         </div>
         <div className={`row justify-content-space-between ` + mobileMenuClass}>
           <div className='col-auto align-items-center'>

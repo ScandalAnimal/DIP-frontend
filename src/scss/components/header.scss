@@ -20,7 +20,7 @@
   display: none;
   cursor: pointer;
 
-  @media screen and (max-width: $screen-sm) {
+  @media screen and (max-width: $screen-md) {
     display: block;
   }
 }
@@ -28,7 +28,7 @@
 .nav-hamburger {
   display: none;
 
-  @media screen and (max-width: $screen-sm) {
+  @media screen and (max-width: $screen-md) {
     display: flex;
   }
 }
@@ -48,7 +48,7 @@
 .nav-link {
   display: flex;
 
-  @media screen and (max-width: $screen-sm) {
+  @media screen and (max-width: $screen-md) {
     display: none;
   }
 }
@@ -57,7 +57,7 @@
   display: none;
 
   &--opened {
-    @media screen and (max-width: $screen-sm) {
+    @media screen and (max-width: $screen-md) {
       display: flex;
       flex-direction: column;
     }

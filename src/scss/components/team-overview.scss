@@ -183,19 +183,24 @@
 
 .player .player__img {
   width: 65px;
+  height: 65px;
   overflow: hidden;
   border-radius: 50%;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .player__img:hover,
 .player__img:focus {
-  border: 2px solid black;
   width: 80px;
+  height: 80px;
 }
 
 .player .player__img img {
-  width: 100%;
+  width: 65px;
+  height: 65px;
   transition: all 0.2s;
   display: block;
 }
