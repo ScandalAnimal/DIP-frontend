@@ -1,17 +1,15 @@
 import { Form } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
-import { WrapperContext } from '../../Wrapper';
+import { getTeamData } from '../../reducers/appActions';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
-import React, { useContext, useState } from 'react';
-import loginService from '../../service/loginService';
-import playerService from '../../service/playerService';
+import React, { useState } from 'react';
 
 function Login() {
-  const context = useContext(WrapperContext);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const params = useParams();
-  // const { setTeamId } = context;
-  //
   const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
 
@@ -23,12 +21,10 @@ function Login() {
     setInputPassword(e.target.value);
   };
 
-  const handleSubmit = () => {
-    console.log('submit');
-    loginService.getTeamData(inputEmail, inputPassword);
-    playerService.getPlayers();
-    // setTeamId(inputTeamId);
-  };
+  async function handleSubmit(e) {
+    e.preventDefault();
+    getTeamData(dispatch, history, params, inputEmail, inputPassword);
+  }
 
   return (
     <div className='header-link'>
@@ -51,9 +47,7 @@ function Login() {
           We do not store any personal data or passwords, these are used just for fetching data from
           the FPL API.
         </div>
-        <Link to={`/${params.langId}/home`}>
-          <Button variant='lightPrimary' text='Submit' type='submit' onClick={handleSubmit} />
-        </Link>
+        <Button variant='lightPrimary' text='Submit' type='submit' onClick={handleSubmit} />
       </Form>
     </div>
   );

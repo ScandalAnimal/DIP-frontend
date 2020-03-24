@@ -1,12 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
-import { WrapperContext } from '../../Wrapper';
-import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import React from 'react';
 import logo from '../../assets/images/logoNew.png';
 
 const HomeLogo = () => {
-  const context = useContext(WrapperContext);
+  const teamId = useSelector(state => state.app.teamId);
   const params = useParams();
-  const path = context.teamId === null ? '/' : '/home';
+  const path = teamId === null ? '/' : '/home';
   return (
     <Link to={`/${params.langId}${path}`}>
       <img src={logo} alt='App logo' width={175} />

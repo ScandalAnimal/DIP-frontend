@@ -1,14 +1,15 @@
-import { WrapperContext } from '../../Wrapper';
+import { useSelector } from 'react-redux';
 import ChangeLanguage from './ChangeLanguage';
 import HamburgerIcon from './HamburgerIcon';
 import HeaderLink from './HeaderLink';
 import HomeLogo from './HomeLogo';
 import Logout from '../Login/Logout';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import TeamId from './TeamId';
 
 const Header = () => {
   const [mobileMenuOpened, setMobileMenuOpened] = useState(false);
-  const context = useContext(WrapperContext);
+  const teamId = useSelector(state => state.app.teamId);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpened(!mobileMenuOpened);
@@ -26,7 +27,7 @@ const Header = () => {
           <div className='col-auto d-flex align-items-center' onClick={closeMobileMenu}>
             <HomeLogo />
           </div>
-          {context.teamId !== null && (
+          {teamId !== null && (
             <>
               <div className='col justify-content-end nav-hamburger'>
                 <HamburgerIcon action={toggleMobileMenu} />
@@ -41,8 +42,11 @@ const Header = () => {
                 <HeaderLink title={'Injuries & Suspensions'} url={'injuries'} />
               </div>
               <div className='col align-items-center justify-content-end nav-link'>
-                <ChangeLanguage />
+                <TeamId />
               </div>
+              {/*<div className='col-auto align-items-center justify-content-end nav-link'>*/}
+              {/*  <ChangeLanguage />*/}
+              {/*</div>*/}
               <div className='col-auto align-items-center justify-content-end nav-link'>
                 <Logout />
               </div>

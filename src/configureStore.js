@@ -11,7 +11,7 @@ export const history = createBrowserHistory();
 
 export default function configureStore(preloadedState) {
   return createStore(
-    createRootReducer(history), // root reducer with router state
+    createRootReducer(history), // root appReducer with router state
     preloadedState,
     compose(composeWithDevTools(applyMiddleware(thunk, routerMiddleware(history))))
   );

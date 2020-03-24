@@ -1,29 +1,33 @@
-import { WrapperContext } from '../../Wrapper';
-import { players } from '../../mocks/mockFootballers';
+import { useDispatch, useSelector } from 'react-redux';
 import PlayerDetailPopup from './PlayerDetailPopup';
 import PlayerIcon from './PlayerIcon';
-import React, { useContext } from 'react';
+import React from 'react';
 
-function renderPlayers(context) {
-  const bench = players.filter(player => player.pos === 'Bench');
+const Bench = ({ bench }) => {
+  const modalShow = useSelector(state => state.app.modalShow);
+  const dispatch = useDispatch();
 
-  return (
-    <div className='d-flex flex-column players'>
-      <PlayerDetailPopup show={context.modalShow} onHide={() => context.closeModal()} />
-      <div className='players-row'>
-        {bench.map(player => {
-          return <PlayerIcon player={player} key={player.id} />;
-        })}
+  function closeModal() {
+    dispatch({
+      type: 'CLOSE_MODAL',
+    });
+  }
+  function renderPlayers() {
+    return (
+      <div className='d-flex flex-column players'>
+        <PlayerDetailPopup show={modalShow} onHide={closeModal} />
+        <div className='players-row'>
+          {bench.map(player => {
+            return <PlayerIcon player={player} key={player.id} />;
+          })}
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
-const Bench = () => {
-  const context = useContext(WrapperContext);
   return (
     <div className='bench-wrapper'>
-      <div className='bench-players'>{renderPlayers(context)}</div>
+      <div className='bench-players'>{renderPlayers()}</div>
     </div>
   );
 };

@@ -1,41 +1,7 @@
-import { WrapperContext } from '../../Wrapper';
-import { players } from '../../mocks/mockFootballers';
+import { useDispatch, useSelector } from 'react-redux';
 import PlayerDetailPopup from './PlayerDetailPopup';
 import PlayerIcon from './PlayerIcon';
-import React, { useContext } from 'react';
-
-function renderPlayers(context) {
-  const gks = players.filter(player => player.pos === 'Goalie');
-  const defs = players.filter(player => player.pos === 'Defence');
-  const mids = players.filter(player => player.pos === 'Midfield');
-  const fws = players.filter(player => player.pos === 'Forward');
-
-  return (
-    <div className='d-flex flex-column players'>
-      <PlayerDetailPopup show={context.modalShow} onHide={() => context.closeModal()} />
-      <div className='players-row'>
-        {gks.map(player => {
-          return <PlayerIcon player={player} key={player.id} />;
-        })}
-      </div>
-      <div className='players-row'>
-        {defs.map(player => {
-          return <PlayerIcon player={player} key={player.id} />;
-        })}
-      </div>
-      <div className='players-row'>
-        {mids.map(player => {
-          return <PlayerIcon player={player} key={player.id} />;
-        })}
-      </div>
-      <div className='players-row'>
-        {fws.map(player => {
-          return <PlayerIcon player={player} key={player.id} />;
-        })}
-      </div>
-    </div>
-  );
-}
+import React from 'react';
 
 function renderFieldTerrain() {
   return (
@@ -59,11 +25,47 @@ function renderFieldTerrain() {
   );
 }
 
-const FootballField = () => {
-  const context = useContext(WrapperContext);
+const FootballField = ({ gks, defs, mids, fwds }) => {
+  const modalShow = useSelector(state => state.app.modalShow);
+  const dispatch = useDispatch();
+
+  function renderPlayers() {
+    function closeModal() {
+      dispatch({
+        type: 'CLOSE_MODAL',
+      });
+    }
+
+    return (
+      <div className='d-flex flex-column players'>
+        <PlayerDetailPopup show={modalShow} onHide={closeModal} />
+        <div className='players-row'>
+          {gks.map(player => {
+            return <PlayerIcon player={player} key={player.id} />;
+          })}
+        </div>
+        <div className='players-row'>
+          {defs.map(player => {
+            return <PlayerIcon player={player} key={player.id} />;
+          })}
+        </div>
+        <div className='players-row'>
+          {mids.map(player => {
+            return <PlayerIcon player={player} key={player.id} />;
+          })}
+        </div>
+        <div className='players-row'>
+          {fwds.map(player => {
+            return <PlayerIcon player={player} key={player.id} />;
+          })}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className='football-field-wrapper'>
-      <div className='football-field-team'>{renderPlayers(context)}</div>
+      <div className='football-field-team'>{renderPlayers()}</div>
       {renderFieldTerrain()}
     </div>
   );
