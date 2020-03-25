@@ -1,12 +1,14 @@
 import { Modal } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button/Button';
 import React from 'react';
 import playerService from '../../service/playerService';
 
 function PlayerDetailPopup(props) {
   const player = useSelector(state => state.app.selectedPlayer);
+  const { currentTeam, removedPlayers } = useSelector(state => state.app.edit);
   const teams = useSelector(state => state.app.teams);
+  const dispatch = useDispatch();
 
   function getTeamName() {
     for (let i = 0; i < teams.length; i++) {
@@ -16,6 +18,36 @@ function PlayerDetailPopup(props) {
       }
     }
     return null;
+  }
+
+  function isPlayerInArray(p, a) {
+    let result = false;
+    a.map(value => {
+      if (value.id === p.id) {
+        result = true;
+      }
+    });
+    return result;
+  }
+
+  function removeFromSquad() {
+    dispatch({
+      type: 'REMOVE_PLAYER',
+      payload: {
+        value: player,
+      },
+    });
+    props.onHide();
+  }
+
+  function addToSquadFromRemoved() {
+    dispatch({
+      type: 'ADD_PLAYER_TO_SQUAD_FROM_REMOVED',
+      payload: {
+        value: player,
+      },
+    });
+    props.onHide();
   }
 
   return (
@@ -52,9 +84,16 @@ function PlayerDetailPopup(props) {
             <div className='row player-detail-popup-button-row'>
               <Button onClick={props.onHide} text='Substitute' variant='lightPrimary' />
             </div>
-            <div className='row player-detail-popup-button-row'>
-              <Button onClick={props.onHide} text='Remove from team' variant='lightPrimary' />
-            </div>
+            {isPlayerInArray(player, currentTeam) && (
+              <div className='row player-detail-popup-button-row'>
+                <Button onClick={removeFromSquad} text='Remove from team' variant='lightPrimary' />
+              </div>
+            )}
+            {isPlayerInArray(player, removedPlayers) && (
+              <div className='row player-detail-popup-button-row'>
+                <Button onClick={addToSquadFromRemoved} text='Add to team' variant='lightPrimary' />
+              </div>
+            )}
             <div className='row player-detail-popup-button-row'>
               <Button onClick={props.onHide} text='Select as captain' variant='lightPrimary' />
             </div>

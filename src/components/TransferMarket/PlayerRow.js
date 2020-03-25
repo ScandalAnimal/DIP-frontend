@@ -9,7 +9,7 @@ const PlayerRow = ({ player }) => {
     <div className='player-row row'>
       <div className='col-sm-4 text-left'>{name}</div>
       <div className='col-sm-4 text-center'>{points}</div>
-      <div className='col-sm-4 text-right'>{price}</div>
+      <div className='col-sm-4 text-right'>{(price / 10).toFixed(1)}</div>
     </div>
   );
 };

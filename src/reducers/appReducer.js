@@ -7,6 +7,12 @@ const initialState = {
   allPlayerIds: null,
   teamPicks: null,
   teams: null,
+  allCombinedPlayers: [],
+  originalTeam: [],
+  edit: {
+    currentTeam: [],
+    removedPlayers: [],
+  },
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -66,6 +72,63 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: action.payload.value,
+      };
+    case 'REMOVE_PLAYER':
+      const removedPlayersArray = state.edit.removedPlayers;
+      const removedPlayersArrayLength = removedPlayersArray.length;
+      removedPlayersArray[removedPlayersArrayLength] = action.payload.value;
+
+      const currentTeamArray = state.edit.currentTeam;
+      const updatedTeam = currentTeamArray.filter(player => {
+        return player.id !== action.payload.value.id;
+      });
+      return {
+        ...state,
+        edit: {
+          ...state.edit,
+          currentTeam: updatedTeam,
+          removedPlayers: removedPlayersArray,
+        },
+      };
+    case 'ADD_PLAYER_TO_SQUAD_FROM_REMOVED':
+      const array = state.edit.currentTeam;
+      const length = array.length;
+      array[length] = action.payload.value;
+
+      const team = state.edit.removedPlayers;
+      const teamWithRemoved = team.filter(player => {
+        return player.id !== action.payload.value.id;
+      });
+      return {
+        ...state,
+        edit: {
+          ...state.edit,
+          currentTeam: array,
+          removedPlayers: teamWithRemoved,
+        },
+      };
+    case 'SET_CURRENT_TEAM':
+      return {
+        ...state,
+        originalTeam: action.payload.value,
+        edit: {
+          ...state.edit,
+          currentTeam: action.payload.value,
+        },
+      };
+    case 'SET_ALL_COMBINED_PLAYERS':
+      return {
+        ...state,
+        allCombinedPlayers: action.payload.value,
+      };
+    case 'RESET_TEAM_CHANGES':
+      return {
+        ...state,
+        edit: {
+          ...state.edit,
+          currentTeam: state.originalTeam,
+          removedPlayers: [],
+        },
       };
 
     case 'STARTED':

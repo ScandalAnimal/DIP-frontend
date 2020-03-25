@@ -18,7 +18,7 @@ const PlayerIcon = ({ player }) => {
     });
   };
   return (
-    <div className='player col' key={player.id}>
+    <div className='player col col-sm-3' key={player.id}>
       {player.team !== undefined && (
         <>
           <div className='player__img' onClick={openPlayerInfo}>

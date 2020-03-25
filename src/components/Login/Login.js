@@ -3,7 +3,7 @@ import { getTeamData } from '../../reducers/appActions';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Login() {
   const dispatch = useDispatch();
@@ -25,6 +25,12 @@ function Login() {
     e.preventDefault();
     getTeamData(dispatch, history, params, inputEmail, inputPassword);
   }
+
+  useEffect(() => {
+    dispatch({
+      type: 'CLEAR',
+    });
+  }, []);
 
   return (
     <div className='header-link'>

@@ -271,3 +271,21 @@
 .spacing {
   height: 20px;
 }
+
+.removed-players-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.reset-changes-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.bench-wrapper {
+  margin-top: 15px;
+  background-color: $color-brandy;
+}

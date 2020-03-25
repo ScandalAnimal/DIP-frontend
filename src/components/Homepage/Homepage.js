@@ -27,6 +27,8 @@ function findPlayerById(allPlayerIds, allPlayers, id) {
 const Homepage = () => {
   const dispatch = useDispatch();
   const { teamPicks, allPlayers, allPlayerIds, teams, loading } = useSelector(state => state.app);
+  const currentTeam = useSelector(state => state.app.edit.currentTeam);
+  const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   let combinedPlayers = [];
   let combinedAllPlayers = [];
 
@@ -42,7 +44,8 @@ const Homepage = () => {
     allPlayerIds !== null &&
     teams !== null &&
     teamPicks !== null &&
-    combinedPlayers.length === 0
+    currentTeam.length === 0 &&
+    allCombinedPlayers.length === 0
   ) {
     let players = [];
     for (let i = 0; i < teamPicks.length; i++) {
@@ -53,6 +56,12 @@ const Homepage = () => {
       players.push(player);
     }
     combinedPlayers = players;
+    dispatch({
+      type: 'SET_CURRENT_TEAM',
+      payload: {
+        value: combinedPlayers,
+      },
+    });
 
     let playersAll = [];
     for (let i = 0; i < allPlayerIds.length; i++) {
@@ -60,6 +69,12 @@ const Homepage = () => {
       playersAll.push(player);
     }
     combinedAllPlayers = playersAll;
+    dispatch({
+      type: 'SET_ALL_COMBINED_PLAYERS',
+      payload: {
+        value: combinedAllPlayers,
+      },
+    });
   }
 
   return (
@@ -70,12 +85,12 @@ const Homepage = () => {
         <div className='row'>
           <div className='col-sm-6 d-flex flex-column'>
             <Card title='Team Overview'>
-              <TeamOverview combinedPlayers={combinedPlayers} />
+              <TeamOverview />
             </Card>
           </div>
           <div className='col-sm-6 d-flex flex-column'>
             <Card title='Transfer Market'>
-              <TransferMarket combinedPlayers={combinedAllPlayers} />
+              <TransferMarket />
             </Card>
           </div>
         </div>

@@ -16,7 +16,7 @@ const Bench = ({ bench }) => {
     return (
       <div className='d-flex flex-column players'>
         <PlayerDetailPopup show={modalShow} onHide={closeModal} />
-        <div className='players-row'>
+        <div className='players-row row'>
           {bench.map(player => {
             return <PlayerIcon player={player} key={player.id} />;
           })}
