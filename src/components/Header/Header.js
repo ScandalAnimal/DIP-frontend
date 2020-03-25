@@ -35,12 +35,12 @@ const Header = () => {
               <div className='col-auto align-items-center nav-link'>
                 <HeaderLink title={'Optimize'} url={'optimize'} />
               </div>
-              <div className='col-auto align-items-center nav-link'>
-                <HeaderLink title={'Fixtures'} url={'fixtures'} />
-              </div>
-              <div className='col-auto align-items-center nav-link'>
-                <HeaderLink title={'Injuries & Suspensions'} url={'injuries'} />
-              </div>
+              {/*<div className='col-auto align-items-center nav-link'>*/}
+              {/*  <HeaderLink title={'Fixtures'} url={'fixtures'} />*/}
+              {/*</div>*/}
+              {/*<div className='col-auto align-items-center nav-link'>*/}
+              {/*  <HeaderLink title={'Injuries & Suspensions'} url={'injuries'} />*/}
+              {/*</div>*/}
               <div className='col align-items-center justify-content-end nav-link'>
                 <TeamId />
               </div>
@@ -57,16 +57,16 @@ const Header = () => {
           <div className='col-auto align-items-center'>
             <HeaderLink title={'Optimize'} url={'optimize'} action={closeMobileMenu} />
           </div>
-          <div className='col-auto align-items-center'>
-            <HeaderLink title={'Fixtures'} url={'fixtures'} action={closeMobileMenu} />
-          </div>
-          <div className='col-auto align-items-center'>
-            <HeaderLink
-              title={'Injuries & Suspensions'}
-              url={'injuries'}
-              action={closeMobileMenu}
-            />
-          </div>
+          {/*<div className='col-auto align-items-center'>*/}
+          {/*  <HeaderLink title={'Fixtures'} url={'fixtures'} action={closeMobileMenu} />*/}
+          {/*</div>*/}
+          {/*<div className='col-auto align-items-center'>*/}
+          {/*  <HeaderLink*/}
+          {/*    title={'Injuries & Suspensions'}*/}
+          {/*    url={'injuries'}*/}
+          {/*    action={closeMobileMenu}*/}
+          {/*  />*/}
+          {/*</div>*/}
         </div>
       </div>
     </header>

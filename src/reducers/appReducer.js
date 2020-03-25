@@ -58,6 +58,7 @@ export const appReducer = (state = initialState, action) => {
         teams: action.payload.value,
       };
     case 'CLEAR':
+      window.localStorage.clear();
       return {
         ...initialState,
       };
