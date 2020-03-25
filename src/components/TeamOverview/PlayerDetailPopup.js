@@ -50,6 +50,26 @@ function PlayerDetailPopup(props) {
     props.onHide();
   }
 
+  function selectAsCaptain() {
+    dispatch({
+      type: 'SELECT_CAPTAIN',
+      payload: {
+        value: player,
+      },
+    });
+    props.onHide();
+  }
+
+  function selectAsViceCaptain() {
+    dispatch({
+      type: 'SELECT_VICE_CAPTAIN',
+      payload: {
+        value: player,
+      },
+    });
+    props.onHide();
+  }
+
   return (
     <Modal {...props} aria-labelledby='contained-modal-title-vcenter'>
       <Modal.Header>
@@ -94,12 +114,20 @@ function PlayerDetailPopup(props) {
                 <Button onClick={addToSquadFromRemoved} text='Add to team' variant='lightPrimary' />
               </div>
             )}
-            <div className='row player-detail-popup-button-row'>
-              <Button onClick={props.onHide} text='Select as captain' variant='lightPrimary' />
-            </div>
-            <div className='row player-detail-popup-button-row'>
-              <Button onClick={props.onHide} text='Select as vicecaptain' variant='lightPrimary' />
-            </div>
+            {player.is_captain === 'false' && (
+              <div className='row player-detail-popup-button-row'>
+                <Button onClick={selectAsCaptain} text='Select as captain' variant='lightPrimary' />
+              </div>
+            )}
+            {player.is_vice_captain === 'false' && (
+              <div className='row player-detail-popup-button-row'>
+                <Button
+                  onClick={selectAsViceCaptain}
+                  text='Select as vicecaptain'
+                  variant='lightPrimary'
+                />
+              </div>
+            )}
             <div className='row spacing' />
             <div className='row player-detail-popup-button-row'>
               <Button onClick={props.onHide} text='Show gamedata' variant='lightPrimary' />

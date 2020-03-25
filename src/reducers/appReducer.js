@@ -130,6 +130,50 @@ export const appReducer = (state = initialState, action) => {
           removedPlayers: [],
         },
       };
+    case 'SELECT_CAPTAIN':
+      const oldTeam = state.edit.currentTeam;
+      const newTeam = oldTeam.map(player => {
+        if (player.id === action.payload.value.id) {
+          return {
+            ...player,
+            is_captain: 'true',
+          };
+        } else {
+          return {
+            ...player,
+            is_captain: 'false',
+          };
+        }
+      });
+      return {
+        ...state,
+        edit: {
+          ...state.edit,
+          currentTeam: newTeam,
+        },
+      };
+    case 'SELECT_VICE_CAPTAIN':
+      const oldCurrentTeam = state.edit.currentTeam;
+      const newCurrentTeam = oldCurrentTeam.map(player => {
+        if (player.id === action.payload.value.id) {
+          return {
+            ...player,
+            is_vice_captain: 'true',
+          };
+        } else {
+          return {
+            ...player,
+            is_vice_captain: 'false',
+          };
+        }
+      });
+      return {
+        ...state,
+        edit: {
+          ...state.edit,
+          currentTeam: newCurrentTeam,
+        },
+      };
 
     case 'STARTED':
       return {
