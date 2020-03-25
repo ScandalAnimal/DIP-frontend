@@ -1,7 +1,9 @@
 import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import PlayerIcon from '../TeamOverview/PlayerIcon';
 import PlayerList from './PlayerList';
 import React, { useEffect, useState } from 'react';
+import playerService from '../../service/playerService';
 
 const TransferMarket = ({ combinedPlayers }) => {
   const teams = useSelector(state => state.app.teams);
