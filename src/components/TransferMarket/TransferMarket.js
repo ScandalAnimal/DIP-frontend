@@ -1,13 +1,24 @@
 import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import PlayerList from './PlayerList';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const TransferMarket = ({ combinedPlayers }) => {
   const teams = useSelector(state => state.app.teams);
   const [selectedPosition, setSelectedPosition] = useState(0);
   const [selectedTeam, setSelectedTeam] = useState(0);
   const [filteredPlayers, setFilteredPlayers] = useState(combinedPlayers);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (teams !== null) {
+      setLoading(false);
+    }
+  }, [teams]);
+
+  useEffect(() => {
+    setFilteredPlayers(combinedPlayers);
+  }, [combinedPlayers]);
 
   function renderSelectBoxes() {
     const positions = ['All positions', 'Goalkeeper', 'Defender', 'Midfielder', 'Forward'];
@@ -104,8 +115,12 @@ const TransferMarket = ({ combinedPlayers }) => {
 
   return (
     <div className='transfer-market'>
-      {renderSelectBoxes()}
-      {renderPlayerList()}
+      {!loading && (
+        <>
+          {renderSelectBoxes()}
+          {renderPlayerList()}
+        </>
+      )}
     </div>
   );
 };
