@@ -7,7 +7,6 @@ import playerService from '../../service/playerService';
 function PlayerDetailPopup(props) {
   const player = useSelector(state => state.app.selectedPlayer);
   const teams = useSelector(state => state.app.teams);
-  console.log(player);
 
   function getTeamName() {
     for (let i = 0; i < teams.length; i++) {

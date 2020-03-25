@@ -9,7 +9,6 @@ const PlayerIcon = ({ player }) => {
   const isViceCaptain = player.is_vice_captain === 'true';
   const name = playerService.getPlayerName(player);
 
-  console.log(player.team);
   const openPlayerInfo = () => {
     dispatch({
       type: 'OPEN_PLAYER_INFO',

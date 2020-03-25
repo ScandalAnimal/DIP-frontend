@@ -5,14 +5,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 import createRootReducer from './reducers';
+import persistState from 'redux-localstorage';
 import thunk from 'redux-thunk';
 
 export const history = createBrowserHistory();
 
 export default function configureStore(preloadedState) {
   return createStore(
-    createRootReducer(history), // root appReducer with router state
+    createRootReducer(history),
     preloadedState,
-    compose(composeWithDevTools(applyMiddleware(thunk, routerMiddleware(history))))
+    compose(composeWithDevTools(applyMiddleware(thunk), persistState(/*paths, config*/)))
   );
 }
