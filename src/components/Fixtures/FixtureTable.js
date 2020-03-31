@@ -21,9 +21,9 @@ function renderFixture(fixture) {
 
   return (
     <div className='fixture-wrapper row' key={fixture.home + '-' + fixture.away}>
-      <div className='col-sm-4 text-left'>{renderTeamName(teams, fixture.home, true)}</div>
-      <div className='col-sm-4 text-center'> - </div>
-      <div className='col-sm-4 text-right'>{renderTeamName(teams, fixture.away, false)}</div>
+      <div className='col-xl-4 text-left'>{renderTeamName(teams, fixture.home, true)}</div>
+      <div className='col-xl-4 text-center'> - </div>
+      <div className='col-xl-4 text-right'>{renderTeamName(teams, fixture.away, false)}</div>
     </div>
   );
 }
@@ -34,13 +34,13 @@ function renderFixtureHeader(gameWeek) {
 
   return (
     <div className='fixture-header row'>
-      <div className='col-sm-4 text-left'>
+      <div className='col-xl-4 text-left'>
         <Button onClick={() => {}} text={'Week ' + prev} variant='darkPrimary' />
       </div>
-      <div className='col-sm-4 text-center fixture-header-title'>
+      <div className='col-xl-4 text-center fixture-header-title'>
         {'Week ' + gameWeek + ' fixtures'}
       </div>
-      <div className='col-sm-4 text-right'>
+      <div className='col-xl-4 text-right'>
         <Button onClick={() => {}} text={'Week ' + next} variant='darkPrimary' />
       </div>
     </div>

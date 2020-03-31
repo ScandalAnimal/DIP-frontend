@@ -83,12 +83,12 @@ const Homepage = () => {
         <Loader />
       ) : (
         <div className='row'>
-          <div className='col-sm-6 d-flex flex-column'>
+          <div className='col-xl-6 d-flex flex-column'>
             <Card title='Team Overview'>
               <TeamOverview />
             </Card>
           </div>
-          <div className='col-sm-6 d-flex flex-column'>
+          <div className='col-xl-6 d-flex flex-column'>
             <Card title='Transfer Market'>
               <TransferMarket />
             </Card>

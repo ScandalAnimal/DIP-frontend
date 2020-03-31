@@ -16,14 +16,14 @@ const OptimizeOptions = () => {
   return (
     <div className='optimize-options col'>
       <div className='optimize-option-wrapper row'>
-        <div className='col-sm-4 text-left'>Transfers:</div>
-        <div className='col-sm-8 text-center'>
+        <div className='col-xl-4 text-left'>Transfers:</div>
+        <div className='col-xl-8 text-center'>
           <OptimizeSlider setValue={setTransfers} min={0} max={3} withWildcard={true} />
         </div>
       </div>
       <div className='optimize-option-wrapper row'>
-        <div className='col-sm-4 text-left'>Selection technique:</div>
-        <div className='col-sm-8 text-center'>
+        <div className='col-xl-4 text-left'>Selection technique:</div>
+        <div className='col-xl-8 text-center'>
           <div className='row d-flex align-items-center'>
             <input
               onChange={setSelection}
@@ -61,8 +61,8 @@ const OptimizeOptions = () => {
       </div>
 
       <div className='optimize-option-wrapper row'>
-        <div className='col-sm-4 text-left'>Game weeks:</div>
-        <div className='col-sm-8 text-center'>
+        <div className='col-xl-4 text-left'>Game weeks:</div>
+        <div className='col-xl-8 text-center'>
           <OptimizeSlider setValue={setGameWeek} min={1} max={10} />
         </div>
       </div>

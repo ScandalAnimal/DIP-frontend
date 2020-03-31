@@ -18,14 +18,14 @@ const PlayerIcon = ({ player }) => {
     });
   };
   return (
-    <div className='player col col-sm-3' key={player.id}>
+    <div className='player' key={player.id}>
       {player.team !== undefined && (
         <>
           <div className='player__img' onClick={openPlayerInfo}>
             <img src={kitLogoService.getTeamKit(parseInt(player.team))} alt='img' />
           </div>
           <div className='player__label'>
-            <span>{name}</span>
+            <div>{name}</div>
           </div>
           <div className='player__options'>
             {isCaptain && <div className='player__option-captain'>C</div>}

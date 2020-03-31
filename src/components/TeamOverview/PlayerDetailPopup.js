@@ -1,12 +1,16 @@
 import { Modal } from 'react-bootstrap';
+import { POSITIONS } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button/Button';
-import React from 'react';
+import PlayerSmallIcon from './PlayerSmallIcon';
+import React, { useState } from 'react';
 import playerService from '../../service/playerService';
 
 function PlayerDetailPopup(props) {
   const player = useSelector(state => state.app.selectedPlayer);
   const { currentTeam, removedPlayers } = useSelector(state => state.app.edit);
+  const [validationMessage, setValidationMessage] = useState('');
+  const [subs, setSubs] = useState([]);
   const teams = useSelector(state => state.app.teams);
   const dispatch = useDispatch();
 
@@ -18,6 +22,79 @@ function PlayerDetailPopup(props) {
       }
     }
     return null;
+  }
+
+  function closeModal() {
+    setValidationMessage('');
+    setSubs([]);
+    props.onHide();
+  }
+
+  function onSubClick(sub) {
+    makeSubstitution(sub, player);
+  }
+
+  function makeSubstitution(on, off) {
+    dispatch({
+      type: 'MAKE_SUBSTITUTION',
+      payload: {
+        on: on,
+        off: off,
+      },
+    });
+    closeModal();
+  }
+
+  function openSubs() {
+    let highlightedSubs = [];
+    switch (player.element_type) {
+      case POSITIONS.GK:
+        const on = currentTeam.find(elem => {
+          return elem.position > 11 && elem.element_type === POSITIONS.GK;
+        });
+        makeSubstitution(on, player);
+        break;
+      case POSITIONS.DF:
+        const defs = currentTeam.filter(elem => {
+          return elem.position <= 11 && elem.element_type === POSITIONS.DF;
+        });
+        if (defs.length > 3) {
+          highlightedSubs = currentTeam.filter(elem => {
+            return elem.position > 11 && elem.element_type !== POSITIONS.GK;
+          });
+        } else {
+          highlightedSubs = currentTeam.filter(elem => {
+            return elem.position > 11 && elem.element_type === POSITIONS.DF;
+          });
+        }
+        break;
+      case POSITIONS.MF:
+        highlightedSubs = currentTeam.filter(elem => {
+          return elem.position > 11 && elem.element_type !== POSITIONS.GK;
+        });
+        break;
+      case POSITIONS.FW:
+        const fws = currentTeam.filter(elem => {
+          return elem.position <= 11 && elem.element_type === POSITIONS.FW;
+        });
+        if (fws.length > 1) {
+          highlightedSubs = currentTeam.filter(elem => {
+            return elem.position > 11 && elem.element_type !== POSITIONS.GK;
+          });
+        } else {
+          highlightedSubs = currentTeam.filter(elem => {
+            return elem.position > 11 && elem.element_type === POSITIONS.FW;
+          });
+        }
+        break;
+      default:
+        break;
+    }
+    const newSubs = [];
+    highlightedSubs.forEach(sub => {
+      newSubs.push(sub);
+    });
+    setSubs(newSubs);
   }
 
   function isPlayerInArray(p, a) {
@@ -37,7 +114,7 @@ function PlayerDetailPopup(props) {
         value: player,
       },
     });
-    props.onHide();
+    closeModal();
   }
 
   function addToSquadFromRemoved() {
@@ -47,7 +124,7 @@ function PlayerDetailPopup(props) {
         value: player,
       },
     });
-    props.onHide();
+    closeModal();
   }
 
   function selectAsCaptain() {
@@ -57,7 +134,7 @@ function PlayerDetailPopup(props) {
         value: player,
       },
     });
-    props.onHide();
+    closeModal();
   }
 
   function selectAsViceCaptain() {
@@ -67,7 +144,7 @@ function PlayerDetailPopup(props) {
         value: player,
       },
     });
-    props.onHide();
+    closeModal();
   }
 
   return (
@@ -101,9 +178,24 @@ function PlayerDetailPopup(props) {
               <div className='col'>{player.selected_by_percent + '%'}</div>
             </div>
             <div className='row spacing' />
-            <div className='row player-detail-popup-button-row'>
-              <Button onClick={props.onHide} text='Substitute' variant='lightPrimary' />
-            </div>
+            {player.position <= 11 && (
+              <div className='row player-detail-popup-button-row'>
+                <Button onClick={openSubs} text='Substitute' variant='lightPrimary' />
+                {subs.length > 0 && (
+                  <div className='player-detail-popup__subs'>
+                    {subs.map(sub => {
+                      return (
+                        <PlayerSmallIcon
+                          key={sub.id}
+                          player={sub}
+                          onClick={() => onSubClick(sub)}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
             {isPlayerInArray(player, currentTeam) && (
               <div className='row player-detail-popup-button-row'>
                 <Button onClick={removeFromSquad} text='Remove from team' variant='lightPrimary' />
@@ -128,15 +220,18 @@ function PlayerDetailPopup(props) {
                 />
               </div>
             )}
+            {validationMessage !== '' && (
+              <div className='row error-message'>{validationMessage}</div>
+            )}
             <div className='row spacing' />
             <div className='row player-detail-popup-button-row'>
-              <Button onClick={props.onHide} text='Show gamedata' variant='lightPrimary' />
+              <Button onClick={closeModal} text='Show gamedata' variant='lightPrimary' />
             </div>
           </div>
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide} text='Close' variant='lightSecondary' />
+        <Button onClick={closeModal} text='Close' variant='lightSecondary' />
       </Modal.Footer>
     </Modal>
   );

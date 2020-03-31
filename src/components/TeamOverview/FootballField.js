@@ -39,7 +39,7 @@ const FootballField = ({ gks, defs, mids, fwds }) => {
     return (
       <div className='d-flex flex-column players'>
         <PlayerDetailPopup show={modalShow} onHide={closeModal} />
-        <div className='players-row '>
+        <div className='players-row'>
           {gks.map(player => {
             return <PlayerIcon player={player} key={player.id} />;
           })}

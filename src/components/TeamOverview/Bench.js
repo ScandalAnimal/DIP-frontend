@@ -1,3 +1,4 @@
+import { POSITIONS } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
 import PlayerDetailPopup from './PlayerDetailPopup';
 import PlayerIcon from './PlayerIcon';
@@ -12,12 +13,25 @@ const Bench = ({ bench }) => {
       type: 'CLOSE_MODAL',
     });
   }
+
+  function sortBench() {
+    const newBench = [];
+    newBench.push(bench.find(player => player.element_type === POSITIONS.GK));
+    bench.forEach(player => {
+      if (player.element_type !== POSITIONS.GK) {
+        newBench.push(player);
+      }
+    });
+    return newBench;
+  }
+
+  const sortedBench = sortBench();
   function renderPlayers() {
     return (
       <div className='d-flex flex-column players'>
         <PlayerDetailPopup show={modalShow} onHide={closeModal} />
         <div className='players-row row'>
-          {bench.map(player => {
+          {sortedBench.map(player => {
             return <PlayerIcon player={player} key={player.id} />;
           })}
         </div>

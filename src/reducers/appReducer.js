@@ -90,6 +90,37 @@ export const appReducer = (state = initialState, action) => {
           removedPlayers: removedPlayersArray,
         },
       };
+    case 'MAKE_SUBSTITUTION':
+      const on = action.payload.on;
+      const off = action.payload.off;
+      const onInTeam = state.edit.currentTeam.find(player => {
+        return player.id === on.id;
+      });
+      const offInTeam = state.edit.currentTeam.find(player => {
+        return player.id === off.id;
+      });
+      const withSubs = state.edit.currentTeam.map(player => {
+        if (player.position === onInTeam.position) {
+          return {
+            ...player,
+            position: offInTeam.position,
+          };
+        }
+        if (player.position === offInTeam.position) {
+          return {
+            ...player,
+            position: onInTeam.position,
+          };
+        }
+        return player;
+      });
+      return {
+        ...state,
+        edit: {
+          ...state.edit,
+          currentTeam: withSubs,
+        },
+      };
     case 'ADD_PLAYER_TO_SQUAD_FROM_REMOVED':
       const array = state.edit.currentTeam;
       const length = array.length;

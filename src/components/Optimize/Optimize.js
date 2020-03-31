@@ -9,7 +9,7 @@ const Optimize = () => {
   return (
     <div className='main container'>
       <div className='row'>
-        <div className='col-sm-12 d-flex flex-column'>
+        <div className='col-xl-12 d-flex flex-column'>
           <Card title='Optimization options'>
             <OptimizeOptions />
           </Card>
