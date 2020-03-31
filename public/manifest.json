@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "FPL Space",
+  "name": "Fantasy Premier League player performance predictor",
   "icons": [
     {
       "src": "favicon.ico",
