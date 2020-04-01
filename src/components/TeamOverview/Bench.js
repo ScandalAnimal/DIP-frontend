@@ -16,7 +16,10 @@ const Bench = ({ bench }) => {
 
   function sortBench() {
     const newBench = [];
-    newBench.push(bench.find(player => player.element_type === POSITIONS.GK));
+    const gk = bench.find(player => player.element_type === POSITIONS.GK);
+    if (gk !== undefined) {
+      newBench.push(gk);
+    }
     bench.forEach(player => {
       if (player.element_type !== POSITIONS.GK) {
         newBench.push(player);
