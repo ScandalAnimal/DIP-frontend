@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import ChangeLanguage from './ChangeLanguage';
 import HamburgerIcon from './HamburgerIcon';
 import HeaderLink from './HeaderLink';
 import HomeLogo from './HomeLogo';

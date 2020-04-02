@@ -30,7 +30,7 @@ function Login() {
     dispatch({
       type: 'CLEAR',
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='header-link'>

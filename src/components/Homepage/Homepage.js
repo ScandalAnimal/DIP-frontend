@@ -31,17 +31,18 @@ const Homepage = () => {
   const modalShow = useSelector(state => state.app.modalShow);
   const currentTeam = useSelector(state => state.app.edit.currentTeam);
   const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
-  let combinedPlayers = [];
-  let combinedAllPlayers = [];
 
   useEffect(() => {
     window.scrollTo(0, 0);
     getAllPlayers(dispatch);
     getAllPlayerIds(dispatch);
     getAllTeams(dispatch);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
+    let combinedPlayers = [];
+    let combinedAllPlayers = [];
+
     if (
       allPlayers !== null &&
       allPlayerIds !== null &&
@@ -79,7 +80,7 @@ const Homepage = () => {
         },
       });
     }
-  }, [allPlayers, allPlayerIds, teams, teamPicks, currentTeam, allCombinedPlayers]);
+  }, [allPlayers, allPlayerIds, teams, teamPicks, currentTeam, allCombinedPlayers, dispatch]);
 
   function closeModal() {
     dispatch({

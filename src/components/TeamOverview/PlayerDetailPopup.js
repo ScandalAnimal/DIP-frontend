@@ -99,7 +99,7 @@ function PlayerDetailPopup(props) {
 
   function isPlayerInArray(p, a) {
     let result = false;
-    a.map(value => {
+    a.forEach(value => {
       if (value.id === p.id) {
         result = true;
       }

@@ -24,7 +24,7 @@ function PlayerList({ filteredPlayers }) {
 
   useEffect(() => {
     setCurrentData(filteredPlayers.slice(0, perPage));
-  }, [filteredPlayers]);
+  }, [filteredPlayers, perPage]);
 
   const pageCount = Math.ceil(filteredPlayers.length / perPage);
 
