@@ -1,14 +1,24 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
 import playerService from '../../service/playerService';
 
 const PlayerRow = ({ player }) => {
+  const dispatch = useDispatch();
   const teams = useSelector(state => state.app.teams);
   const name = playerService.getPlayerName(player);
   const points = player.total_points;
   const price = player.now_cost;
+
+  const openPlayerInfo = () => {
+    dispatch({
+      type: 'OPEN_PLAYER_INFO',
+      payload: {
+        value: player,
+      },
+    });
+  };
   return (
-    <div className='player-row row'>
+    <div className='player-row row' onClick={openPlayerInfo}>
       <div className='col-xl-3 text-left'>{name}</div>
       <div className='col-xl-3 text-center'>{teams[player.team - 1].shortName}</div>
       <div className='col-xl-3 text-center'>{points}</div>

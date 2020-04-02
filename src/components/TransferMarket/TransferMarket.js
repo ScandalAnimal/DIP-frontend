@@ -6,7 +6,7 @@ import playerService from '../../service/playerService';
 
 const TransferMarket = () => {
   const teams = useSelector(state => state.app.teams);
-  const combinedPlayers = useSelector(state => state.app.allCombinedPlayers);
+  const combinedPlayers = useSelector(state => state.app.transferMarketPlayers);
   const [selectedPosition, setSelectedPosition] = useState(0);
   const [selectedTeam, setSelectedTeam] = useState(0);
   const [selectedSortBy, setSelectedSortBy] = useState(0);

@@ -8,6 +8,7 @@ const initialState = {
   teamPicks: null,
   teams: null,
   allCombinedPlayers: [],
+  transferMarketPlayers: [],
   originalTeam: [],
   edit: {
     currentTeam: [],
@@ -16,6 +17,10 @@ const initialState = {
 };
 
 export const appReducer = (state = initialState, action) => {
+  let removedPlayersArray = undefined;
+  let removedPlayersArrayLength = undefined;
+  let array = undefined;
+  let length = undefined;
   switch (action.type) {
     case 'OPEN_MODAL':
       return {
@@ -74,8 +79,8 @@ export const appReducer = (state = initialState, action) => {
         loading: action.payload.value,
       };
     case 'REMOVE_PLAYER':
-      const removedPlayersArray = state.edit.removedPlayers;
-      const removedPlayersArrayLength = removedPlayersArray.length;
+      removedPlayersArray = state.edit.removedPlayers;
+      removedPlayersArrayLength = removedPlayersArray.length;
       removedPlayersArray[removedPlayersArrayLength] = action.payload.value;
 
       const currentTeamArray = state.edit.currentTeam;
@@ -122,8 +127,8 @@ export const appReducer = (state = initialState, action) => {
         },
       };
     case 'ADD_PLAYER_TO_SQUAD_FROM_REMOVED':
-      const array = state.edit.currentTeam;
-      const length = array.length;
+      array = state.edit.currentTeam;
+      length = array.length;
       array[length] = action.payload.value;
 
       const team = state.edit.removedPlayers;
@@ -138,23 +143,80 @@ export const appReducer = (state = initialState, action) => {
           removedPlayers: teamWithRemoved,
         },
       };
+    case 'ADD_PLAYER_TO_SQUAD_FROM_TRANSFER_MARKET':
+      array = state.edit.currentTeam;
+      length = array.length;
+      const positions = [];
+      array.forEach(item => positions.push(item.position));
+      let calculatedPosition = -1;
+      for (let i = 1; i <= 15; i++) {
+        if (!positions.includes(i)) {
+          calculatedPosition = i;
+          break;
+        }
+      }
+      const newPlayer = {
+        ...action.payload.value,
+        position: calculatedPosition,
+        is_captain: 'false',
+        is_vice_captain: 'false',
+      };
+      array[length] = newPlayer;
+      return {
+        ...state,
+        transferMarketPlayers: state.transferMarketPlayers.filter(
+          player => player.id !== newPlayer.id
+        ),
+        edit: {
+          ...state.edit,
+          currentTeam: array,
+        },
+      };
     case 'SET_CURRENT_TEAM':
+      let currentTeam = action.payload.value;
+      let market = state.transferMarketPlayers;
+      if (market.length > 0) {
+        const filteredOutCurrentTeam = [];
+        state.transferMarketPlayers.forEach(allPlayer => {
+          const allPlayerId = allPlayer.id;
+          const result = currentTeam.find(player => player.id === allPlayerId);
+          if (!result) {
+            filteredOutCurrentTeam.push(allPlayer);
+          }
+        });
+        market = filteredOutCurrentTeam;
+      }
       return {
         ...state,
         originalTeam: action.payload.value,
+        transferMarketPlayers: market,
         edit: {
           ...state.edit,
           currentTeam: action.payload.value,
         },
       };
     case 'SET_ALL_COMBINED_PLAYERS':
+      let transferMarket = action.payload.value;
+      if (state.edit.currentTeam.length > 0) {
+        const filteredOutCurrentTeam = [];
+        action.payload.value.forEach(allPlayer => {
+          const allPlayerId = allPlayer.id;
+          const result = state.edit.currentTeam.find(player => player.id === allPlayerId);
+          if (!result) {
+            filteredOutCurrentTeam.push(allPlayer);
+          }
+        });
+        transferMarket = filteredOutCurrentTeam;
+      }
       return {
         ...state,
         allCombinedPlayers: action.payload.value,
+        transferMarketPlayers: transferMarket,
       };
     case 'RESET_TEAM_CHANGES':
       return {
         ...state,
+        transferMarketPlayers: state.allCombinedPlayers,
         edit: {
           ...state.edit,
           currentTeam: state.originalTeam,

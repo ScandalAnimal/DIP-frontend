@@ -1,5 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
-import PlayerDetailPopup from './PlayerDetailPopup';
 import PlayerIcon from './PlayerIcon';
 import React from 'react';
 
@@ -26,19 +24,9 @@ function renderFieldTerrain() {
 }
 
 const FootballField = ({ gks, defs, mids, fwds }) => {
-  const modalShow = useSelector(state => state.app.modalShow);
-  const dispatch = useDispatch();
-
   function renderPlayers() {
-    function closeModal() {
-      dispatch({
-        type: 'CLOSE_MODAL',
-      });
-    }
-
     return (
       <div className='d-flex flex-column players'>
-        <PlayerDetailPopup show={modalShow} onHide={closeModal} />
         <div className='players-row'>
           {gks.map(player => {
             return <PlayerIcon player={player} key={player.id} />;

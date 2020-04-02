@@ -98,9 +98,19 @@
   margin: 6px 0;
   color: $color-darkgrey;
   background-color: $color-egg;
+  cursor: pointer;
+}
+
+.player-row:hover {
+  background-color: $color-brown;
 }
 
 .player-row-heading {
+  cursor: default;
+  background-color: $color-brandy;
+}
+
+.player-row-heading:hover {
   background-color: $color-brandy;
 }
 
