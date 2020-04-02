@@ -37,7 +37,8 @@ const TeamOverview = () => {
       {!loading && (
         <>
           <div className='hint'>
-            Hint: You need to have at least 1 GK, 3 DFS and 1 FWD at all times in the FPL.
+            Hint: You need to have at least 1 GK, 3 DEFs and 1 FWD at all times in the FPL. Full
+            team must consist of 2 GKs, 5 DEFs, 5 MIDs and 3 FWDs.
           </div>
           <FootballField gks={gks} defs={defs} mids={mids} fwds={fwds} />
           <Bench bench={bench} />
