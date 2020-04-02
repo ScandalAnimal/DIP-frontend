@@ -2,12 +2,14 @@ import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import PlayerList from './PlayerList';
 import React, { useEffect, useState } from 'react';
+import playerService from '../../service/playerService';
 
 const TransferMarket = () => {
   const teams = useSelector(state => state.app.teams);
   const combinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   const [selectedPosition, setSelectedPosition] = useState(0);
   const [selectedTeam, setSelectedTeam] = useState(0);
+  const [selectedSortBy, setSelectedSortBy] = useState(0);
   const [filteredPlayers, setFilteredPlayers] = useState(combinedPlayers);
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +26,7 @@ const TransferMarket = () => {
   function renderSelectBoxes() {
     const positions = ['All positions', 'Goalkeeper', 'Defender', 'Midfielder', 'Forward'];
     const teamNames = ['All teams'];
+    const sortByOptions = ['-', 'Name', 'Points', 'Price'];
 
     for (let i = 0; i < teams.length; i++) {
       teamNames.push(teams[i].name);
@@ -63,6 +66,54 @@ const TransferMarket = () => {
       setFilteredPlayers(tmpFiltered);
     }
 
+    function compareNames(a, b) {
+      // Use toUpperCase() to ignore character casing
+      const nameA = a.display_name.toUpperCase();
+      const nameB = b.display_name.toUpperCase();
+
+      let comparison = 0;
+      if (nameA > nameB) {
+        comparison = 1;
+      } else if (nameA < nameB) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+
+    function sortPlayers(option) {
+      if (option === 1) {
+        // NAME
+        const tmpPlayers = filteredPlayers.map(player => {
+          return {
+            ...player,
+            display_name: playerService.getPlayerName(player) + player.first_name,
+          };
+        });
+        return tmpPlayers.sort(compareNames);
+      } else if (option === 2) {
+        // POINTS
+        const tmpPlayers = filteredPlayers.map(player => {
+          return {
+            ...player,
+          };
+        });
+        return tmpPlayers.sort((a, b) => {
+          return b.total_points - a.total_points;
+        });
+      } else if (option === 3) {
+        // PRICE
+        const tmpPlayers = filteredPlayers.map(player => {
+          return {
+            ...player,
+          };
+        });
+        return tmpPlayers.sort((a, b) => {
+          return b.now_cost - a.now_cost;
+        });
+      }
+      return combinedPlayers;
+    }
+
     function changePosition(e) {
       const v = e.target.value;
       setSelectedPosition(v);
@@ -73,6 +124,13 @@ const TransferMarket = () => {
       const v = e.target.value;
       setSelectedTeam(v);
       filterPlayers(2, v);
+    }
+
+    function changeSortBy(e) {
+      const v = e.target.value;
+      setSelectedSortBy(v);
+      const sortedPlayers = sortPlayers(parseInt(v));
+      setFilteredPlayers(sortedPlayers);
     }
     return (
       <Form>
@@ -101,6 +159,21 @@ const TransferMarket = () => {
               return (
                 <option key={team} value={i}>
                   {team}
+                </option>
+              );
+            })}
+          </Form.Control>
+        </Form.Group>
+        <Form.Group
+          controlId='transferMarketForm-sort'
+          className={'d-flex flex-column custom-dropdown'}
+        >
+          <Form.Label>Sort by</Form.Label>
+          <Form.Control as='select' onChange={changeSortBy} value={selectedSortBy}>
+            {sortByOptions.map((option, i) => {
+              return (
+                <option key={option} value={i}>
+                  {option}
                 </option>
               );
             })}

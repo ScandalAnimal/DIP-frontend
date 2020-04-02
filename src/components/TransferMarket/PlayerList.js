@@ -6,9 +6,10 @@ function ItemList({ items }) {
   return (
     <>
       <div className='player-row player-row-heading row'>
-        <div className='col-xl-4 text-left'>Name</div>
-        <div className='col-xl-4 text-center'>Points</div>
-        <div className='col-xl-4 text-right'>Price</div>
+        <div className='col-xl-3 text-left'>Name</div>
+        <div className='col-xl-3 text-center'>Team</div>
+        <div className='col-xl-3 text-center'>Points</div>
+        <div className='col-xl-3 text-right'>Price</div>
       </div>
       {items.map((item, i) => {
         return <PlayerRow player={item} key={i} />;
