@@ -39,43 +39,45 @@ const Homepage = () => {
     getAllTeams(dispatch);
   }, []);
 
-  if (
-    allPlayers !== null &&
-    allPlayerIds !== null &&
-    teams !== null &&
-    teamPicks !== null &&
-    currentTeam.length === 0 &&
-    allCombinedPlayers.length === 0
-  ) {
-    let players = [];
-    for (let i = 0; i < teamPicks.length; i++) {
-      const player = Object.assign(
-        findPlayerById(allPlayerIds, allPlayers, teamPicks[i].element),
-        teamPicks[i]
-      );
-      players.push(player);
-    }
-    combinedPlayers = players;
-    dispatch({
-      type: 'SET_CURRENT_TEAM',
-      payload: {
-        value: combinedPlayers,
-      },
-    });
+  useEffect(() => {
+    if (
+      allPlayers !== null &&
+      allPlayerIds !== null &&
+      teams !== null &&
+      teamPicks !== null &&
+      currentTeam.length === 0 &&
+      allCombinedPlayers.length === 0
+    ) {
+      let players = [];
+      for (let i = 0; i < teamPicks.length; i++) {
+        const player = Object.assign(
+          findPlayerById(allPlayerIds, allPlayers, teamPicks[i].element),
+          teamPicks[i]
+        );
+        players.push(player);
+      }
+      combinedPlayers = players;
+      dispatch({
+        type: 'SET_CURRENT_TEAM',
+        payload: {
+          value: combinedPlayers,
+        },
+      });
 
-    let playersAll = [];
-    for (let i = 0; i < allPlayerIds.length; i++) {
-      const player = findPlayerById(allPlayerIds, allPlayers, allPlayerIds[i].id);
-      playersAll.push(player);
+      let playersAll = [];
+      for (let i = 0; i < allPlayerIds.length; i++) {
+        const player = findPlayerById(allPlayerIds, allPlayers, allPlayerIds[i].id);
+        playersAll.push(player);
+      }
+      combinedAllPlayers = playersAll;
+      dispatch({
+        type: 'SET_ALL_COMBINED_PLAYERS',
+        payload: {
+          value: combinedAllPlayers,
+        },
+      });
     }
-    combinedAllPlayers = playersAll;
-    dispatch({
-      type: 'SET_ALL_COMBINED_PLAYERS',
-      payload: {
-        value: combinedAllPlayers,
-      },
-    });
-  }
+  }, [allPlayers, allPlayerIds, teams, teamPicks, currentTeam, allCombinedPlayers]);
 
   return (
     <div className='main container homepage'>
