@@ -2,17 +2,18 @@ import { POSITIONS } from '../../constants';
 import { useSelector } from 'react-redux';
 import Bench from './Bench';
 import FootballField from './FootballField';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import RemovedPlayers from './RemovedPlayers';
 
 const TeamOverview = () => {
-  const currentTeam = useSelector(state => state.app.edit.currentTeam);
+  const { currentTeam, additions, removedPlayers } = useSelector(state => state.app.edit);
   const gks = [];
   const defs = [];
   const mids = [];
   const fwds = [];
   const bench = [];
   let loading = true;
+  const [totalCost, setTotalCost] = useState(0);
 
   if (currentTeam !== null) {
     for (let i = 0; i < currentTeam.length; i++) {
@@ -32,6 +33,35 @@ const TeamOverview = () => {
     loading = false;
   }
 
+  const calcCost = () => {
+    let tmCost = 0;
+    currentTeam.forEach(elem => {
+      if (elem.purchase_price !== undefined) {
+        tmCost += elem.purchase_price;
+      } else {
+        tmCost += elem.now_cost;
+      }
+    });
+    removedPlayers.forEach(elem => {
+      if (elem.purchase_price !== undefined) {
+        tmCost += elem.purchase_price;
+        tmCost -= elem.selling_price;
+      }
+    });
+    let v = tmCost / Math.pow(10, 1); // new value
+    setTotalCost(v);
+  };
+
+  useEffect(() => {
+    calcCost();
+  }, [currentTeam, additions]);
+
+  const renderTotalCost = () => {
+    return (
+      <div className='team-overview-cost'>{`Total cost: ` + totalCost.toFixed(1) + `/100M`}</div>
+    );
+  };
+
   return (
     <div>
       {!loading && (
@@ -40,6 +70,7 @@ const TeamOverview = () => {
             Hint: You need to have at least 1 GK, 3 DEFs and 1 FWD at all times in the FPL. Full
             team must consist of 2 GKs, 5 DEFs, 5 MIDs and 3 FWDs.
           </div>
+          {renderTotalCost()}
           <FootballField gks={gks} defs={defs} mids={mids} fwds={fwds} />
           <Bench bench={bench} />
           <RemovedPlayers />
