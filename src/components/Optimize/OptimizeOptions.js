@@ -1,4 +1,5 @@
 import 'rc-slider/assets/index.css';
+import { useHistory, useParams } from 'react-router';
 import Button from '../Button/Button';
 import OptimizeSlider from './OptimizeSlider';
 import React, { useState } from 'react';
@@ -7,6 +8,8 @@ const OptimizeOptions = () => {
   const [transfers, setTransfers] = useState(0);
   const [gameWeek, setGameWeek] = useState(1);
   const [selectionTechnique, setSelectionTechnique] = useState('max');
+  const params = useParams();
+  const history = useHistory();
 
   function setSelection(event) {
     event.persist();
@@ -63,14 +66,22 @@ const OptimizeOptions = () => {
       <div className='optimize-option-wrapper row'>
         <div className='col-xl-4 text-left'>Game weeks:</div>
         <div className='col-xl-8 text-center'>
-          <OptimizeSlider setValue={setGameWeek} min={1} max={10} />
+          <OptimizeSlider setValue={setGameWeek} min={1} max={3} />
         </div>
       </div>
       <div className='row d-flex justify-content-center'>
         <Button onClick={() => {}} text='Optimize' variant='darkPrimary' />
       </div>
       <div className='row justify-content-center'>
-        <Button onClick={() => {}} text='Cancel' variant='darkSecondary' />
+        <Button
+          onClick={() => {
+            history.push({
+              pathname: `/${params.langId}/home`,
+            });
+          }}
+          text='Cancel'
+          variant='darkSecondary'
+        />
       </div>
     </div>
   );
