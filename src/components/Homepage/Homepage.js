@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Card from '../Common/Card';
 import Loader from './Loader';
 import PlayerDetailPopup from '../TeamOverview/PlayerDetailPopup';
+import ProjectedPerformanceTable from '../ProjectedPerformance/ProjectedPerformanceTable';
 import React, { useEffect } from 'react';
 import TeamOverview from '../TeamOverview/TeamOverview';
 import TransferMarket from '../TransferMarket/TransferMarket';
@@ -97,6 +98,9 @@ const Homepage = () => {
           <div className='col-xl-6 d-flex flex-column'>
             <Card title='Team Overview'>
               <TeamOverview />
+            </Card>
+            <Card title='Projected Performance'>
+              <ProjectedPerformanceTable />
             </Card>
           </div>
           <div className='col-xl-6 d-flex flex-column'>

@@ -3,6 +3,7 @@ import { mockApiPlayers } from '../mocks/mockApiPlayers';
 import { mockLoginResponse } from '../mocks/mockLoginResponse';
 import { mockPlayerIds } from '../mocks/mockPlayerIds';
 import { mockTeams } from '../mocks/mockTeams';
+import { projections1, projections2, projections3 } from '../mocks/mockAllProjections';
 
 export function getAllPlayers(dispatch) {
   dispatch({
@@ -173,5 +174,52 @@ export function getTeamData(dispatch, history, params, email, password) {
   //     console.log(e);
   //   }
   //   // TODO dispatch error
+  // );
+}
+
+export function getAllProjections(dispatch, weekId) {
+  dispatch({
+    type: 'SET_LOADING',
+    payload: {
+      value: true,
+    },
+  });
+  const url = API_URL + '/api/player/projected-points/' + weekId;
+  // fetch(url, {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // })
+  //   .then(response => response.json())
+  //   .then(json => {
+  //     const body = json.data;
+  let body = null;
+  if (weekId === 1) {
+    body = projections1.data;
+  } else if (weekId === 2) {
+    body = projections2.data;
+  } else if (weekId === 3) {
+    body = projections3.data;
+  }
+  dispatch({
+    type: 'SET_LOADING',
+    payload: {
+      value: false,
+    },
+  });
+  dispatch({
+    type: 'SET_PROJECTIONS',
+    payload: {
+      weekId: weekId,
+      value: body,
+    },
+  });
+  // })
+  // .catch(
+  //   e => {
+  //     console.log(e);
+  //   }
+  //   TODO dispatch error
   // );
 }

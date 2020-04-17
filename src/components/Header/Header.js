@@ -34,6 +34,9 @@ const Header = () => {
               <div className='col-auto align-items-center nav-link'>
                 <HeaderLink title={'Optimize'} url={'optimize'} />
               </div>
+              <div className='col-auto align-items-center nav-link'>
+                <HeaderLink title={'All projections'} url={'all-projections'} />
+              </div>
               {/*<div className='col-auto align-items-center nav-link'>*/}
               {/*  <HeaderLink title={'Fixtures'} url={'fixtures'} />*/}
               {/*</div>*/}

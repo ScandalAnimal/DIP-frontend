@@ -10,9 +10,11 @@ const initialState = {
   allCombinedPlayers: [],
   transferMarketPlayers: [],
   originalTeam: [],
+  projections: [],
   edit: {
     currentTeam: [],
     removedPlayers: [],
+    additions: 0,
   },
 };
 
@@ -141,6 +143,7 @@ export const appReducer = (state = initialState, action) => {
           ...state.edit,
           currentTeam: array,
           removedPlayers: teamWithRemoved,
+          additions: state.edit.additions + 1,
         },
       };
     case 'ADD_PLAYER_TO_SQUAD_FROM_TRANSFER_MARKET':
@@ -170,6 +173,7 @@ export const appReducer = (state = initialState, action) => {
         edit: {
           ...state.edit,
           currentTeam: array,
+          additions: state.edit.additions + 1,
         },
       };
     case 'SET_CURRENT_TEAM':
@@ -267,7 +271,37 @@ export const appReducer = (state = initialState, action) => {
           currentTeam: newCurrentTeam,
         },
       };
-
+    case 'SET_PROJECTIONS':
+      let newProjections = [];
+      if (state.projections.length === 0) {
+        newProjections.push({
+          id: action.payload.weekId,
+          value: action.payload.value,
+        });
+      } else {
+        let found = false;
+        newProjections = state.projections.map(projection => {
+          if (projection.id === action.payload.weekId) {
+            found = true;
+            return {
+              id: action.payload.weekId,
+              value: action.payload.value,
+            };
+          } else {
+            return projection;
+          }
+        });
+        if (!found) {
+          newProjections.push({
+            id: action.payload.weekId,
+            value: action.payload.value,
+          });
+        }
+      }
+      return {
+        ...state,
+        projections: newProjections,
+      };
     case 'STARTED':
       return {
         ...state,

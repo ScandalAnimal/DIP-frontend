@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import AllProjections from './components/AllProjections/AllProjections';
 import Fixtures from './components/Fixtures/Fixtures';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header.js';
@@ -68,6 +69,7 @@ const DIPRoutes = () => {
             <ProtectedRoute path={`${match.path}/home`} children={<Homepage />} />
             <ProtectedRoute path={`${match.path}/fixtures`} children={<Fixtures />} />
             <ProtectedRoute path={`${match.path}/optimize`} children={<Optimize />} />
+            <ProtectedRoute path={`${match.path}/all-projections`} children={<AllProjections />} />
           </Switch>
         </div>
         <Footer />

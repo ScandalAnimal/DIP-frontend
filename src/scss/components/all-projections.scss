@@ -1,0 +1,41 @@
+@import '../atoms/variables';
+
+.all-projections {
+  .table {
+    width: 100%;
+  }
+
+  .all-projections-id {
+    width: 10%;
+  }
+
+  .all-projections-name {
+    width: 30%;
+  }
+
+  .all-projections-weeks {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .all-projections-weeks-single {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .all-projections-total {
+    color: $color-darkgrey;
+    margin-top: 20px;
+    font-size: 25px;
+  }
+}
+
+.all-projections-selectbox-wrapper {
+  width: 20%;
+}
