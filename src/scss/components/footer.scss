@@ -5,3 +5,12 @@
   color: $color-ash;
   padding: 2rem;
 }
+
+.footer a {
+  color: $color-ash;
+}
+
+.footer a:hover {
+  font-size: 20px;
+  color: $color-light-red;
+}
