@@ -1,5 +1,5 @@
 import { Form } from 'react-bootstrap';
-import { getTeamData } from '../../reducers/appActions';
+import { getTeamData, manualTeam } from '../../reducers/appActions';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
@@ -21,9 +21,15 @@ function Login() {
     setInputPassword(e.target.value);
   };
 
+  async function handleManualInput(e) {
+    e.preventDefault();
+    manualTeam(dispatch, history, params);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     getTeamData(dispatch, history, params, inputEmail, inputPassword);
+    // TODO implement
   }
 
   useEffect(() => {
@@ -52,8 +58,22 @@ function Login() {
         <div className='login-disclaimer'>
           We do not store any personal data or passwords, these are used just for fetching data from
           the FPL API.
+          <br />
+          If you do not wish to input your credentials, you can select your team manually by
+          clicking the button below.
+          <br />
+          (This way we unfortunately use current player prices, not original player purchase prices
+          at the time of your buying.)
         </div>
-        <Button variant='lightPrimary' text='Submit' type='submit' onClick={handleSubmit} />
+        <div className='login-buttons'>
+          <Button variant='lightPrimary' text='Submit' type='submit' onClick={handleSubmit} />
+          <Button
+            variant='lightPrimary'
+            text='Input team manually'
+            type='submit'
+            onClick={handleManualInput}
+          />
+        </div>
       </Form>
     </div>
   );

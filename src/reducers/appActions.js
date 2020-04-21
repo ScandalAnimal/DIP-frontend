@@ -177,6 +177,24 @@ export function getTeamData(dispatch, history, params, email, password) {
   // );
 }
 
+export function manualTeam(dispatch, history, params) {
+  dispatch({
+    type: 'SET_TEAM_ID',
+    payload: {
+      value: 'manual',
+    },
+  });
+  dispatch({
+    type: 'SET_TEAM_PICKS',
+    payload: {
+      value: [],
+    },
+  });
+  history.push({
+    pathname: `/${params.langId}/home`,
+  });
+}
+
 export function getAllProjections(dispatch, weekId) {
   dispatch({
     type: 'SET_LOADING',

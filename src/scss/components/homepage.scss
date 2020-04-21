@@ -17,3 +17,12 @@
   color: $color-light-red;
   text-align: center;
 }
+
+.login-buttons {
+  display: flex;
+  flex-direction: row;
+
+  button {
+    margin-right: 10px;
+  }
+}
