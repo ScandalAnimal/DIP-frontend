@@ -12,6 +12,7 @@ import {
 import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import AllProjections from './components/AllProjections/AllProjections';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 import Fixtures from './components/Fixtures/Fixtures';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header.js';
@@ -79,6 +80,7 @@ const DIPRoutes = () => {
             <ProtectedRoute path={`${match.path}/fixtures`} children={<Fixtures />} />
             <ProtectedRoute path={`${match.path}/optimize`} children={<Optimize />} />
             <ProtectedRoute path={`${match.path}/all-projections`} children={<AllProjections />} />
+            <Route children={<ErrorPage />} />
           </Switch>
         </div>
         <PlayerDetailPopup show={modalShow} onHide={closeModal} />
