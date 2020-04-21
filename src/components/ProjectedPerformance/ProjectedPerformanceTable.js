@@ -56,6 +56,15 @@ const ProjectedPerformanceTable = () => {
     setTeam(team);
   };
 
+  const openPlayerInfo = player => {
+    dispatch({
+      type: 'OPEN_PLAYER_INFO',
+      payload: {
+        value: player,
+      },
+    });
+  };
+
   const displayHeader = () => {
     return (
       <div className='player-row player-row-heading row'>
@@ -87,7 +96,7 @@ const ProjectedPerformanceTable = () => {
           const player = getPlayer(splitName[0], splitName[1]);
           let formattedName = playerService.getPlayerName(player);
           return (
-            <div className='player-row row' key={i}>
+            <div className='player-row row' key={i} onClick={() => openPlayerInfo(player)}>
               <div className='all-projections-id'>{i}</div>
               <div className='all-projections-name'>{formattedName}</div>
               <div className='all-projections-weeks-single'>{value[0].predicted_points}</div>

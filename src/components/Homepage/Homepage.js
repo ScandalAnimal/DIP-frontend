@@ -2,7 +2,6 @@ import { getAllPlayerIds, getAllPlayers, getAllTeams } from '../../reducers/appA
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../Common/Card';
 import Loader from './Loader';
-import PlayerDetailPopup from '../TeamOverview/PlayerDetailPopup';
 import ProjectedPerformanceTable from '../ProjectedPerformance/ProjectedPerformanceTable';
 import React, { useEffect } from 'react';
 import TeamOverview from '../TeamOverview/TeamOverview';
@@ -29,7 +28,6 @@ function findPlayerById(allPlayerIds, allPlayers, id) {
 const Homepage = () => {
   const dispatch = useDispatch();
   const { teamPicks, allPlayers, allPlayerIds, teams, loading } = useSelector(state => state.app);
-  const modalShow = useSelector(state => state.app.modalShow);
   const currentTeam = useSelector(state => state.app.edit.currentTeam);
   const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
 
@@ -83,12 +81,6 @@ const Homepage = () => {
     }
   }, [allPlayers, allPlayerIds, teams, teamPicks, currentTeam, allCombinedPlayers, dispatch]);
 
-  function closeModal() {
-    dispatch({
-      type: 'CLOSE_MODAL',
-    });
-  }
-
   return (
     <div className='main container homepage'>
       {loading ? (
@@ -110,7 +102,6 @@ const Homepage = () => {
           </div>
         </div>
       )}
-      <PlayerDetailPopup show={modalShow} onHide={closeModal} />
     </div>
   );
 };

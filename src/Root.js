@@ -10,7 +10,7 @@ import {
   useRouteMatch,
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AllProjections from './components/AllProjections/AllProjections';
 import Fixtures from './components/Fixtures/Fixtures';
 import Footer from './components/Footer/Footer';
@@ -18,6 +18,7 @@ import Header from './components/Header/Header.js';
 import Homepage from './components/Homepage/Homepage';
 import Login from './components/Login/Login';
 import Optimize from './components/Optimize/Optimize';
+import PlayerDetailPopup from './components/TeamOverview/PlayerDetailPopup';
 import React from 'react';
 import csTranslations from './translations/cs.json';
 import enTranslations from './translations/en.json';
@@ -53,6 +54,14 @@ const DIPRoutes = () => {
   const params = useParams();
   const match = useRouteMatch();
   const langId = params.langId;
+  const dispatch = useDispatch();
+
+  function closeModal() {
+    dispatch({
+      type: 'CLOSE_MODAL',
+    });
+  }
+  const modalShow = useSelector(state => state.app.modalShow);
 
   if (!['en', 'cs'].includes(langId)) {
     return <RedirectToLang />;
@@ -72,6 +81,7 @@ const DIPRoutes = () => {
             <ProtectedRoute path={`${match.path}/all-projections`} children={<AllProjections />} />
           </Switch>
         </div>
+        <PlayerDetailPopup show={modalShow} onHide={closeModal} />
         <Footer />
       </div>
     </IntlProvider>

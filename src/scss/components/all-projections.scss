@@ -37,5 +37,8 @@
 }
 
 .all-projections-selectbox-wrapper {
-  width: 20%;
+  form {
+    display: flex;
+    flex-direction: row;
+  }
 }
