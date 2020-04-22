@@ -10,7 +10,7 @@ const Statistics = () => {
     <div className='main container'>
       <div className='row'>
         <div className='col-xl-12 d-flex flex-column'>
-          <Card>
+          <Card title='Player statistics'>
             <StatisticsTable />
           </Card>
         </div>

@@ -1,7 +1,7 @@
 import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import PlayerList from '../Common/PlayerList';
 import React, { useEffect, useState } from 'react';
+import StatisticsPlayerList from './StatisticsPlayerList';
 import playerService from '../../service/playerService';
 
 const StatisticsTable = () => {
@@ -26,7 +26,7 @@ const StatisticsTable = () => {
   function renderSelectBoxes() {
     const positions = ['All positions', 'Goalkeeper', 'Defender', 'Midfielder', 'Forward'];
     const teamNames = ['All teams'];
-    const sortByOptions = ['-', 'Name', 'Points', 'Price'];
+    const sortByOptions = ['-', 'Name', 'Selected by', 'Points', 'Bonus points'];
 
     for (let i = 0; i < teams.length; i++) {
       teamNames.push(teams[i].name);
@@ -91,6 +91,16 @@ const StatisticsTable = () => {
         });
         return tmpPlayers.sort(compareNames);
       } else if (option === 2) {
+        // SELECTED BY
+        const tmpPlayers = filteredPlayers.map(player => {
+          return {
+            ...player,
+          };
+        });
+        return tmpPlayers.sort((a, b) => {
+          return b.selected_by_percent - a.selected_by_percent;
+        });
+      } else if (option === 3) {
         // POINTS
         const tmpPlayers = filteredPlayers.map(player => {
           return {
@@ -100,15 +110,15 @@ const StatisticsTable = () => {
         return tmpPlayers.sort((a, b) => {
           return b.total_points - a.total_points;
         });
-      } else if (option === 3) {
-        // PRICE
+      } else if (option === 4) {
+        // BPS
         const tmpPlayers = filteredPlayers.map(player => {
           return {
             ...player,
           };
         });
         return tmpPlayers.sort((a, b) => {
-          return b.now_cost - a.now_cost;
+          return b.bps - a.bps;
         });
       }
       return combinedPlayers;
@@ -133,62 +143,64 @@ const StatisticsTable = () => {
       setFilteredPlayers(sortedPlayers);
     }
     return (
-      <Form>
-        <Form.Group
-          controlId='transferMarketForm-position'
-          className={'d-flex flex-column custom-dropdown'}
-        >
-          <Form.Label>Position</Form.Label>
-          <Form.Control as='select' onChange={changePosition} value={selectedPosition}>
-            {positions.map((position, i) => {
-              return (
-                <option key={position} value={i}>
-                  {position}
-                </option>
-              );
-            })}
-          </Form.Control>
-        </Form.Group>
-        <Form.Group
-          controlId='transferMarketForm-team'
-          className={'d-flex flex-column custom-dropdown'}
-        >
-          <Form.Label>Team</Form.Label>
-          <Form.Control as='select' onChange={changeTeam} value={selectedTeam}>
-            {teamNames.map((team, i) => {
-              return (
-                <option key={team} value={i}>
-                  {team}
-                </option>
-              );
-            })}
-          </Form.Control>
-        </Form.Group>
-        <Form.Group
-          controlId='transferMarketForm-sort'
-          className={'d-flex flex-column custom-dropdown'}
-        >
-          <Form.Label>Sort by</Form.Label>
-          <Form.Control as='select' onChange={changeSortBy} value={selectedSortBy}>
-            {sortByOptions.map((option, i) => {
-              return (
-                <option key={option} value={i}>
-                  {option}
-                </option>
-              );
-            })}
-          </Form.Control>
-        </Form.Group>
-      </Form>
+      <div className='all-stats-selectbox-wrapper'>
+        <Form>
+          <Form.Group
+            controlId='allStatsForm-position'
+            className={'d-flex flex-column custom-dropdown'}
+          >
+            <Form.Label>Position</Form.Label>
+            <Form.Control as='select' onChange={changePosition} value={selectedPosition}>
+              {positions.map((position, i) => {
+                return (
+                  <option key={position} value={i}>
+                    {position}
+                  </option>
+                );
+              })}
+            </Form.Control>
+          </Form.Group>
+          <Form.Group
+            controlId='allStatsForm-team'
+            className={'d-flex flex-column custom-dropdown'}
+          >
+            <Form.Label>Team</Form.Label>
+            <Form.Control as='select' onChange={changeTeam} value={selectedTeam}>
+              {teamNames.map((team, i) => {
+                return (
+                  <option key={team} value={i}>
+                    {team}
+                  </option>
+                );
+              })}
+            </Form.Control>
+          </Form.Group>
+          <Form.Group
+            controlId='allStatsForm-sort'
+            className={'d-flex flex-column custom-dropdown'}
+          >
+            <Form.Label>Sort by</Form.Label>
+            <Form.Control as='select' onChange={changeSortBy} value={selectedSortBy}>
+              {sortByOptions.map((option, i) => {
+                return (
+                  <option key={option} value={i}>
+                    {option}
+                  </option>
+                );
+              })}
+            </Form.Control>
+          </Form.Group>
+        </Form>
+      </div>
     );
   }
 
   function renderPlayerList() {
-    return <PlayerList filteredPlayers={filteredPlayers} />;
+    return <StatisticsPlayerList filteredPlayers={filteredPlayers} />;
   }
 
   return (
-    <div className='transfer-market'>
+    <div className='all-stats'>
       {!loading && (
         <>
           {renderSelectBoxes()}
