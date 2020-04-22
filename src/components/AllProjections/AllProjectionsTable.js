@@ -1,6 +1,7 @@
 import { Form } from 'react-bootstrap';
 import { getAllProjections } from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
+import AllProjectionsPlayerList from './AllProjectionsPlayerList';
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import playerService from '../../service/playerService';
@@ -10,13 +11,20 @@ const AllProjectionsTable = () => {
 
   const teams = useSelector(state => state.app.teams);
   const projections = useSelector(state => state.app.projections);
-  const allPlayerIds = useSelector(state => state.app.allPlayerIds);
   const [loading, setLoading] = useState(true);
   const [gameWeekCount, setGameWeekCount] = useState(1);
   const [displayedProjections, setDisplayedProjections] = useState(null);
   const [selectedPosition, setSelectedPosition] = useState(0);
   const [selectedTeam, setSelectedTeam] = useState(0);
   const combinedPlayers = useSelector(state => state.app.allCombinedPlayers);
+  const [selectedSortBy, setSelectedSortBy] = useState(0);
+  const [sortByOptions, setSortByOptions] = useState([
+    '-',
+    'Name',
+    'GameWeek 1',
+    'GameWeek 2',
+    'GameWeek 3',
+  ]);
 
   useEffect(() => {
     getAllProjections(dispatch, 1);
@@ -103,6 +111,111 @@ const AllProjectionsTable = () => {
       setDisplayedProjections(reduced);
     }
 
+    function compareNames(a, b) {
+      // Use toUpperCase() to ignore character casing
+      const nameA = a.display_name.toUpperCase();
+      const nameB = b.display_name.toUpperCase();
+
+      let comparison = 0;
+      if (nameA > nameB) {
+        comparison = 1;
+      } else if (nameA < nameB) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+
+    function sortPlayers(option) {
+      if (option === 1) {
+        // NAME
+        const tmpPlayers = Object.entries(displayedProjections).map(([name, values]) => {
+          const player = combinedPlayers.find(item => {
+            let p = item.first_name + '_' + item.second_name;
+            return p === name;
+          });
+          return {
+            name: name,
+            values: values,
+            display_name: playerService.getPlayerName(player) + player.first_name,
+          };
+        });
+
+        let sorted = tmpPlayers.sort(compareNames);
+        let reduced = {};
+        sorted.forEach(item => {
+          reduced[item.name] = item.values;
+        });
+        return reduced;
+      } else if (option === 2) {
+        // 1 GW
+        const tmpPlayers = Object.entries(displayedProjections).map(([name, values]) => {
+          const player = combinedPlayers.find(item => {
+            let p = item.first_name + '_' + item.second_name;
+            return p === name;
+          });
+          return {
+            name: name,
+            values: values,
+            display_name: playerService.getPlayerName(player) + player.first_name,
+          };
+        });
+        let sorted = tmpPlayers.sort((a, b) => {
+          return b.values[0].predicted_points - a.values[0].predicted_points;
+        });
+        let reduced = {};
+        sorted.forEach(item => {
+          reduced[item.name] = item.values;
+        });
+
+        return reduced;
+      } else if (option === 3 && gameWeekCount >= 2) {
+        // 2 GW
+        const tmpPlayers = Object.entries(displayedProjections).map(([name, values]) => {
+          const player = combinedPlayers.find(item => {
+            let p = item.first_name + '_' + item.second_name;
+            return p === name;
+          });
+          return {
+            name: name,
+            values: values,
+            display_name: playerService.getPlayerName(player) + player.first_name,
+          };
+        });
+        let sorted = tmpPlayers.sort((a, b) => {
+          return b.values[1].predicted_points - a.values[1].predicted_points;
+        });
+        let reduced = {};
+        sorted.forEach(item => {
+          reduced[item.name] = item.values;
+        });
+
+        return reduced;
+      } else if (option === 4 && gameWeekCount >= 3) {
+        // 3 GW
+        const tmpPlayers = Object.entries(displayedProjections).map(([name, values]) => {
+          const player = combinedPlayers.find(item => {
+            let p = item.first_name + '_' + item.second_name;
+            return p === name;
+          });
+          return {
+            name: name,
+            values: values,
+            display_name: playerService.getPlayerName(player) + player.first_name,
+          };
+        });
+        let sorted = tmpPlayers.sort((a, b) => {
+          return b.values[2].predicted_points - a.values[2].predicted_points;
+        });
+        let reduced = {};
+        sorted.forEach(item => {
+          reduced[item.name] = item.values;
+        });
+
+        return reduced;
+      }
+      return displayedProjections;
+    }
+
     function changePosition(e) {
       const v = e.target.value;
       setSelectedPosition(v);
@@ -115,12 +228,45 @@ const AllProjectionsTable = () => {
       filterPlayers(2, v);
     }
 
+    function changeSortBy(e) {
+      const v = e.target.value;
+      setSelectedSortBy(v);
+      const sortedPlayers = sortPlayers(parseInt(v));
+      setDisplayedProjections(sortedPlayers);
+    }
+
     function changeGameWeekCount(e) {
       const v = e.target.value;
       setGameWeekCount(v);
-      setDisplayedProjections(projections.find(projection => projection.id === parseInt(v)));
+      const x = projections.find(projection => projection.id === parseInt(v));
+      const remapped = _.mapValues(_.groupBy(x.value, 'player_name'), x =>
+        x.map(y => _.omit(y, 'player_name'))
+      );
+      let tmpFiltered = Object.entries(remapped);
+      if (parseInt(selectedTeam) !== 0) {
+        tmpFiltered = tmpFiltered.filter(([name, values]) => {
+          const player = combinedPlayers.find(item => {
+            let p = item.first_name + '_' + item.second_name;
+            return p === name;
+          });
+          return parseInt(player.team) === parseInt(selectedTeam);
+        });
+      }
+      if (parseInt(selectedPosition) !== 0) {
+        tmpFiltered = tmpFiltered.filter(([name, values]) => {
+          const player = combinedPlayers.find(item => {
+            let p = item.first_name + '_' + item.second_name;
+            return p === name;
+          });
+          return parseInt(player.element_type) === parseInt(selectedPosition);
+        });
+      }
+      let reduced = {};
+      tmpFiltered.forEach(item => {
+        reduced[item[0]] = [item[1][0]];
+      });
+      setDisplayedProjections(reduced);
     }
-
     return (
       <div className='all-projections-selectbox-wrapper'>
         <Form>
@@ -169,81 +315,38 @@ const AllProjectionsTable = () => {
               })}
             </Form.Control>
           </Form.Group>
+          <Form.Group
+            controlId='allProjectionsForm-sort'
+            className={'d-flex flex-column custom-dropdown'}
+          >
+            <Form.Label>Sort by</Form.Label>
+            <Form.Control as='select' onChange={changeSortBy} value={selectedSortBy}>
+              {sortByOptions.map((option, i) => {
+                return (
+                  <option key={option} value={i}>
+                    {option}
+                  </option>
+                );
+              })}
+            </Form.Control>
+          </Form.Group>
         </Form>
       </div>
     );
   }
 
-  const displayHeader = () => {
+  function renderPlayerList() {
     return (
-      <div className='player-row player-row-heading row'>
-        <div className='all-projections-id'>#</div>
-        <div className='all-projections-name'>Name</div>
-        <div className='all-projections-weeks'>
-          <div>1 GameWeek ahead</div>
-          {gameWeekCount > 1 && <div>2 GameWeeks ahead</div>}
-          {gameWeekCount > 2 && <div>3 GameWeeks ahead</div>}
-        </div>
-      </div>
+      <AllProjectionsPlayerList players={displayedProjections} gameWeekCount={gameWeekCount} />
     );
-  };
-
-  const getPlayer = (firstName, secondName) => {
-    return allPlayerIds.find(
-      playerIdObject =>
-        playerIdObject.first_name === firstName && playerIdObject.second_name === secondName
-    );
-  };
-
-  const openPlayerInfo = player => {
-    dispatch({
-      type: 'OPEN_PLAYER_INFO',
-      payload: {
-        value: player,
-      },
-    });
-  };
-
-  const renderProjectionsTable = () => {
-    if (displayedProjections === undefined) {
-      return null;
-    }
-    return (
-      <>
-        {displayHeader()}
-        {Object.entries(displayedProjections).map(([name, values], i) => {
-          let correctValues = values;
-          if (values.length < gameWeekCount) {
-            correctValues.push(values[0]);
-            if (values.length < gameWeekCount) {
-              correctValues.push(values[0]);
-            }
-          }
-          const splitName = name.split('_');
-          const player = getPlayer(splitName[0], splitName[1]);
-          let formattedName = playerService.getPlayerName(player);
-          return (
-            <div className='player-row row' key={i} onClick={() => openPlayerInfo(player)}>
-              <div className='all-projections-id'>{i}</div>
-              <div className='all-projections-name'>{formattedName}</div>
-              <div className='all-projections-weeks'>
-                {correctValues.map((value, j) => {
-                  return <div key={j}>{value.predicted_points}</div>;
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </>
-    );
-  };
+  }
 
   return (
     <div className='all-projections'>
       {!loading && (
         <>
           {renderSelectBoxes()}
-          {renderProjectionsTable()}
+          {renderPlayerList()}
         </>
       )}
     </div>

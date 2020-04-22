@@ -4,7 +4,7 @@ import PlayerList from '../Common/PlayerList';
 import React, { useEffect, useState } from 'react';
 import playerService from '../../service/playerService';
 
-const TransferMarket = () => {
+const StatisticsTable = () => {
   const teams = useSelector(state => state.app.teams);
   const combinedPlayers = useSelector(state => state.app.transferMarketPlayers);
   const [selectedPosition, setSelectedPosition] = useState(0);
@@ -199,4 +199,4 @@ const TransferMarket = () => {
   );
 };
 
-export default TransferMarket;
+export default StatisticsTable;

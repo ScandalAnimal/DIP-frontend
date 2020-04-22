@@ -21,6 +21,7 @@ import Login from './components/Login/Login';
 import Optimize from './components/Optimize/Optimize';
 import PlayerDetailPopup from './components/TeamOverview/PlayerDetailPopup';
 import React from 'react';
+import Statistics from './components/Statistics/Statistics';
 import csTranslations from './translations/cs.json';
 import enTranslations from './translations/en.json';
 
@@ -80,6 +81,7 @@ const DIPRoutes = () => {
             <ProtectedRoute path={`${match.path}/fixtures`} children={<Fixtures />} />
             <ProtectedRoute path={`${match.path}/optimize`} children={<Optimize />} />
             <ProtectedRoute path={`${match.path}/all-projections`} children={<AllProjections />} />
+            <ProtectedRoute path={`${match.path}/statistics`} children={<Statistics />} />
             <Route children={<ErrorPage />} />
           </Switch>
         </div>

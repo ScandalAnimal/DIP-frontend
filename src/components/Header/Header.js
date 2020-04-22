@@ -37,8 +37,11 @@ const Header = () => {
               <div className='col-auto align-items-center nav-link'>
                 <HeaderLink title={'All projections'} url={'all-projections'} />
               </div>
+              <div className='col-auto align-items-center nav-link'>
+                <HeaderLink title={'Statistics'} url={'statistics'} />
+              </div>
               {/*<div className='col-auto align-items-center nav-link'>*/}
-              {/*  <HeaderLink title={'Fixtures'} url={'fixtures'} />*/}
+              {/*  <HeaderLink title={'Statistics'} url={'fixtures'} />*/}
               {/*</div>*/}
               {/*<div className='col-auto align-items-center nav-link'>*/}
               {/*  <HeaderLink title={'Injuries & Suspensions'} url={'injuries'} />*/}
@@ -59,8 +62,18 @@ const Header = () => {
           <div className='col-auto align-items-center'>
             <HeaderLink title={'Optimize'} url={'optimize'} action={closeMobileMenu} />
           </div>
+          <div className='col-auto align-items-center'>
+            <HeaderLink
+              title={'All projections'}
+              url={'all-projections'}
+              action={closeMobileMenu}
+            />
+          </div>
+          <div className='col-auto align-items-center'>
+            <HeaderLink title={'Statistics'} url={'statistics'} action={closeMobileMenu} />
+          </div>
           {/*<div className='col-auto align-items-center'>*/}
-          {/*  <HeaderLink title={'Fixtures'} url={'fixtures'} action={closeMobileMenu} />*/}
+          {/*  <HeaderLink title={'Statistics'} url={'fixtures'} action={closeMobileMenu} />*/}
           {/*</div>*/}
           {/*<div className='col-auto align-items-center'>*/}
           {/*  <HeaderLink*/}
