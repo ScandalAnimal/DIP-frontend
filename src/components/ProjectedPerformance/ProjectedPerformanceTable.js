@@ -115,8 +115,8 @@ const ProjectedPerformanceTable = () => {
     <div className='all-projections'>
       {!loading && (
         <>
-          {renderProjectionsTable()}
           {renderTotalPoints()}
+          {renderProjectionsTable()}
         </>
       )}
     </div>
