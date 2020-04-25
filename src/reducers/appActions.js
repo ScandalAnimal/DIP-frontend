@@ -283,14 +283,14 @@ export function getAllInjuries(dispatch) {
   // );
 }
 
-export function getPlayerDetails(dispatch, name) {
+export function getPlayerDetails(dispatch, id, name) {
   dispatch({
     type: 'SET_LOADING',
     payload: {
       value: true,
     },
   });
-  const url = API_URL + '/api/player/detail/name';
+  const url = API_URL + '/api/player/detail/' + id;
   // fetch(url, {
   //   method: 'GET',
   //   headers: {

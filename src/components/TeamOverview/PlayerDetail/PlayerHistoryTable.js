@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 
 const PlayerHistoryTable = ({ player }) => {
   const name = player.first_name + '_' + player.second_name;
+  const id = player.id;
   const playerDetails = useSelector(state => state.app.playerDetails);
   const [playerHistory, setPlayerHistory] = useState({});
   const [selectedSeason, setSelectedSeason] = useState(0);
@@ -21,7 +22,7 @@ const PlayerHistoryTable = ({ player }) => {
   }, [playerDetails]);
 
   useEffect(() => {
-    getPlayerDetails(dispatch, name);
+    getPlayerDetails(dispatch, id, name);
   }, []);
 
   function renderSelectBoxes() {
