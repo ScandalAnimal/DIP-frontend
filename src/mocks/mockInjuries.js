@@ -1,6 +1,6 @@
 export const mockInjuries = {
   status: 'OK',
-  timestamp: '25-04-2020 08:32:02',
+  timestamp: '25-04-2020 09:46:05',
   data: [
     {
       chance_of_playing_next_round: '75',
@@ -12,6 +12,7 @@ export const mockInjuries = {
       second_name: 'Kolasinac',
       yellow_cards: 3,
       red_cards: 0,
+      web_name: 'Kolasinac',
     },
     {
       chance_of_playing_next_round: '0',
@@ -23,6 +24,7 @@ export const mockInjuries = {
       second_name: 'Monreal',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Monreal',
     },
     {
       chance_of_playing_next_round: '0',
@@ -34,6 +36,7 @@ export const mockInjuries = {
       second_name: 'Koscielny',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Koscielny',
     },
     {
       chance_of_playing_next_round: '0',
@@ -45,6 +48,7 @@ export const mockInjuries = {
       second_name: 'Mavropanos',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Mavropanos',
     },
     {
       chance_of_playing_next_round: '0',
@@ -56,6 +60,7 @@ export const mockInjuries = {
       second_name: 'Jenkinson',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Jenkinson',
     },
     {
       chance_of_playing_next_round: '0',
@@ -67,6 +72,7 @@ export const mockInjuries = {
       second_name: 'Mkhitaryan',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Mkhitaryan',
     },
     {
       chance_of_playing_next_round: '0',
@@ -78,6 +84,7 @@ export const mockInjuries = {
       second_name: 'Torreira',
       yellow_cards: 4,
       red_cards: 0,
+      web_name: 'Torreira',
     },
     {
       chance_of_playing_next_round: '0',
@@ -89,6 +96,7 @@ export const mockInjuries = {
       second_name: 'Elneny',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Elneny',
     },
     {
       chance_of_playing_next_round: '0',
@@ -100,6 +108,7 @@ export const mockInjuries = {
       second_name: 'Chambers',
       yellow_cards: 5,
       red_cards: 0,
+      web_name: 'Chambers',
     },
     {
       chance_of_playing_next_round: '75',
@@ -111,6 +120,7 @@ export const mockInjuries = {
       second_name: 'Tierney',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Tierney',
     },
     {
       chance_of_playing_next_round: '0',
@@ -123,6 +133,7 @@ export const mockInjuries = {
       second_name: 'Smith Rowe',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Smith Rowe',
     },
     {
       chance_of_playing_next_round: '0',
@@ -135,6 +146,7 @@ export const mockInjuries = {
       second_name: 'John-Jules',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'John-Jules',
     },
     {
       chance_of_playing_next_round: '0',
@@ -146,6 +158,7 @@ export const mockInjuries = {
       second_name: 'Chester',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Chester',
     },
     {
       chance_of_playing_next_round: '0',
@@ -157,6 +170,7 @@ export const mockInjuries = {
       second_name: 'Kodjia',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Kodjia',
     },
     {
       chance_of_playing_next_round: '75',
@@ -168,6 +182,7 @@ export const mockInjuries = {
       second_name: 'McGinn',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'McGinn',
     },
     {
       chance_of_playing_next_round: '0',
@@ -180,6 +195,7 @@ export const mockInjuries = {
       second_name: 'Green',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Green',
     },
     {
       chance_of_playing_next_round: '0',
@@ -191,6 +207,7 @@ export const mockInjuries = {
       second_name: 'Bjarnason',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Bjarnason',
     },
     {
       chance_of_playing_next_round: '0',
@@ -202,6 +219,7 @@ export const mockInjuries = {
       second_name: 'Heaton',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Heaton',
     },
     {
       chance_of_playing_next_round: '0',
@@ -213,6 +231,7 @@ export const mockInjuries = {
       second_name: 'Moraes',
       yellow_cards: 3,
       red_cards: 0,
+      web_name: 'Wesley',
     },
     {
       chance_of_playing_next_round: '0',
@@ -224,6 +243,7 @@ export const mockInjuries = {
       second_name: 'Steer',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Steer',
     },
     {
       chance_of_playing_next_round: '0',
@@ -235,6 +255,7 @@ export const mockInjuries = {
       second_name: 'Kalinic',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Kalinic',
     },
     {
       chance_of_playing_next_round: '25',
@@ -246,6 +267,7 @@ export const mockInjuries = {
       second_name: 'Cook',
       yellow_cards: 4,
       red_cards: 1,
+      web_name: 'Steve Cook',
     },
     {
       chance_of_playing_next_round: '0',
@@ -257,6 +279,7 @@ export const mockInjuries = {
       second_name: 'Daniels',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Daniels',
     },
     {
       chance_of_playing_next_round: '0',
@@ -268,6 +291,7 @@ export const mockInjuries = {
       second_name: 'Mepham',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Mepham',
     },
     {
       chance_of_playing_next_round: '75',
@@ -279,6 +303,7 @@ export const mockInjuries = {
       second_name: 'Francis',
       yellow_cards: 3,
       red_cards: 1,
+      web_name: 'Francis',
     },
     {
       chance_of_playing_next_round: '75',
@@ -290,6 +315,7 @@ export const mockInjuries = {
       second_name: 'Kelly',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Kelly',
     },
     {
       chance_of_playing_next_round: '75',
@@ -301,6 +327,7 @@ export const mockInjuries = {
       second_name: 'King',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'King',
     },
     {
       chance_of_playing_next_round: '0',
@@ -312,6 +339,7 @@ export const mockInjuries = {
       second_name: 'Begovic',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Begovic',
     },
     {
       chance_of_playing_next_round: '75',
@@ -323,6 +351,7 @@ export const mockInjuries = {
       second_name: 'Brooks',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Brooks',
     },
     {
       chance_of_playing_next_round: '75',
@@ -334,6 +363,7 @@ export const mockInjuries = {
       second_name: 'Billing',
       yellow_cards: 7,
       red_cards: 0,
+      web_name: 'Billing',
     },
     {
       chance_of_playing_next_round: '75',
@@ -345,6 +375,7 @@ export const mockInjuries = {
       second_name: 'Danjuma Groeneveld',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Danjuma',
     },
     {
       chance_of_playing_next_round: '0',
@@ -357,6 +388,7 @@ export const mockInjuries = {
       second_name: 'Dobre',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Dobre',
     },
     {
       chance_of_playing_next_round: '0',
@@ -369,6 +401,7 @@ export const mockInjuries = {
       second_name: 'Balogun',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Balogun',
     },
     {
       chance_of_playing_next_round: '0',
@@ -380,6 +413,7 @@ export const mockInjuries = {
       second_name: 'Bong',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Bong',
     },
     {
       chance_of_playing_next_round: '0',
@@ -392,6 +426,7 @@ export const mockInjuries = {
       second_name: 'Clarke',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Clarke',
     },
     {
       chance_of_playing_next_round: '0',
@@ -404,6 +439,7 @@ export const mockInjuries = {
       second_name: 'Locadia',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Locadia',
     },
     {
       chance_of_playing_next_round: '0',
@@ -415,6 +451,7 @@ export const mockInjuries = {
       second_name: 'Andone',
       yellow_cards: 0,
       red_cards: 1,
+      web_name: 'Andone',
     },
     {
       chance_of_playing_next_round: '0',
@@ -426,6 +463,7 @@ export const mockInjuries = {
       second_name: 'Izquierdo Mena',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Izquierdo',
     },
     {
       chance_of_playing_next_round: '0',
@@ -437,6 +475,7 @@ export const mockInjuries = {
       second_name: 'Knockaert',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Knockaert',
     },
     {
       chance_of_playing_next_round: '0',
@@ -449,6 +488,7 @@ export const mockInjuries = {
       second_name: 'Baluta',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Baluta',
     },
     {
       chance_of_playing_next_round: '0',
@@ -460,6 +500,7 @@ export const mockInjuries = {
       second_name: 'Lowton',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'Lowton',
     },
     {
       chance_of_playing_next_round: '0',
@@ -471,6 +512,7 @@ export const mockInjuries = {
       second_name: 'Gibson',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Gibson',
     },
     {
       chance_of_playing_next_round: '75',
@@ -482,6 +524,7 @@ export const mockInjuries = {
       second_name: 'Barnes',
       yellow_cards: 4,
       red_cards: 0,
+      web_name: 'Barnes',
     },
     {
       chance_of_playing_next_round: '0',
@@ -493,6 +536,7 @@ export const mockInjuries = {
       second_name: 'Gudmundsson',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Gudmundsson',
     },
     {
       chance_of_playing_next_round: '0',
@@ -504,6 +548,7 @@ export const mockInjuries = {
       second_name: 'Defour',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Defour',
     },
     {
       chance_of_playing_next_round: '75',
@@ -515,6 +560,7 @@ export const mockInjuries = {
       second_name: 'Rodriguez',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Rodriguez',
     },
     {
       chance_of_playing_next_round: '0',
@@ -527,6 +573,7 @@ export const mockInjuries = {
       second_name: 'Driscoll-Glennon',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Driscoll-Glennon',
     },
     {
       chance_of_playing_next_round: '0',
@@ -538,6 +585,7 @@ export const mockInjuries = {
       second_name: 'Zappacosta',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Zappacosta',
     },
     {
       chance_of_playing_next_round: '0',
@@ -549,6 +597,7 @@ export const mockInjuries = {
       second_name: 'Hudson-Odoi',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Hudson-Odoi',
     },
     {
       chance_of_playing_next_round: '0',
@@ -560,6 +609,7 @@ export const mockInjuries = {
       second_name: 'Frello Filho',
       yellow_cards: 10,
       red_cards: 0,
+      web_name: 'Jorginho',
     },
     {
       chance_of_playing_next_round: '75',
@@ -571,6 +621,7 @@ export const mockInjuries = {
       second_name: 'Kanté',
       yellow_cards: 3,
       red_cards: 0,
+      web_name: 'Kanté',
     },
     {
       chance_of_playing_next_round: '0',
@@ -582,6 +633,7 @@ export const mockInjuries = {
       second_name: 'Ampadu',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Ampadu',
     },
     {
       chance_of_playing_next_round: '75',
@@ -593,6 +645,7 @@ export const mockInjuries = {
       second_name: 'Pulisic',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Pulisic',
     },
     {
       chance_of_playing_next_round: '75',
@@ -604,6 +657,7 @@ export const mockInjuries = {
       second_name: 'Kovacic',
       yellow_cards: 7,
       red_cards: 0,
+      web_name: 'Kovacic',
     },
     {
       chance_of_playing_next_round: '75',
@@ -615,6 +669,7 @@ export const mockInjuries = {
       second_name: 'Abraham',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'Abraham',
     },
     {
       chance_of_playing_next_round: '0',
@@ -626,6 +681,7 @@ export const mockInjuries = {
       second_name: 'Nunes do Nascimento',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Kenedy',
     },
     {
       chance_of_playing_next_round: '75',
@@ -637,6 +693,7 @@ export const mockInjuries = {
       second_name: 'Mount',
       yellow_cards: 3,
       red_cards: 0,
+      web_name: 'Mount',
     },
     {
       chance_of_playing_next_round: '0',
@@ -649,6 +706,7 @@ export const mockInjuries = {
       second_name: 'Guehi',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Guehi',
     },
     {
       chance_of_playing_next_round: '0',
@@ -661,6 +719,7 @@ export const mockInjuries = {
       second_name: 'Wickham',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Wickham',
     },
     {
       chance_of_playing_next_round: '0',
@@ -672,6 +731,7 @@ export const mockInjuries = {
       second_name: 'Tosun',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Tosun',
     },
     {
       chance_of_playing_next_round: '0',
@@ -683,6 +743,7 @@ export const mockInjuries = {
       second_name: 'Camarasa',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Camarasa',
     },
     {
       chance_of_playing_next_round: '0',
@@ -694,6 +755,7 @@ export const mockInjuries = {
       second_name: 'Woods',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Woods',
     },
     {
       chance_of_playing_next_round: '0',
@@ -705,6 +767,7 @@ export const mockInjuries = {
       second_name: 'Daly',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Daly',
     },
     {
       chance_of_playing_next_round: '0',
@@ -716,6 +779,7 @@ export const mockInjuries = {
       second_name: 'McGregor',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'McGregor',
     },
     {
       chance_of_playing_next_round: '75',
@@ -727,6 +791,7 @@ export const mockInjuries = {
       second_name: 'Coleman',
       yellow_cards: 3,
       red_cards: 1,
+      web_name: 'Coleman',
     },
     {
       chance_of_playing_next_round: '75',
@@ -738,6 +803,7 @@ export const mockInjuries = {
       second_name: 'Anício Caldeira Duarte',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'Bernard',
     },
     {
       chance_of_playing_next_round: '0',
@@ -749,6 +815,7 @@ export const mockInjuries = {
       second_name: 'Lookman',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Lookman',
     },
     {
       chance_of_playing_next_round: '0',
@@ -760,6 +827,7 @@ export const mockInjuries = {
       second_name: 'Gueye',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Gueye',
     },
     {
       chance_of_playing_next_round: '0',
@@ -771,6 +839,7 @@ export const mockInjuries = {
       second_name: 'Schneiderlin',
       yellow_cards: 4,
       red_cards: 1,
+      web_name: 'Schneiderlin',
     },
     {
       chance_of_playing_next_round: '0',
@@ -783,6 +852,7 @@ export const mockInjuries = {
       second_name: 'Gibson',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Gibson',
     },
     {
       chance_of_playing_next_round: '0',
@@ -795,6 +865,7 @@ export const mockInjuries = {
       second_name: 'Lössl',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Lössl',
     },
     {
       chance_of_playing_next_round: '0',
@@ -806,6 +877,7 @@ export const mockInjuries = {
       second_name: 'Gbamin',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Gbamin',
     },
     {
       chance_of_playing_next_round: '0',
@@ -817,6 +889,7 @@ export const mockInjuries = {
       second_name: 'Barbosa Pereira',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Pereira',
     },
     {
       chance_of_playing_next_round: '75',
@@ -828,6 +901,7 @@ export const mockInjuries = {
       second_name: 'Vardy',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'Vardy',
     },
     {
       chance_of_playing_next_round: '75',
@@ -839,6 +913,7 @@ export const mockInjuries = {
       second_name: 'Maddison',
       yellow_cards: 4,
       red_cards: 0,
+      web_name: 'Maddison',
     },
     {
       chance_of_playing_next_round: '0',
@@ -850,6 +925,7 @@ export const mockInjuries = {
       second_name: 'Ghezzal',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Ghezzal',
     },
     {
       chance_of_playing_next_round: '0',
@@ -861,6 +937,7 @@ export const mockInjuries = {
       second_name: 'Amartey',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Amartey',
     },
     {
       chance_of_playing_next_round: '0',
@@ -873,6 +950,7 @@ export const mockInjuries = {
       second_name: 'King',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'King',
     },
     {
       chance_of_playing_next_round: '0',
@@ -885,6 +963,7 @@ export const mockInjuries = {
       second_name: 'Benkovic',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Benkovic',
     },
     {
       chance_of_playing_next_round: '75',
@@ -896,6 +975,7 @@ export const mockInjuries = {
       second_name: 'Ramses Becker',
       yellow_cards: 0,
       red_cards: 1,
+      web_name: 'Alisson',
     },
     {
       chance_of_playing_next_round: '0',
@@ -907,6 +987,7 @@ export const mockInjuries = {
       second_name: 'Mignolet',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Mignolet',
     },
     {
       chance_of_playing_next_round: '0',
@@ -918,6 +999,7 @@ export const mockInjuries = {
       second_name: 'Shaqiri',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Shaqiri',
     },
     {
       chance_of_playing_next_round: '0',
@@ -929,6 +1011,7 @@ export const mockInjuries = {
       second_name: 'Camacho',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Camacho',
     },
     {
       chance_of_playing_next_round: '0',
@@ -941,6 +1024,7 @@ export const mockInjuries = {
       second_name: 'Brewster',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Brewster',
     },
     {
       chance_of_playing_next_round: '0',
@@ -952,6 +1036,7 @@ export const mockInjuries = {
       second_name: 'Kelleher',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Kelleher',
     },
     {
       chance_of_playing_next_round: '0',
@@ -963,6 +1048,7 @@ export const mockInjuries = {
       second_name: 'Phillips',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Phillips',
     },
     {
       chance_of_playing_next_round: '75',
@@ -974,6 +1060,7 @@ export const mockInjuries = {
       second_name: 'Laporte',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Laporte',
     },
     {
       chance_of_playing_next_round: '0',
@@ -985,6 +1072,7 @@ export const mockInjuries = {
       second_name: 'da Silva',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Danilo',
     },
     {
       chance_of_playing_next_round: '75',
@@ -996,6 +1084,7 @@ export const mockInjuries = {
       second_name: 'De Bruyne',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'De Bruyne',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1007,6 +1096,7 @@ export const mockInjuries = {
       second_name: 'Sané',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Sané',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1018,6 +1108,7 @@ export const mockInjuries = {
       second_name: 'Esmorís Tasende',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Angeliño',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1029,6 +1120,7 @@ export const mockInjuries = {
       second_name: 'Smalling',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Smalling',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1040,6 +1132,7 @@ export const mockInjuries = {
       second_name: 'Young',
       yellow_cards: 5,
       red_cards: 0,
+      web_name: 'Young',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1052,6 +1145,7 @@ export const mockInjuries = {
       second_name: 'Rojo',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Rojo',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1063,6 +1157,7 @@ export const mockInjuries = {
       second_name: 'Dalot Teixeira',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Dalot',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1074,6 +1169,7 @@ export const mockInjuries = {
       second_name: 'Darmian',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Darmian',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1085,6 +1181,7 @@ export const mockInjuries = {
       second_name: 'Lukaku',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Lukaku',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1096,6 +1193,7 @@ export const mockInjuries = {
       second_name: 'Rashford',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'Rashford',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1107,6 +1205,7 @@ export const mockInjuries = {
       second_name: 'Grant',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Grant',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1118,6 +1217,7 @@ export const mockInjuries = {
       second_name: 'Pogba',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Pogba',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1129,6 +1229,7 @@ export const mockInjuries = {
       second_name: 'Martial',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Martial',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1140,6 +1241,7 @@ export const mockInjuries = {
       second_name: 'Sánchez',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Sánchez',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1151,6 +1253,7 @@ export const mockInjuries = {
       second_name: 'Lingard',
       yellow_cards: 3,
       red_cards: 0,
+      web_name: 'Lingard',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1162,6 +1265,7 @@ export const mockInjuries = {
       second_name: 'Dummett',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'Dummett',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1173,6 +1277,7 @@ export const mockInjuries = {
       second_name: 'Clark',
       yellow_cards: 3,
       red_cards: 0,
+      web_name: 'Clark',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1184,6 +1289,7 @@ export const mockInjuries = {
       second_name: 'Mato Sanmartín',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Joselu',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1195,6 +1301,7 @@ export const mockInjuries = {
       second_name: 'Dubravka',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Dubravka',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1207,6 +1314,7 @@ export const mockInjuries = {
       second_name: 'Woodman',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Woodman',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1218,6 +1326,7 @@ export const mockInjuries = {
       second_name: 'Ki',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Ki Sung-yueng',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1229,6 +1338,7 @@ export const mockInjuries = {
       second_name: 'Colback',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Colback',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1241,6 +1351,7 @@ export const mockInjuries = {
       second_name: 'Murphy',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Murphy',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1252,6 +1363,7 @@ export const mockInjuries = {
       second_name: 'Willems',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Willems',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1263,6 +1375,7 @@ export const mockInjuries = {
       second_name: 'Aarons',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Aarons',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1274,6 +1387,7 @@ export const mockInjuries = {
       second_name: 'Krafth',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Krafth',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1285,6 +1399,7 @@ export const mockInjuries = {
       second_name: 'Carroll',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Carroll',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1296,6 +1411,7 @@ export const mockInjuries = {
       second_name: 'Gayle',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Gayle',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1308,6 +1424,7 @@ export const mockInjuries = {
       second_name: 'Watts',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Watts',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1319,6 +1436,7 @@ export const mockInjuries = {
       second_name: 'Klose',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Klose',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1330,6 +1448,7 @@ export const mockInjuries = {
       second_name: 'Srbeny',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Srbeny',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1341,6 +1460,7 @@ export const mockInjuries = {
       second_name: 'Hernández',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Hernández',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1353,6 +1473,7 @@ export const mockInjuries = {
       second_name: 'Roberts',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Roberts',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1364,6 +1485,7 @@ export const mockInjuries = {
       second_name: 'Fahrmann',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Fahrmann',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1375,6 +1497,7 @@ export const mockInjuries = {
       second_name: 'Byram',
       yellow_cards: 4,
       red_cards: 0,
+      web_name: 'Byram',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1386,6 +1509,7 @@ export const mockInjuries = {
       second_name: 'Heise',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Heise',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1397,6 +1521,7 @@ export const mockInjuries = {
       second_name: 'Amadou',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Amadou',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1408,6 +1533,7 @@ export const mockInjuries = {
       second_name: 'Famewo',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Famewo',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1419,6 +1545,7 @@ export const mockInjuries = {
       second_name: 'Stevens',
       yellow_cards: 5,
       red_cards: 0,
+      web_name: 'Stevens',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1430,6 +1557,7 @@ export const mockInjuries = {
       second_name: 'Stearman',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Stearman',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1442,6 +1570,7 @@ export const mockInjuries = {
       second_name: 'Duffy',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Duffy',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1454,6 +1583,7 @@ export const mockInjuries = {
       second_name: 'Robinson',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Callum Robinson',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1466,6 +1596,7 @@ export const mockInjuries = {
       second_name: 'Morrison',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Morrison',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1477,6 +1608,7 @@ export const mockInjuries = {
       second_name: 'Yoshida',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Yoshida',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1489,6 +1621,7 @@ export const mockInjuries = {
       second_name: 'Ramsay',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Ramsay',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1500,6 +1633,7 @@ export const mockInjuries = {
       second_name: 'Austin',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Austin',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1511,6 +1645,7 @@ export const mockInjuries = {
       second_name: 'Gallagher',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Gallagher',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1522,6 +1657,7 @@ export const mockInjuries = {
       second_name: 'Forster',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Forster',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1533,6 +1669,7 @@ export const mockInjuries = {
       second_name: 'Redmond',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'Redmond',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1544,6 +1681,7 @@ export const mockInjuries = {
       second_name: 'Elyounoussi',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Elyounoussi',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1555,6 +1693,7 @@ export const mockInjuries = {
       second_name: 'Lemina',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Lemina',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1567,6 +1706,7 @@ export const mockInjuries = {
       second_name: 'Slattery',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Slattery',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1578,6 +1718,7 @@ export const mockInjuries = {
       second_name: 'Djenepo',
       yellow_cards: 4,
       red_cards: 1,
+      web_name: 'Djenepo',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1589,6 +1730,7 @@ export const mockInjuries = {
       second_name: 'Hoedt',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Hoedt',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1600,6 +1742,7 @@ export const mockInjuries = {
       second_name: 'Davies',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'Davies',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1611,6 +1754,7 @@ export const mockInjuries = {
       second_name: 'Sánchez',
       yellow_cards: 5,
       red_cards: 0,
+      web_name: 'Sánchez',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1622,6 +1766,7 @@ export const mockInjuries = {
       second_name: 'Trippier',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Trippier',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1633,6 +1778,7 @@ export const mockInjuries = {
       second_name: 'Kane',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'Kane',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1644,6 +1790,7 @@ export const mockInjuries = {
       second_name: 'Janssen',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Janssen',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1655,6 +1802,7 @@ export const mockInjuries = {
       second_name: 'Son',
       yellow_cards: 0,
       red_cards: 2,
+      web_name: 'Son',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1666,6 +1814,7 @@ export const mockInjuries = {
       second_name: 'Eriksen',
       yellow_cards: 5,
       red_cards: 0,
+      web_name: 'Eriksen',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1677,6 +1826,7 @@ export const mockInjuries = {
       second_name: 'Wanyama',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Wanyama',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1688,6 +1838,7 @@ export const mockInjuries = {
       second_name: 'Sissoko',
       yellow_cards: 6,
       red_cards: 0,
+      web_name: 'Sissoko',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1699,6 +1850,7 @@ export const mockInjuries = {
       second_name: 'Amos',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Amos',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1710,6 +1862,7 @@ export const mockInjuries = {
       second_name: 'Nkoudou',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Nkoudou',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1721,6 +1874,7 @@ export const mockInjuries = {
       second_name: 'Bergwijn',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Bergwijn',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1732,6 +1886,7 @@ export const mockInjuries = {
       second_name: 'Janmaat',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Janmaat',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1743,6 +1898,7 @@ export const mockInjuries = {
       second_name: 'Navarro',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Navarro',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1754,6 +1910,7 @@ export const mockInjuries = {
       second_name: 'Prödl',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Prödl',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1765,6 +1922,7 @@ export const mockInjuries = {
       second_name: 'Deulofeu',
       yellow_cards: 3,
       red_cards: 0,
+      web_name: 'Deulofeu',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1776,6 +1934,7 @@ export const mockInjuries = {
       second_name: 'Dahlberg',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Dahlberg',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1787,6 +1946,7 @@ export const mockInjuries = {
       second_name: 'Sema',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Sema',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1798,6 +1958,7 @@ export const mockInjuries = {
       second_name: 'Foulquier',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Foulquier',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1809,6 +1970,7 @@ export const mockInjuries = {
       second_name: 'Fredericks',
       yellow_cards: 5,
       red_cards: 0,
+      web_name: 'Fredericks',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1820,6 +1982,7 @@ export const mockInjuries = {
       second_name: 'Reid',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Reid',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1831,6 +1994,7 @@ export const mockInjuries = {
       second_name: 'Arnautovic',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Arnautovic',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1842,6 +2006,7 @@ export const mockInjuries = {
       second_name: 'Hernández Balcázar',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Chicharito',
     },
     {
       chance_of_playing_next_round: '75',
@@ -1853,6 +2018,7 @@ export const mockInjuries = {
       second_name: 'Yarmolenko',
       yellow_cards: 2,
       red_cards: 0,
+      web_name: 'Yarmolenko',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1864,6 +2030,7 @@ export const mockInjuries = {
       second_name: 'Wilshere',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Wilshere',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1876,6 +2043,7 @@ export const mockInjuries = {
       second_name: 'Diangana',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Diangana',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1887,6 +2055,7 @@ export const mockInjuries = {
       second_name: 'Obiang',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Obiang',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1899,6 +2068,7 @@ export const mockInjuries = {
       second_name: 'Jimenez Gago',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Roberto',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1911,6 +2081,7 @@ export const mockInjuries = {
       second_name: 'Holland',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Holland',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1922,6 +2093,7 @@ export const mockInjuries = {
       second_name: 'Castro Otto',
       yellow_cards: 4,
       red_cards: 0,
+      web_name: 'Jonny',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1934,6 +2106,7 @@ export const mockInjuries = {
       second_name: 'Norris',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Norris',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1945,6 +2118,7 @@ export const mockInjuries = {
       second_name: 'Gibbs-White',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Gibbs-White',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1957,6 +2131,7 @@ export const mockInjuries = {
       second_name: 'Costa',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Costa',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1968,6 +2143,7 @@ export const mockInjuries = {
       second_name: 'Cavaleiro',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Cavaleiro',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1979,6 +2155,7 @@ export const mockInjuries = {
       second_name: 'Vallejo Lázaro',
       yellow_cards: 1,
       red_cards: 0,
+      web_name: 'Vallejo',
     },
     {
       chance_of_playing_next_round: '0',
@@ -1990,6 +2167,7 @@ export const mockInjuries = {
       second_name: 'Cutrone',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Cutrone',
     },
     {
       chance_of_playing_next_round: '0',
@@ -2002,6 +2180,7 @@ export const mockInjuries = {
       second_name: 'Ashley-Seal',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Ashley-Seal',
     },
     {
       chance_of_playing_next_round: '0',
@@ -2014,6 +2193,7 @@ export const mockInjuries = {
       second_name: 'Giles',
       yellow_cards: 0,
       red_cards: 0,
+      web_name: 'Giles',
     },
   ],
 };

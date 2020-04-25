@@ -1,6 +1,7 @@
 import Card from '../Common/Card';
 import React, { useEffect } from 'react';
 import StatisticsTable from './StatisticsTable';
+import UnavailablePlayersTable from './UnavailablePlayersTable';
 
 const Statistics = () => {
   useEffect(() => {
@@ -12,6 +13,9 @@ const Statistics = () => {
         <div className='col-xl-12 d-flex flex-column'>
           <Card title='Player statistics'>
             <StatisticsTable />
+          </Card>
+          <Card title='Unavailable players'>
+            <UnavailablePlayersTable />
           </Card>
         </div>
       </div>

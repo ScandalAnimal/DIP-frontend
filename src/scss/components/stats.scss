@@ -30,3 +30,45 @@
     flex-direction: row;
   }
 }
+
+.unavailable-selectbox-wrapper {
+  width: 50%;
+
+  form {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.unavailable {
+  .table {
+    width: 100%;
+  }
+
+  .unavailable-name {
+    width: 20%;
+  }
+
+  .unavailable-team {
+    width: 20%;
+  }
+
+  .unavailable-news {
+    width: 40%;
+    display: flex;
+  }
+
+  .unavailable-cards {
+    width: 20%;
+    text-align: right;
+  }
+}
+
+.unavailable-top {
+  display: flex;
+}
+
+.unavailable-checkboxes {
+  display: flex;
+  align-items: flex-end;
+}

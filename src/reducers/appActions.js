@@ -261,7 +261,7 @@ export function getAllInjuries(dispatch) {
   //   .then(response => response.json())
   //   .then(json => {
   //     const body = json.data;
-  let body = mockInjuries;
+  let body = mockInjuries.data;
   dispatch({
     type: 'SET_LOADING',
     payload: {
@@ -300,7 +300,7 @@ export function getPlayerDetails(dispatch, name) {
   //   .then(response => response.json())
   //   .then(json => {
   //     const body = json.data;
-  let body = mockMustafiData;
+  let body = mockMustafiData.data;
   dispatch({
     type: 'SET_LOADING',
     payload: {
