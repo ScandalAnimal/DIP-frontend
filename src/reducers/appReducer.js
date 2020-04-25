@@ -16,6 +16,8 @@ const initialState = {
     removedPlayers: [],
     additions: 0,
   },
+  injuries: [],
+  playerDetails: [],
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -301,6 +303,44 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         projections: newProjections,
+      };
+    case 'SET_INJURIES':
+      return {
+        ...state,
+        injuries: action.payload.value,
+      };
+    case 'SET_PLAYER_DETAILS':
+      const addedPlayer = action.payload.value;
+      const code = action.payload.playerCode;
+      let newDetails = [];
+      if (state.playerDetails.length === 0) {
+        newDetails.push({
+          playerName: code,
+          value: addedPlayer,
+        });
+      } else {
+        let found = false;
+        newDetails = state.playerDetails.map(detail => {
+          if (detail.playerName === code) {
+            found = true;
+            return {
+              playerName: code,
+              value: addedPlayer,
+            };
+          } else {
+            return detail;
+          }
+        });
+        if (!found) {
+          newDetails.push({
+            playerName: code,
+            value: addedPlayer,
+          });
+        }
+      }
+      return {
+        ...state,
+        playerDetails: newDetails,
       };
     case 'STARTED':
       return {

@@ -1,6 +1,8 @@
 import { API_URL } from '../constants';
 import { mockApiPlayers } from '../mocks/mockApiPlayers';
+import { mockInjuries } from '../mocks/mockInjuries';
 import { mockLoginResponse } from '../mocks/mockLoginResponse';
+import { mockMustafiData } from '../mocks/mockPlayerDetails';
 import { mockPlayerIds } from '../mocks/mockPlayerIds';
 import { mockTeams } from '../mocks/mockTeams';
 import { projections1, projections2, projections3 } from '../mocks/mockAllProjections';
@@ -231,6 +233,85 @@ export function getAllProjections(dispatch, weekId) {
     payload: {
       weekId: weekId,
       value: body,
+    },
+  });
+  // })
+  // .catch(
+  //   e => {
+  //     console.log(e);
+  //   }
+  //   TODO dispatch error
+  // );
+}
+
+export function getAllInjuries(dispatch) {
+  dispatch({
+    type: 'SET_LOADING',
+    payload: {
+      value: true,
+    },
+  });
+  const url = API_URL + '/api/player/injuries';
+  // fetch(url, {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // })
+  //   .then(response => response.json())
+  //   .then(json => {
+  //     const body = json.data;
+  let body = mockInjuries;
+  dispatch({
+    type: 'SET_LOADING',
+    payload: {
+      value: false,
+    },
+  });
+  dispatch({
+    type: 'SET_INJURIES',
+    payload: {
+      value: body,
+    },
+  });
+  // })
+  // .catch(
+  //   e => {
+  //     console.log(e);
+  //   }
+  //   TODO dispatch error
+  // );
+}
+
+export function getPlayerDetails(dispatch, name) {
+  dispatch({
+    type: 'SET_LOADING',
+    payload: {
+      value: true,
+    },
+  });
+  const url = API_URL + '/api/player/detail/name';
+  // fetch(url, {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // })
+  //   .then(response => response.json())
+  //   .then(json => {
+  //     const body = json.data;
+  let body = mockMustafiData;
+  dispatch({
+    type: 'SET_LOADING',
+    payload: {
+      value: false,
+    },
+  });
+  dispatch({
+    type: 'SET_PLAYER_DETAIL',
+    payload: {
+      value: body,
+      playerCode: name,
     },
   });
   // })
