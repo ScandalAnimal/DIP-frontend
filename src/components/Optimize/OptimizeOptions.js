@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 import OptimizeSlider from './OptimizeSlider';
 import React, { useState } from 'react';
 
-const OptimizeOptions = () => {
+const OptimizeOptions = ({ onClick }) => {
   const [transfers, setTransfers] = useState(0);
   const [gameWeek, setGameWeek] = useState(1);
   const [selectionTechnique, setSelectionTechnique] = useState('max');
@@ -14,6 +14,10 @@ const OptimizeOptions = () => {
   function setSelection(event) {
     event.persist();
     setSelectionTechnique(event.target.value);
+  }
+
+  function onButtonClick() {
+    onClick(transfers, selectionTechnique, gameWeek);
   }
 
   return (
@@ -70,7 +74,7 @@ const OptimizeOptions = () => {
         </div>
       </div>
       <div className='row d-flex justify-content-center'>
-        <Button onClick={() => {}} text='Optimize' variant='darkPrimary' />
+        <Button onClick={onButtonClick} text='Optimize' variant='darkPrimary' />
       </div>
       <div className='row justify-content-center'>
         <Button

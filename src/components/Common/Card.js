@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Card = ({ children, title }) => {
+const Card = ({ children, title, hidden }) => {
   const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    if (hidden !== undefined) {
+      setOpen(!hidden);
+    }
+  }, [hidden]);
 
   const renderDown = () => {
     return (
