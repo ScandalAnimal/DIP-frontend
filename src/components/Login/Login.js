@@ -62,8 +62,8 @@ function Login() {
           If you do not wish to input your credentials, you can select your team manually by
           clicking the button below.
           <br />
-          (This way we unfortunately use current player prices, not original player purchase prices
-          at the time of your buying.)
+          (This way we must use current player prices, not original player purchase prices at the
+          time of your buying.)
         </div>
         <div className='login-buttons'>
           <Button variant='lightPrimary' text='Submit' type='submit' onClick={handleSubmit} />
