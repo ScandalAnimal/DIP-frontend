@@ -308,7 +308,7 @@ export function getPlayerDetails(dispatch, name) {
     },
   });
   dispatch({
-    type: 'SET_PLAYER_DETAIL',
+    type: 'SET_PLAYER_DETAILS',
     payload: {
       value: body,
       playerCode: name,

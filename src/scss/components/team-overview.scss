@@ -241,6 +241,11 @@
   color: $color-black;
 }
 
+.player-detail-popup-body__wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 .player-detail-popup-button-row {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -347,4 +352,9 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 25px;
+}
+
+.history-item {
+  width: 8%;
+  text-align: left;
 }

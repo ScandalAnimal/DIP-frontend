@@ -1,6 +1,6 @@
 import React from 'react';
-import kitLogoService from '../../service/kitLogoService';
-import playerService from '../../service/playerService';
+import kitLogoService from '../../../service/kitLogoService';
+import playerService from '../../../service/playerService';
 
 const PlayerSmallIcon = ({ player, onClick }) => {
   const name = playerService.getPlayerName(player);

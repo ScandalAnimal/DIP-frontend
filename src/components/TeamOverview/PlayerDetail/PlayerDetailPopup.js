@@ -1,10 +1,11 @@
 import { Modal } from 'react-bootstrap';
-import { POSITIONS } from '../../constants';
+import { POSITIONS } from '../../../constants';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../Button/Button';
+import Button from '../../Button/Button';
+import PlayerHistoryTable from './PlayerHistoryTable';
 import PlayerSmallIcon from './PlayerSmallIcon';
 import React, { useState } from 'react';
-import playerService from '../../service/playerService';
+import playerService from '../../../service/playerService';
 
 function PlayerDetailPopup(props) {
   const player = useSelector(state => state.app.selectedPlayer);
@@ -13,6 +14,7 @@ function PlayerDetailPopup(props) {
   const [subs, setSubs] = useState([]);
   const teams = useSelector(state => state.app.teams);
   const dispatch = useDispatch();
+  const [playerDataDisplayed, setPlayerDataDisplayed] = useState(false);
 
   function getTeamName() {
     for (let i = 0; i < teams.length; i++) {
@@ -27,6 +29,7 @@ function PlayerDetailPopup(props) {
   function closeModal() {
     setValidationMessage('');
     setSubs([]);
+    setPlayerDataDisplayed(false);
     props.onHide();
   }
 
@@ -186,8 +189,16 @@ function PlayerDetailPopup(props) {
     }
   }
 
+  function renderPlayerData() {
+    return <PlayerHistoryTable player={player} />;
+  }
+
   return (
-    <Modal {...props} aria-labelledby='contained-modal-title-vcenter'>
+    <Modal
+      {...props}
+      aria-labelledby='contained-modal-title-vcenter'
+      dialogClassName={playerDataDisplayed ? 'player-data-displayed' : ''}
+    >
       <Modal.Header>
         <Modal.Title id='contained-modal-title-vcenter' className='player-detail-popup-title'>
           Player Detail
@@ -196,86 +207,105 @@ function PlayerDetailPopup(props) {
       <Modal.Body>
         {player && (
           <div className='container player-detail-popup-body'>
-            <div className='row'>
-              <div className='col'>Name:</div>
-              <div className='col'>{playerService.getPlayerDetailName(player)}</div>
-            </div>
-            <div className='row'>
-              <div className='col'>Team:</div>
-              <div className='col'>{getTeamName()}</div>
-            </div>
-            <div className='row'>
-              <div className='col'>Position:</div>
-              <div className='col'>{playerService.getPositionLabel(player)}</div>
-            </div>
-            <div className='row'>
-              <div className='col'>Total points:</div>
-              <div className='col'>{player.total_points}</div>
-            </div>
-            <div className='row'>
-              <div className='col'>Selected by percent:</div>
-              <div className='col'>{player.selected_by_percent + '%'}</div>
-            </div>
-            <div className='row spacing' />
-            {!isPlayerInArray(player, removedPlayers) && player.position <= 11 && (
-              <div className='row player-detail-popup-button-row'>
-                <Button onClick={openSubs} text='Substitute' variant='lightPrimary' />
-                {subs.length > 0 && (
-                  <div className='player-detail-popup__subs'>
-                    {subs.map(sub => {
-                      return (
-                        <PlayerSmallIcon
-                          key={sub.id}
-                          player={sub}
-                          onClick={() => onSubClick(sub)}
-                        />
-                      );
-                    })}
-                  </div>
-                )}
+            <div className='player-detail-popup-body__wrapper'>
+              <div className='row'>
+                <div className='col'>Name:</div>
+                <div className='col'>{playerService.getPlayerDetailName(player)}</div>
               </div>
-            )}
-            {isPlayerInArray(player, currentTeam) && (
-              <div className='row player-detail-popup-button-row'>
-                <Button onClick={removeFromSquad} text='Remove from team' variant='lightPrimary' />
+              <div className='row'>
+                <div className='col'>Team:</div>
+                <div className='col'>{getTeamName()}</div>
               </div>
-            )}
-            {isPlayerInArray(player, removedPlayers) && shouldShowAddButton() && (
-              <div className='row player-detail-popup-button-row'>
-                <Button onClick={addToSquadFromRemoved} text='Add to team' variant='lightPrimary' />
+              <div className='row'>
+                <div className='col'>Position:</div>
+                <div className='col'>{playerService.getPositionLabel(player)}</div>
               </div>
-            )}
-            {!isPlayerInArray(player, removedPlayers) && shouldShowAddButton() && (
+              <div className='row'>
+                <div className='col'>Total points:</div>
+                <div className='col'>{player.total_points}</div>
+              </div>
+              <div className='row'>
+                <div className='col'>Selected by percent:</div>
+                <div className='col'>{player.selected_by_percent + '%'}</div>
+              </div>
+              <div className='row spacing' />
+              {!isPlayerInArray(player, removedPlayers) && player.position <= 11 && (
+                <div className='row player-detail-popup-button-row'>
+                  <Button onClick={openSubs} text='Substitute' variant='lightPrimary' />
+                  {subs.length > 0 && (
+                    <div className='player-detail-popup__subs'>
+                      {subs.map(sub => {
+                        return (
+                          <PlayerSmallIcon
+                            key={sub.id}
+                            player={sub}
+                            onClick={() => onSubClick(sub)}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
+              {isPlayerInArray(player, currentTeam) && (
+                <div className='row player-detail-popup-button-row'>
+                  <Button
+                    onClick={removeFromSquad}
+                    text='Remove from team'
+                    variant='lightPrimary'
+                  />
+                </div>
+              )}
+              {isPlayerInArray(player, removedPlayers) && shouldShowAddButton() && (
+                <div className='row player-detail-popup-button-row'>
+                  <Button
+                    onClick={addToSquadFromRemoved}
+                    text='Add to team'
+                    variant='lightPrimary'
+                  />
+                </div>
+              )}
+              {!isPlayerInArray(player, removedPlayers) && shouldShowAddButton() && (
+                <div className='row player-detail-popup-button-row'>
+                  <Button
+                    onClick={addToSquadFromTransferMarket}
+                    text='Add to team'
+                    variant='lightPrimary'
+                  />
+                </div>
+              )}
+              {!isPlayerInArray(player, removedPlayers) && player.is_captain === 'false' && (
+                <div className='row player-detail-popup-button-row'>
+                  <Button
+                    onClick={selectAsCaptain}
+                    text='Select as captain'
+                    variant='lightPrimary'
+                  />
+                </div>
+              )}
+              {!isPlayerInArray(player, removedPlayers) && player.is_vice_captain === 'false' && (
+                <div className='row player-detail-popup-button-row'>
+                  <Button
+                    onClick={selectAsViceCaptain}
+                    text='Select as vicecaptain'
+                    variant='lightPrimary'
+                  />
+                </div>
+              )}
+              {validationMessage !== '' && (
+                <div className='row error-message'>{validationMessage}</div>
+              )}
+              <div className='row spacing' />
               <div className='row player-detail-popup-button-row'>
                 <Button
-                  onClick={addToSquadFromTransferMarket}
-                  text='Add to team'
+                  onClick={() => setPlayerDataDisplayed(!playerDataDisplayed)}
+                  text={playerDataDisplayed ? 'Hide past player data' : 'Show past player data'}
                   variant='lightPrimary'
                 />
               </div>
-            )}
-            {!isPlayerInArray(player, removedPlayers) && player.is_captain === 'false' && (
-              <div className='row player-detail-popup-button-row'>
-                <Button onClick={selectAsCaptain} text='Select as captain' variant='lightPrimary' />
-              </div>
-            )}
-            {!isPlayerInArray(player, removedPlayers) && player.is_vice_captain === 'false' && (
-              <div className='row player-detail-popup-button-row'>
-                <Button
-                  onClick={selectAsViceCaptain}
-                  text='Select as vicecaptain'
-                  variant='lightPrimary'
-                />
-              </div>
-            )}
-            {validationMessage !== '' && (
-              <div className='row error-message'>{validationMessage}</div>
-            )}
-            <div className='row spacing' />
-            {/*// TODO uncomment when feature will be implemented*/}
-            {/*<div className='row player-detail-popup-button-row'>*/}
-            {/*  <Button onClick={closeModal} text='Show gamedata' variant='lightPrimary' />*/}
-            {/*</div>*/}
+            </div>
+
+            {playerDataDisplayed && renderPlayerData()}
           </div>
         )}
       </Modal.Body>

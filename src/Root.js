@@ -19,7 +19,7 @@ import Header from './components/Header/Header.js';
 import Homepage from './components/Homepage/Homepage';
 import Login from './components/Login/Login';
 import Optimize from './components/Optimize/Optimize';
-import PlayerDetailPopup from './components/TeamOverview/PlayerDetailPopup';
+import PlayerDetailPopup from './components/TeamOverview/PlayerDetail/PlayerDetailPopup';
 import React from 'react';
 import Statistics from './components/Statistics/Statistics';
 import csTranslations from './translations/cs.json';
