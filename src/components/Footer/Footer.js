@@ -6,8 +6,7 @@ const Footer = () => {
       <footer className='footer footer-bottom'>
         <div className='ml-auto'>
           <div>
-            Made by{' '}
-            <a href='https://www.linkedin.com/in/maro%C5%A1-vasili%C5%A1in-5202b9107/'>Maros</a>
+            Made by <a href='https://github.com/ScandalAnimal'>Maros</a>
           </div>
         </div>
       </footer>
