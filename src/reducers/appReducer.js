@@ -18,6 +18,7 @@ const initialState = {
   },
   injuries: [],
   playerDetails: [],
+  proposedTeams: [],
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -308,6 +309,11 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         injuries: action.payload.value,
+      };
+    case 'SET_PROPOSED_TEAMS':
+      return {
+        ...state,
+        proposedTeams: action.payload.value,
       };
     case 'SET_PLAYER_DETAILS':
       const addedPlayer = action.payload.value;

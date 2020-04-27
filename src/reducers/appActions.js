@@ -4,6 +4,7 @@ import { mockInjuries } from '../mocks/mockInjuries';
 import { mockLoginResponse } from '../mocks/mockLoginResponse';
 import { mockMustafiData } from '../mocks/mockPlayerDetails';
 import { mockPlayerIds } from '../mocks/mockPlayerIds';
+import { mockProposedTransfersAndPredictions } from '../mocks/mockProposedTransfersAndPredictions';
 import { mockTeams } from '../mocks/mockTeams';
 import { projections1, projections2, projections3 } from '../mocks/mockAllProjections';
 
@@ -312,6 +313,46 @@ export function getPlayerDetails(dispatch, id, name) {
     payload: {
       value: body,
       playerCode: name,
+    },
+  });
+  // })
+  // .catch(
+  //   e => {
+  //     console.log(e);
+  //   }
+  //   TODO dispatch error
+  // );
+}
+
+export function getProposedTransfersAndPredictions(dispatch, playerIds, options) {
+  dispatch({
+    type: 'SET_LOADING',
+    payload: {
+      value: true,
+    },
+  });
+  // TODO
+  const url = API_URL + '/api/player/injuries';
+  // fetch(url, {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // })
+  //   .then(response => response.json())
+  //   .then(json => {
+  //     const body = json.data;
+  let body = mockProposedTransfersAndPredictions.proposedTeams;
+  dispatch({
+    type: 'SET_LOADING',
+    payload: {
+      value: false,
+    },
+  });
+  dispatch({
+    type: 'SET_PROPOSED_TEAMS',
+    payload: {
+      value: body,
     },
   });
   // })

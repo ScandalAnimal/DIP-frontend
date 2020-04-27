@@ -18,13 +18,7 @@ const AllProjectionsTable = () => {
   const [selectedTeam, setSelectedTeam] = useState(0);
   const combinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   const [selectedSortBy, setSelectedSortBy] = useState(0);
-  const [sortByOptions, setSortByOptions] = useState([
-    '-',
-    'Name',
-    'GameWeek 1',
-    'GameWeek 2',
-    'GameWeek 3',
-  ]);
+  const sortByOptions = ['-', 'Name', 'GameWeek 1', 'GameWeek 2', 'GameWeek 3'];
 
   useEffect(() => {
     getAllProjections(dispatch, 1);
