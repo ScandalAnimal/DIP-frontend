@@ -1,12 +1,14 @@
 import { POSITIONS } from '../../constants';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Bench from './Bench';
+import Button from '../Button/Button';
 import FootballField from './FootballField';
 import React, { useEffect, useState } from 'react';
 import RemovedPlayers from './RemovedPlayers';
 
 const TeamOverview = () => {
   const { currentTeam, additions, removedPlayers } = useSelector(state => state.app.edit);
+  const dispatch = useDispatch();
   const gks = [];
   const defs = [];
   const mids = [];
@@ -62,6 +64,12 @@ const TeamOverview = () => {
     );
   };
 
+  function resetChanges() {
+    dispatch({
+      type: 'RESET_TEAM_CHANGES',
+    });
+  }
+
   return (
     <div>
       {!loading && (
@@ -74,6 +82,9 @@ const TeamOverview = () => {
           <FootballField gks={gks} defs={defs} mids={mids} fwds={fwds} />
           <Bench bench={bench} />
           <RemovedPlayers />
+          <div className='reset-changes-wrapper'>
+            <Button onClick={resetChanges} text='Reset changes' variant='darkPrimary' />
+          </div>
         </>
       )}
     </div>

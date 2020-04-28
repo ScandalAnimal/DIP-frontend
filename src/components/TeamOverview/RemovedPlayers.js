@@ -1,17 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
-import Button from '../Button/Button';
+import { useSelector } from 'react-redux';
 import PlayerIcon from './PlayerIcon';
 import React from 'react';
 
 const RemovedPlayers = () => {
   const removedPlayers = useSelector(state => state.app.edit.removedPlayers);
-  const dispatch = useDispatch();
-
-  function resetChanges() {
-    dispatch({
-      type: 'RESET_TEAM_CHANGES',
-    });
-  }
 
   function renderPlayers() {
     return (
@@ -21,9 +13,6 @@ const RemovedPlayers = () => {
           {removedPlayers.map(player => {
             return <PlayerIcon player={player} key={player.id} />;
           })}
-        </div>
-        <div className='reset-changes-wrapper'>
-          <Button onClick={resetChanges} text='Reset changes' variant='darkPrimary' />
         </div>
       </div>
     );
