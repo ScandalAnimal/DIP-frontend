@@ -14,13 +14,21 @@ function PlayerRow({ player, formattedName, i, correctValues }) {
       },
     });
   };
+  const isCaptain = player.is_captain === 'true';
+  const isViceCaptain = player.is_vice_captain === 'true';
+
   return (
     <div className='player-row row' onClick={() => openPlayerInfo(player)}>
       <div className='all-projections-id'>{i}</div>
-      <div className='all-projections-name'>{formattedName}</div>
+      <div className='all-projections-name'>
+        {formattedName} {isCaptain && `(C)`}
+        {isViceCaptain && `(V)`}
+      </div>
       <div className='all-projections-weeks'>
         {correctValues.map((value, j) => {
-          return <div key={j}>{value.predicted_points}</div>;
+          const points =
+            isCaptain || isViceCaptain ? value.predicted_points * 2 : value.predicted_points;
+          return <div key={j}>{points}</div>;
         })}
       </div>
     </div>

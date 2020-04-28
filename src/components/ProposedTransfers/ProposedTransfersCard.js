@@ -73,12 +73,22 @@ const ProposedTransfersCard = ({ team, i }) => {
 
     let tmPoints = 0;
     current.forEach(([name, value], i) => {
-      tmPoints += value[0].predicted_points;
+      const splitName = name.split('_');
+      const player = getPlayer(splitName[0], splitName[1]);
+      const isCaptain = player.is_captain === 'true';
+      const isViceCaptain = player.is_vice_captain === 'true';
+      tmPoints +=
+        isCaptain || isViceCaptain ? value[0].predicted_points * 2 : value[0].predicted_points;
     });
     setTotalPointsNew(tmPoints);
     tmPoints = 0;
     original.forEach(([name, value], i) => {
-      tmPoints += value[0].predicted_points;
+      const splitName = name.split('_');
+      const player = getPlayer(splitName[0], splitName[1]);
+      const isCaptain = player.is_captain === 'true';
+      const isViceCaptain = player.is_vice_captain === 'true';
+      tmPoints +=
+        isCaptain || isViceCaptain ? value[0].predicted_points * 2 : value[0].predicted_points;
     });
     setTotalPointsOld(tmPoints);
   };

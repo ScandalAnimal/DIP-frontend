@@ -50,7 +50,12 @@ const ProjectedPerformanceTable = () => {
 
     let tmPoints = 0;
     team.forEach(([name, value], i) => {
-      tmPoints += value[0].predicted_points;
+      const splitName = name.split('_');
+      const player = getPlayer(splitName[0], splitName[1]);
+      const isCaptain = player.is_captain === 'true';
+      const isViceCaptain = player.is_vice_captain === 'true';
+      tmPoints +=
+        isCaptain || isViceCaptain ? value[0].predicted_points * 2 : value[0].predicted_points;
     });
     setTotalPoints(tmPoints);
     setTeam(team);
@@ -95,11 +100,18 @@ const ProjectedPerformanceTable = () => {
           const splitName = name.split('_');
           const player = getPlayer(splitName[0], splitName[1]);
           let formattedName = playerService.getPlayerName(player);
+          const isCaptain = player.is_captain === 'true';
+          const isViceCaptain = player.is_vice_captain === 'true';
+          const points =
+            isCaptain || isViceCaptain ? value[0].predicted_points * 2 : value[0].predicted_points;
           return (
             <div className='player-row row' key={i} onClick={() => openPlayerInfo(player)}>
               <div className='all-projections-id'>{i}</div>
-              <div className='all-projections-name'>{formattedName}</div>
-              <div className='all-projections-weeks-single'>{value[0].predicted_points}</div>
+              <div className='all-projections-name'>
+                {formattedName} {isCaptain && `(C)`}
+                {isViceCaptain && `(V)`}
+              </div>
+              <div className='all-projections-weeks-single'>{points}</div>
             </div>
           );
         })}

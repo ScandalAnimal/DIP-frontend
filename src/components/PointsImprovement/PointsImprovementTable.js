@@ -51,12 +51,22 @@ const PointsImprovementTable = () => {
 
     let tmPoints = 0;
     current.forEach(([name, value], i) => {
-      tmPoints += value[0].predicted_points;
+      const splitName = name.split('_');
+      const player = getPlayer(splitName[0], splitName[1]);
+      const isCaptain = player.is_captain === 'true';
+      const isViceCaptain = player.is_vice_captain === 'true';
+      tmPoints +=
+        isCaptain || isViceCaptain ? value[0].predicted_points * 2 : value[0].predicted_points;
     });
     setTotalPointsNew(tmPoints);
     tmPoints = 0;
     original.forEach(([name, value], i) => {
-      tmPoints += value[0].predicted_points;
+      const splitName = name.split('_');
+      const player = getPlayer(splitName[0], splitName[1]);
+      const isCaptain = player.is_captain === 'true';
+      const isViceCaptain = player.is_vice_captain === 'true';
+      tmPoints +=
+        isCaptain || isViceCaptain ? value[0].predicted_points * 2 : value[0].predicted_points;
     });
     setTotalPointsOld(tmPoints);
     setTeamNew(current);
@@ -105,11 +115,18 @@ const PointsImprovementTable = () => {
         {team.map(([name, value], i) => {
           const splitName = name.split('_');
           const player = getPlayer(splitName[0], splitName[1]);
+          const isCaptain = player.is_captain === 'true';
+          const isViceCaptain = player.is_vice_captain === 'true';
+          const points =
+            isCaptain || isViceCaptain ? value[0].predicted_points * 2 : value[0].predicted_points;
           let formattedName = playerService.getPlayerName(player);
           return (
             <div className='player-row row' key={i} onClick={() => openPlayerInfo(player)}>
-              <div className='all-projections-name'>{formattedName}</div>
-              <div className='all-projections-weeks-single'>{value[0].predicted_points}</div>
+              <div className='all-projections-name'>
+                {formattedName} {isCaptain && `(C)`}
+                {isViceCaptain && `(V)`}
+              </div>
+              <div className='all-projections-weeks-single'>{points}</div>
             </div>
           );
         })}
