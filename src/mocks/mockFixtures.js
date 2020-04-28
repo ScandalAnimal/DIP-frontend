@@ -1,5 +1,4 @@
 export const mockFixtures = [
-  // TODO add date, result, detail
   {
     home: 18,
     away: 9,

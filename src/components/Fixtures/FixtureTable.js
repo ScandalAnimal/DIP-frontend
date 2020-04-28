@@ -1,5 +1,5 @@
 import { mockFixtures } from '../../mocks/mockFixtures';
-import { mockTeams } from '../../mocks/mockTeams';
+import { useSelector } from 'react-redux';
 import Button from '../Button/Button';
 import React from 'react';
 import teamLogoService from '../../service/teamLogoService';
@@ -16,9 +16,7 @@ function renderTeamName(teams, id, isHome) {
   );
 }
 
-function renderFixture(fixture) {
-  const teams = mockTeams; // TODO replace with API call
-
+function renderFixture(fixture, teams) {
   return (
     <div className='fixture-wrapper row' key={fixture.home + '-' + fixture.away}>
       <div className='col-xl-4 text-left'>{renderTeamName(teams, fixture.home, true)}</div>
@@ -50,12 +48,13 @@ function renderFixtureHeader(gameWeek) {
 const FixtureTable = () => {
   const fixtures = mockFixtures; // TODO replace with API call
   const gameWeek = 30; // TODO replace with API call
+  const teams = useSelector(state => state.app.teams);
 
   return (
     <div className='fixtures col'>
       {renderFixtureHeader(gameWeek)}
       {fixtures.map(fixture => {
-        return renderFixture(fixture);
+        return renderFixture(fixture, teams);
       })}
     </div>
   );
