@@ -202,6 +202,14 @@ export const appReducer = (state = initialState, action) => {
           currentTeam: action.payload.value,
         },
       };
+    case 'REPLACE_TEAM':
+      return {
+        ...state,
+        edit: {
+          ...state.edit,
+          currentTeam: action.payload.value,
+        },
+      };
     case 'SET_ALL_COMBINED_PLAYERS':
       let transferMarket = action.payload.value;
       if (state.edit.currentTeam.length > 0) {

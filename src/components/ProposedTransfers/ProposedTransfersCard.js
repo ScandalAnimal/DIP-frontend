@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router';
+import Button from '../Button/Button';
 import React, { useEffect, useState } from 'react';
 import playerService from '../../service/playerService';
 
@@ -8,6 +10,8 @@ const ProposedTransfersCard = ({ team, i }) => {
   const [playersToRemove, setPlayersToRemove] = useState([]);
   const [playersToAdd, setPlayersToAdd] = useState([]);
   const dispatch = useDispatch();
+  const params = useParams();
+  const history = useHistory();
   // TODO change
   const mockOriginalPoints = 40;
   const mockSuggestedPoints = 55;
@@ -51,6 +55,29 @@ const ProposedTransfersCard = ({ team, i }) => {
     );
   }
 
+  function showTeamWithChanges() {
+    const newTeamIds = team.team;
+    const newTeam = newTeamIds.map(id => getPlayerById(id));
+    const newTeamWithCaps = newTeam.map(player => {
+      const isCaptain = team.captain === player.id;
+      const isViceCaptain = team.viceCaptain === player.id;
+      return {
+        ...player,
+        is_captain: isCaptain ? 'true' : 'false',
+        is_vice_captain: isViceCaptain ? 'true' : 'false',
+      };
+    });
+    dispatch({
+      type: 'REPLACE_TEAM',
+      payload: {
+        value: newTeamWithCaps,
+      },
+    });
+    history.push({
+      pathname: `/${params.langId}/home`,
+    });
+  }
+
   return (
     <>
       <div className='proposed-transfers-card__index'>Option {i + 1}</div>
@@ -89,6 +116,11 @@ const ProposedTransfersCard = ({ team, i }) => {
           <div className='proposed-transfers-card__item'>
             <div className='proposed-transfers-card__title'>Suggested team predicted points</div>
             <div className='proposed-transfers-card__number'>{mockSuggestedPoints}</div>
+          </div>
+        </div>
+        <div className='proposed-transfers-card__row'>
+          <div className='proposed-transfers-card__button'>
+            <Button onClick={showTeamWithChanges} text='Show team' variant='darkPrimary' />
           </div>
         </div>
       </div>
