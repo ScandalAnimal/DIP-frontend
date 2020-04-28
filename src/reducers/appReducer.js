@@ -208,6 +208,8 @@ export const appReducer = (state = initialState, action) => {
         edit: {
           ...state.edit,
           currentTeam: action.payload.value,
+          removedPlayers: [],
+          additions: [],
         },
       };
     case 'SET_ALL_COMBINED_PLAYERS':

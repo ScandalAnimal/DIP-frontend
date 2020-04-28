@@ -2,6 +2,7 @@ import { getAllPlayerIds, getAllPlayers, getAllTeams } from '../../reducers/appA
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../Common/Card';
 import Loader from './Loader';
+import PointsImprovementTable from '../PointsImprovement/PointsImprovementTable';
 import ProjectedPerformanceTable from '../ProjectedPerformance/ProjectedPerformanceTable';
 import React, { useEffect } from 'react';
 import TeamOverview from '../TeamOverview/TeamOverview';
@@ -98,6 +99,9 @@ const Homepage = () => {
           <div className='col-xl-6 d-flex flex-column'>
             <Card title='Transfer Market'>
               <TransferMarket />
+            </Card>
+            <Card title='Projected Points Improvement'>
+              <PointsImprovementTable />
             </Card>
           </div>
         </div>

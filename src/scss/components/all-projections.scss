@@ -22,7 +22,7 @@
   }
 
   .all-projections-weeks-single {
-    width: 60%;
+    width: 20%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -41,4 +41,19 @@
     display: flex;
     flex-direction: row;
   }
+}
+
+.points-improvement__row {
+  display: flex;
+  flex-direction: row;
+}
+
+.points-improvement__col {
+  width: 50%;
+  margin: 0 3px;
+}
+
+.points-improvement__title {
+  color: $color-darkgrey;
+  font-size: 18px;
 }

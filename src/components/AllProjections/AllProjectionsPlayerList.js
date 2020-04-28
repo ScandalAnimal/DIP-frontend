@@ -28,9 +28,9 @@ function PlayerRow({ player, formattedName, i, correctValues }) {
 }
 
 function ItemList({ items, gameWeekCount }) {
-  const allPlayerIds = useSelector(state => state.app.allPlayerIds);
+  const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   const getPlayer = (firstName, secondName) => {
-    return allPlayerIds.find(
+    return allCombinedPlayers.find(
       playerIdObject =>
         playerIdObject.first_name === firstName && playerIdObject.second_name === secondName
     );

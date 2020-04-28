@@ -1,24 +1,19 @@
-import { getAllProjections } from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import playerService from '../../service/playerService';
 
-const ProjectedPerformanceTable = () => {
+const PointsImprovementTable = () => {
   const dispatch = useDispatch();
-
   const projections = useSelector(state => state.app.projections);
   const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
+  const originalTeam = useSelector(state => state.app.originalTeam);
   const { currentTeam, additions } = useSelector(state => state.app.edit);
   const [loading, setLoading] = useState(true);
-  const [totalPoints, setTotalPoints] = useState(0);
-  const [team, setTeam] = useState([]);
-
-  useEffect(() => {
-    getAllProjections(dispatch, 1);
-    getAllProjections(dispatch, 2);
-    getAllProjections(dispatch, 3);
-  }, []);
+  const [totalPointsOld, setTotalPointsOld] = useState(0);
+  const [totalPointsNew, setTotalPointsNew] = useState(0);
+  const [teamOld, setTeamOld] = useState([]);
+  const [teamNew, setTeamNew] = useState([]);
 
   useEffect(() => {
     if (projections !== []) {
@@ -42,18 +37,30 @@ const ProjectedPerformanceTable = () => {
       x.map(y => _.omit(y, 'player_name'))
     );
 
-    const team = Object.entries(remapped).filter(([name, value], i) => {
+    const current = Object.entries(remapped).filter(([name, value], i) => {
       const splitName = name.split('_');
       const player = getPlayer(splitName[0], splitName[1]);
-      return isPlayerInTeam(player.id);
+      return isPlayerInCurrentTeam(player.id);
+    });
+
+    const original = Object.entries(remapped).filter(([name, value], i) => {
+      const splitName = name.split('_');
+      const player = getPlayer(splitName[0], splitName[1]);
+      return isPlayerInOriginalTeam(player.id);
     });
 
     let tmPoints = 0;
-    team.forEach(([name, value], i) => {
+    current.forEach(([name, value], i) => {
       tmPoints += value[0].predicted_points;
     });
-    setTotalPoints(tmPoints);
-    setTeam(team);
+    setTotalPointsNew(tmPoints);
+    tmPoints = 0;
+    original.forEach(([name, value], i) => {
+      tmPoints += value[0].predicted_points;
+    });
+    setTotalPointsOld(tmPoints);
+    setTeamNew(current);
+    setTeamOld(original);
   };
 
   const openPlayerInfo = player => {
@@ -68,7 +75,6 @@ const ProjectedPerformanceTable = () => {
   const displayHeader = () => {
     return (
       <div className='player-row player-row-heading row'>
-        <div className='all-projections-id'>#</div>
         <div className='all-projections-name'>Name</div>
         <div className='all-projections-weeks-single'>Next round</div>
       </div>
@@ -82,12 +88,17 @@ const ProjectedPerformanceTable = () => {
     );
   };
 
-  const isPlayerInTeam = id => {
+  const isPlayerInCurrentTeam = id => {
     const elem = currentTeam.find(item => item.id === id);
     return elem !== undefined;
   };
 
-  const renderProjectionsTable = () => {
+  const isPlayerInOriginalTeam = id => {
+    const elem = originalTeam.find(item => item.id === id);
+    return elem !== undefined;
+  };
+
+  const renderProjectionsTable = team => {
     return (
       <>
         {displayHeader()}
@@ -97,7 +108,6 @@ const ProjectedPerformanceTable = () => {
           let formattedName = playerService.getPlayerName(player);
           return (
             <div className='player-row row' key={i} onClick={() => openPlayerInfo(player)}>
-              <div className='all-projections-id'>{i}</div>
               <div className='all-projections-name'>{formattedName}</div>
               <div className='all-projections-weeks-single'>{value[0].predicted_points}</div>
             </div>
@@ -107,20 +117,28 @@ const ProjectedPerformanceTable = () => {
     );
   };
 
-  const renderTotalPoints = () => {
+  const renderTotalPoints = totalPoints => {
     return <div className='all-projections-total'>Total points: {totalPoints}</div>;
   };
 
   return (
-    <div className='all-projections'>
+    <div className='points-improvement__wrapper'>
       {!loading && (
-        <>
-          {renderTotalPoints()}
-          {renderProjectionsTable()}
-        </>
+        <div className='points-improvement__row'>
+          <div className='points-improvement__col'>
+            <div className='points-improvement__title'>Original</div>
+            {renderTotalPoints(totalPointsOld)}
+            {renderProjectionsTable(teamOld)}
+          </div>
+          <div className='points-improvement__col'>
+            <div className='points-improvement__title'>Current</div>
+            {renderTotalPoints(totalPointsNew)}
+            {renderProjectionsTable(teamNew)}
+          </div>
+        </div>
       )}
     </div>
   );
 };
 
-export default ProjectedPerformanceTable;
+export default PointsImprovementTable;
