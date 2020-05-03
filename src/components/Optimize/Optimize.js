@@ -46,6 +46,7 @@ const Optimize = () => {
         sellingPrice: player.selling_price,
         nowCost: player.now_cost,
         purchasePrice: player.purchase_price,
+        playerName: player.first_name + '_' + player.second_name,
       };
     });
   }
