@@ -21,7 +21,7 @@ const Optimize = () => {
   function onOptimizeClick(transfers, selectionTechnique, gameWeeks) {
     function afterLoad() {
       setPredictionsLoaded(true);
-      const currentTeamIds = getCurrentTeamIds();
+      const currentTeamIds = getCurrentTeam();
       const options = {
         transfers,
         selectionTechnique,
@@ -39,8 +39,15 @@ const Optimize = () => {
     setTimeout(afterLoad, 2000);
   }
 
-  function getCurrentTeamIds() {
-    return currentTeam.map(player => player.id);
+  function getCurrentTeam() {
+    return currentTeam.map(player => {
+      return {
+        id: player.id,
+        sellingPrice: player.selling_price,
+        nowCost: player.now_cost,
+        purchasePrice: player.purchase_price,
+      };
+    });
   }
 
   return (
