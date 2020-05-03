@@ -45,7 +45,10 @@ const ProjectedPerformanceTable = () => {
     const team = Object.entries(remapped).filter(([name, value], i) => {
       const splitName = name.split('_');
       const player = getPlayer(splitName[0], splitName[1]);
-      return isPlayerInTeam(player.id);
+      if (player !== undefined) {
+        return isPlayerInTeam(player.id);
+      }
+      return false;
     });
 
     let tmPoints = 0;

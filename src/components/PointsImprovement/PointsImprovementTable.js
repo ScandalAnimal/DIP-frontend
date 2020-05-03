@@ -40,13 +40,19 @@ const PointsImprovementTable = () => {
     const current = Object.entries(remapped).filter(([name, value], i) => {
       const splitName = name.split('_');
       const player = getPlayer(splitName[0], splitName[1]);
-      return isPlayerInCurrentTeam(player.id);
+      if (player !== undefined) {
+        return isPlayerInCurrentTeam(player.id);
+      }
+      return false;
     });
 
     const original = Object.entries(remapped).filter(([name, value], i) => {
       const splitName = name.split('_');
       const player = getPlayer(splitName[0], splitName[1]);
-      return isPlayerInOriginalTeam(player.id);
+      if (player !== undefined) {
+        return isPlayerInOriginalTeam(player.id);
+      }
+      return false;
     });
 
     let tmPoints = 0;

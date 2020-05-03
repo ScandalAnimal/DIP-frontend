@@ -331,35 +331,42 @@ export function getProposedTransfersAndPredictions(dispatch, playerIds, options)
       value: true,
     },
   });
-  // TODO
-  const url = API_URL + '/api/player/injuries';
-  // fetch(url, {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // })
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     const body = json.data;
-  let body = mockProposedTransfersAndPredictions.proposedTeams;
-  dispatch({
-    type: 'SET_LOADING',
-    payload: {
-      value: false,
+  const data = {
+    team: playerIds,
+    transfers: options.transfers,
+    technique: options.selectionTechnique,
+    gameWeeks: options.gameWeeks,
+  };
+  const url = API_URL + '/api/player/optimize';
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  });
-  dispatch({
-    type: 'SET_PROPOSED_TEAMS',
-    payload: {
-      value: body,
-    },
-  });
-  // })
-  // .catch(
-  //   e => {
-  //     console.log(e);
-  //   }
-  //   TODO dispatch error
-  // );
+    body: JSON.stringify(data),
+  })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json.data);
+      // const body = json.data;
+      let body = mockProposedTransfersAndPredictions.proposedTeams;
+      dispatch({
+        type: 'SET_LOADING',
+        payload: {
+          value: false,
+        },
+      });
+      dispatch({
+        type: 'SET_PROPOSED_TEAMS',
+        payload: {
+          value: body,
+        },
+      });
+    })
+    .catch(
+      e => {
+        console.log(e);
+      }
+      // TODO dispatch error
+    );
 }
