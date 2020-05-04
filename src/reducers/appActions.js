@@ -348,8 +348,8 @@ export function getProposedTransfersAndPredictions(dispatch, playerIds, options)
     .then(response => response.json())
     .then(json => {
       console.log(json.data);
-      // const body = json.data;
-      let body = mockProposedTransfersAndPredictions.proposedTeams;
+      const body = json.data.squads;
+      // let body = mockProposedTransfersAndPredictions.proposedTeams;
       dispatch({
         type: 'SET_LOADING',
         payload: {
