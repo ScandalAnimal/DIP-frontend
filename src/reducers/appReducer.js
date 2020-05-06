@@ -247,6 +247,7 @@ export const appReducer = (state = initialState, action) => {
           return {
             ...player,
             is_captain: 'true',
+            is_vice_captain: 'false',
           };
         } else {
           return {
@@ -269,6 +270,7 @@ export const appReducer = (state = initialState, action) => {
           return {
             ...player,
             is_vice_captain: 'true',
+            is_captain: 'false',
           };
         } else {
           return {
