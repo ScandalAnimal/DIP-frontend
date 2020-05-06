@@ -95,6 +95,26 @@ const ProjectedPerformanceTable = () => {
     return elem !== undefined;
   };
 
+  function isCaptain(id) {
+    const c = currentTeam.find(item => item.id === id);
+    if (c !== undefined) {
+      if (c.is_captain === 'true') {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function isViceCaptain(id) {
+    const c = currentTeam.find(item => item.id === id);
+    if (c !== undefined) {
+      if (c.is_vice_captain === 'true') {
+        return true;
+      }
+    }
+    return false;
+  }
+
   const renderProjectionsTable = () => {
     return (
       <>
@@ -103,16 +123,15 @@ const ProjectedPerformanceTable = () => {
           const splitName = name.split('_');
           const player = getPlayer(splitName[0], splitName[1]);
           let formattedName = playerService.getPlayerName(player);
-          const isCaptain = player.is_captain === 'true';
-          const isViceCaptain = player.is_vice_captain === 'true';
-          const points =
-            isCaptain || isViceCaptain ? value[0].predicted_points * 2 : value[0].predicted_points;
+          const isC = isCaptain(player.id);
+          const isVC = isViceCaptain(player.id);
+          const points = value[0].predicted_points;
           return (
             <div className='player-row row' key={i} onClick={() => openPlayerInfo(player)}>
               <div className='all-projections-id'>{i}</div>
               <div className='all-projections-name'>
-                {formattedName} {isCaptain && `(C)`}
-                {isViceCaptain && `(V)`}
+                {formattedName} {isC && `(C)`}
+                {isVC && `(V)`}
               </div>
               <div className='all-projections-weeks-single'>{points}</div>
             </div>

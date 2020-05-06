@@ -5,6 +5,7 @@ import playerService from '../../service/playerService';
 
 function PlayerRow({ player, formattedName, i, correctValues }) {
   const dispatch = useDispatch();
+  const { currentTeam } = useSelector(state => state.app.edit);
 
   const openPlayerInfo = () => {
     dispatch({
@@ -14,20 +15,39 @@ function PlayerRow({ player, formattedName, i, correctValues }) {
       },
     });
   };
-  const isCaptain = player.is_captain === 'true';
-  const isViceCaptain = player.is_vice_captain === 'true';
+
+  const isCaptain = id => {
+    const c = currentTeam.find(item => item.id === id);
+    if (c !== undefined) {
+      if (c.is_captain === 'true') {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const isViceCaptain = id => {
+    const c = currentTeam.find(item => item.id === id);
+    if (c !== undefined) {
+      if (c.is_vice_captain === 'true') {
+        return true;
+      }
+    }
+    return false;
+  };
+  const isC = isCaptain(player.id);
+  const isVC = isViceCaptain(player.id);
 
   return (
     <div className='player-row row' onClick={() => openPlayerInfo(player)}>
       <div className='all-projections-id'>{i}</div>
       <div className='all-projections-name'>
-        {formattedName} {isCaptain && `(C)`}
-        {isViceCaptain && `(V)`}
+        {formattedName} {isC && `(C)`}
+        {isVC && `(V)`}
       </div>
       <div className='all-projections-weeks'>
         {correctValues.map((value, j) => {
-          const points =
-            isCaptain || isViceCaptain ? value.predicted_points * 2 : value.predicted_points;
+          const points = value.predicted_points;
           return <div key={j}>{points}</div>;
         })}
       </div>

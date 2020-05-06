@@ -100,7 +100,7 @@ const Homepage = () => {
             <Card title='Transfer Market'>
               <TransferMarket />
             </Card>
-            <Card title='Projected Points Improvement'>
+            <Card title='Projected Point Difference'>
               <PointsImprovementTable />
             </Card>
           </div>
