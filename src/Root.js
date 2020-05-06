@@ -34,7 +34,7 @@ const RedirectToLang = () => {
   return (
     <Redirect
       to={{
-        pathname: '/cs',
+        pathname: '/en',
       }}
     />
   );

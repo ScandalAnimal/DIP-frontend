@@ -1,5 +1,7 @@
 import { getProposedTransfersAndPredictions } from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router';
+import Button from '../Button/Button';
 import Card from '../Common/Card';
 import Loader from '../Homepage/Loader';
 import OptimizeOptions from './OptimizeOptions';
@@ -13,6 +15,8 @@ const Optimize = () => {
   const { currentTeam } = useSelector(state => state.app.edit);
   const { proposedTeams } = useSelector(state => state.app);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const params = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -71,9 +75,9 @@ const Optimize = () => {
     });
   }
 
-  return (
-    <div className='main container'>
-      <div className='row'>
+  const renderFullSquad = () => {
+    return (
+      <>
         <div className='col-xl-12 d-flex flex-column'>
           <Card title='Optimization options' hidden={hidden}>
             <OptimizeOptions onClick={onOptimizeClick} />
@@ -93,7 +97,37 @@ const Optimize = () => {
             </Card>
           </div>
         )}
+      </>
+    );
+  };
+
+  const renderInfo = () => {
+    return (
+      <div className='col-xl-12 d-flex flex-column align-items-center'>
+        <div className='error-text'>
+          Optimization is disabled for teams with less than 15 players. Please fill your squad
+          first.
+        </div>
+        <Button
+          onClick={() => {
+            history.push({
+              pathname: `/${params.langId}/home`,
+            });
+          }}
+          text='Fill squad'
+          variant='lightPrimary'
+        />
       </div>
+    );
+  };
+
+  const isFullSquad = () => {
+    return currentTeam.length === 15;
+  };
+
+  return (
+    <div className='main container'>
+      <div className='row'>{isFullSquad() ? renderFullSquad() : renderInfo()}</div>
     </div>
   );
 };
