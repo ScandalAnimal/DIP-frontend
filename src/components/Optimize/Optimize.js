@@ -19,24 +19,44 @@ const Optimize = () => {
   }, []);
 
   function onOptimizeClick(transfers, selectionTechnique, gameWeeks) {
-    function afterLoad() {
-      setPredictionsLoaded(true);
-      const currentTeamIds = getCurrentTeam();
-      const options = {
-        transfers,
-        selectionTechnique,
-        gameWeeks,
-      };
-      getProposedTransfersAndPredictions(dispatch, currentTeamIds, options);
-      /* TODO remove loading
-         TODO add real data when BE is ready
-       */
-    }
-
     setInProgress(true);
+    setPredictionsLoaded(false);
+    dispatch({
+      type: 'SET_PROPOSED_TEAMS',
+      payload: {
+        value: [],
+      },
+    });
     setHidden(!inProgress);
-    // TODO replace with real call
-    setTimeout(afterLoad, 2000);
+    const currentTeamIds = getCurrentTeam();
+    const options = {
+      transfers,
+      selectionTechnique,
+      gameWeeks,
+    };
+    getProposedTransfersAndPredictions(dispatch, currentTeamIds, options)
+      .then(json => {
+        const body = json.data.squads;
+        dispatch({
+          type: 'SET_LOADING',
+          payload: {
+            value: false,
+          },
+        });
+        dispatch({
+          type: 'SET_PROPOSED_TEAMS',
+          payload: {
+            value: body,
+          },
+        });
+        setPredictionsLoaded(true);
+      })
+      .catch(
+        e => {
+          console.log(e);
+        }
+        // TODO dispatch error
+      );
   }
 
   function getCurrentTeam() {
@@ -55,7 +75,7 @@ const Optimize = () => {
     <div className='main container'>
       <div className='row'>
         <div className='col-xl-12 d-flex flex-column'>
-          <Card title='Optimization options' hidden={hidden || proposedTeams.length > 0}>
+          <Card title='Optimization options' hidden={hidden}>
             <OptimizeOptions onClick={onOptimizeClick} />
           </Card>
         </div>

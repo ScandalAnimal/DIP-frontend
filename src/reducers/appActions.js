@@ -324,7 +324,7 @@ export function getPlayerDetails(dispatch, id, name) {
   // );
 }
 
-export function getProposedTransfersAndPredictions(dispatch, playerIds, options) {
+export async function getProposedTransfersAndPredictions(dispatch, playerIds, options) {
   dispatch({
     type: 'SET_LOADING',
     payload: {
@@ -338,35 +338,12 @@ export function getProposedTransfersAndPredictions(dispatch, playerIds, options)
     gameWeeks: options.gameWeeks,
   };
   const url = API_URL + '/api/player/optimize';
-  fetch(url, {
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
-  })
-    .then(response => response.json())
-    .then(json => {
-      console.log(json.data);
-      const body = json.data.squads;
-      // let body = mockProposedTransfersAndPredictions.proposedTeams;
-      dispatch({
-        type: 'SET_LOADING',
-        payload: {
-          value: false,
-        },
-      });
-      dispatch({
-        type: 'SET_PROPOSED_TEAMS',
-        payload: {
-          value: body,
-        },
-      });
-    })
-    .catch(
-      e => {
-        console.log(e);
-      }
-      // TODO dispatch error
-    );
+  });
+  return response.json();
 }
