@@ -1,5 +1,6 @@
 const initialState = {
   loading: false,
+  loginError: false,
   modalShow: false,
   selectedPlayer: null,
   teamId: null,
@@ -36,6 +37,16 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         modalShow: false,
+      };
+    case 'SET_LOGIN_ERROR':
+      return {
+        ...state,
+        loginError: true,
+      };
+    case 'UNSET_LOGIN_ERROR':
+      return {
+        ...state,
+        loginError: false,
       };
     case 'SELECT_PLAYER':
       return {

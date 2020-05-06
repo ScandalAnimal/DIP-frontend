@@ -125,10 +125,14 @@ export function getAllTeams(dispatch) {
   // );
 }
 
-export function getTeamData(dispatch, history, params, email, password) {
+export function login(dispatch, history, params, email, password) {
+  // const data = {
+  //   login: 'mvasilisin@gmail.com',
+  //   password: '0p9J2O75jRkWjVW',
+  // };
   const data = {
-    login: 'mvasilisin@gmail.com',
-    password: '0p9J2O75jRkWjVW',
+    login: email,
+    password: password,
   };
   dispatch({
     type: 'SET_LOADING',
@@ -138,46 +142,47 @@ export function getTeamData(dispatch, history, params, email, password) {
   });
 
   const url = API_URL + '/api/login';
-  // fetch(url, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify(data),
-  // })
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     const body = json.data;
-  const body = mockLoginResponse.data;
-  dispatch({
-    type: 'SET_LOADING',
-    payload: {
-      value: false,
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  });
-  dispatch({
-    type: 'SET_TEAM_ID',
-    payload: {
-      value: body.teamId,
-    },
-  });
-  dispatch({
-    type: 'SET_TEAM_PICKS',
-    payload: {
-      value: body.myTeam.picks,
-    },
-  });
-  history.push({
-    pathname: `/${params.langId}/home`,
-  });
-  // })
-  // .catch(
-  //   e => {
-  //     console.log('catch');
-  //     console.log(e);
-  //   }
-  //   // TODO dispatch error
-  // );
+    body: JSON.stringify(data),
+  })
+    .then(response => response.json())
+    .then(json => {
+      const body = json.data;
+      // const body = mockLoginResponse.data;
+      dispatch({
+        type: 'SET_LOADING',
+        payload: {
+          value: false,
+        },
+      });
+      dispatch({
+        type: 'SET_TEAM_ID',
+        payload: {
+          value: body.teamId,
+        },
+      });
+      dispatch({
+        type: 'SET_TEAM_PICKS',
+        payload: {
+          value: body.myTeam.picks,
+        },
+      });
+      history.push({
+        pathname: `/${params.langId}/home`,
+      });
+      dispatch({
+        type: 'UNSET_LOGIN_ERROR',
+      });
+    })
+    .catch(e => {
+      dispatch({
+        type: 'SET_LOGIN_ERROR',
+      });
+    });
 }
 
 export function manualTeam(dispatch, history, params) {

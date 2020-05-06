@@ -31,6 +31,7 @@ const Homepage = () => {
   const { teamPicks, allPlayers, allPlayerIds, teams, loading } = useSelector(state => state.app);
   const currentTeam = useSelector(state => state.app.edit.currentTeam);
   const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
+  const teamId = useSelector(state => state.app.teamId);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -100,9 +101,11 @@ const Homepage = () => {
             <Card title='Transfer Market'>
               <TransferMarket />
             </Card>
-            <Card title='Projected Point Difference'>
-              <PointsImprovementTable />
-            </Card>
+            {teamId !== 'manual' && (
+              <Card title='Projected Point Differences'>
+                <PointsImprovementTable />
+              </Card>
+            )}
           </div>
         </div>
       )}

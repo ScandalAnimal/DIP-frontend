@@ -1,6 +1,6 @@
 import { Form } from 'react-bootstrap';
-import { getTeamData, manualTeam } from '../../reducers/appActions';
-import { useDispatch } from 'react-redux';
+import { login, manualTeam } from '../../reducers/appActions';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
 import React, { useEffect, useState } from 'react';
@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const loginError = useSelector(state => state.app.loginError);
 
   const params = useParams();
   const [inputEmail, setInputEmail] = useState('');
@@ -21,15 +22,14 @@ function Login() {
     setInputPassword(e.target.value);
   };
 
-  async function handleManualInput(e) {
+  function handleManualInput(e) {
     e.preventDefault();
     manualTeam(dispatch, history, params);
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    getTeamData(dispatch, history, params, inputEmail, inputPassword);
-    // TODO implement
+    login(dispatch, history, params, inputEmail, inputPassword);
   }
 
   useEffect(() => {
@@ -42,6 +42,9 @@ function Login() {
     <div className='header-link'>
       <Form>
         <Form.Group controlId='formEmail' className={'login-input'}>
+          {loginError && (
+            <Form.Label className='error-text'>Invalid credentials, try again.</Form.Label>
+          )}
           <Form.Label>Insert your FPL email</Form.Label>
           <Form.Control type='email' value={inputEmail} onChange={e => handleChangeEmail(e)} />
           <Form.Text className='text-muted'>{`Use the same email that you use for the FPL.`}</Form.Text>

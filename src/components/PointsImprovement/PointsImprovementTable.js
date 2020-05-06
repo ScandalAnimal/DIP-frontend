@@ -18,14 +18,14 @@ const PointsImprovementTable = () => {
   const [toShowNew, setToShowNew] = useState([]);
 
   useEffect(() => {
-    if (projections !== []) {
+    if (projections.length > 0 && originalTeam.length > 0) {
       setLoading(false);
       setTeamAndPoints();
     }
-  }, [projections]);
+  }, [projections, originalTeam]);
 
   useEffect(() => {
-    if (projections !== []) {
+    if (projections.length > 0 && originalTeam.length > 0) {
       setTeamAndPoints();
     }
   }, [currentTeam, additions]);
@@ -247,16 +247,18 @@ const PointsImprovementTable = () => {
               </div>
             )}
           </div>
-          <div className='points-improvement__row'>
-            <div className='points-improvement__col'>
-              <hr />
-              {renderProjectionsTable(teamOld, true)}
+          {toShowOld.length !== 0 && toShowNew.length !== 0 && (
+            <div className='points-improvement__row'>
+              <div className='points-improvement__col'>
+                <hr />
+                {renderProjectionsTable(teamOld, true)}
+              </div>
+              <div className='points-improvement__col'>
+                <hr />
+                {renderProjectionsTable(teamNew, false)}
+              </div>
             </div>
-            <div className='points-improvement__col'>
-              <hr />
-              {renderProjectionsTable(teamNew, false)}
-            </div>
-          </div>
+          )}
         </>
       )}
     </div>
