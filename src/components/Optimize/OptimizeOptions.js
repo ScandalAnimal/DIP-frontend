@@ -25,7 +25,7 @@ const OptimizeOptions = ({ onClick }) => {
       <div className='optimize-option-wrapper row'>
         <div className='col-xl-4 text-left'>Transfers:</div>
         <div className='col-xl-8 text-center'>
-          <OptimizeSlider setValue={setTransfers} min={0} max={2} withWildcard={true} />
+          <OptimizeSlider setValue={setTransfers} min={0} max={2} withWildcard={false} />
         </div>
       </div>
       <div className='optimize-option-wrapper row'>
