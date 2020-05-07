@@ -4,7 +4,7 @@ import Card from '../Common/Card';
 import Loader from './Loader';
 import PointsImprovementTable from '../PointsImprovement/PointsImprovementTable';
 import ProjectedPerformanceTable from '../ProjectedPerformance/ProjectedPerformanceTable';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import TeamOverview from '../TeamOverview/TeamOverview';
 import TransferMarket from '../TransferMarket/TransferMarket';
 
@@ -28,19 +28,29 @@ function findPlayerById(allPlayerIds, allPlayers, id) {
 
 const Homepage = () => {
   const dispatch = useDispatch();
-  const { teamPicks, allPlayers, allPlayerIds, teams, loading } = useSelector(state => state.app);
+  const { teamPicks, allPlayers, allPlayerIds, teams } = useSelector(state => state.app);
   const currentTeam = useSelector(state => state.app.edit.currentTeam);
   const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   const teamId = useSelector(state => state.app.teamId);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    getAllPlayers(dispatch);
-    getAllPlayerIds(dispatch);
-    getAllTeams(dispatch);
+    if (allPlayers === null) {
+      getAllPlayers(dispatch);
+    }
+    if (allPlayerIds === null) {
+      getAllPlayerIds(dispatch);
+    }
+    if (teams === null) {
+      getAllTeams(dispatch);
+    }
   }, [dispatch]);
 
   useEffect(() => {
+    if (allPlayers !== null && allPlayerIds !== null && teams !== null && currentTeam.length > 0) {
+      setLoading(false);
+    }
     let combinedPlayers = [];
     let combinedAllPlayers = [];
 

@@ -55,12 +55,9 @@ const Optimize = () => {
         });
         setPredictionsLoaded(true);
       })
-      .catch(
-        e => {
-          console.log(e);
-        }
-        // TODO dispatch error
-      );
+      .catch(e => {
+        console.log(e);
+      });
   }
 
   function getCurrentTeam() {

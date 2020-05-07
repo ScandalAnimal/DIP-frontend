@@ -16,35 +16,32 @@ export function getAllPlayers(dispatch) {
     },
   });
   const url = API_URL + '/api/player';
-  // fetch(url, {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // })
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     const body = json.data;
-  const body = mockApiPlayers.data;
-  dispatch({
-    type: 'SET_LOADING',
-    payload: {
-      value: false,
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  });
-  dispatch({
-    type: 'SET_ALL_PLAYERS',
-    payload: {
-      value: body,
-    },
-  });
-  // })
-  // .catch(
-  //   e => {
-  //     console.log(e);
-  //   }
-  //   // TODO dispatch error
-  // );
+  })
+    .then(response => response.json())
+    .then(json => {
+      const body = json.data;
+      // const body = mockApiPlayers.data;
+      dispatch({
+        type: 'SET_LOADING',
+        payload: {
+          value: false,
+        },
+      });
+      dispatch({
+        type: 'SET_ALL_PLAYERS',
+        payload: {
+          value: body,
+        },
+      });
+    })
+    .catch(e => {
+      console.log(e);
+    });
 }
 
 export function getAllPlayerIds(dispatch) {
@@ -55,35 +52,32 @@ export function getAllPlayerIds(dispatch) {
     },
   });
   const url = API_URL + '/api/player/ids';
-  // fetch(url, {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // })
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     const body = json.data;
-  const body = mockPlayerIds.data;
-  dispatch({
-    type: 'SET_LOADING',
-    payload: {
-      value: false,
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  });
-  dispatch({
-    type: 'SET_ALL_PLAYER_IDS',
-    payload: {
-      value: body,
-    },
-  });
-  // })
-  // .catch(
-  //   e => {
-  //     console.log(e);
-  //   }
-  //   TODO dispatch error
-  // );
+  })
+    .then(response => response.json())
+    .then(json => {
+      const body = json.data;
+      // const body = mockPlayerIds.data;
+      dispatch({
+        type: 'SET_LOADING',
+        payload: {
+          value: false,
+        },
+      });
+      dispatch({
+        type: 'SET_ALL_PLAYER_IDS',
+        payload: {
+          value: body,
+        },
+      });
+    })
+    .catch(e => {
+      console.log(e);
+    });
 }
 
 export function getAllTeams(dispatch) {
@@ -94,35 +88,32 @@ export function getAllTeams(dispatch) {
     },
   });
   const url = API_URL + '/api/team';
-  // fetch(url, {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // })
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     const body = json.data;
-  const body = mockTeams.data;
-  dispatch({
-    type: 'SET_LOADING',
-    payload: {
-      value: false,
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  });
-  dispatch({
-    type: 'SET_TEAMS',
-    payload: {
-      value: body,
-    },
-  });
-  // })
-  // .catch(
-  //   e => {
-  //     console.log(e);
-  //   }
-  //   TODO dispatch error
-  // );
+  })
+    .then(response => response.json())
+    .then(json => {
+      const body = json.data;
+      // const body = mockTeams.data;
+      dispatch({
+        type: 'SET_LOADING',
+        payload: {
+          value: false,
+        },
+      });
+      dispatch({
+        type: 'SET_TEAMS',
+        payload: {
+          value: body,
+        },
+      });
+    })
+    .catch(e => {
+      console.log(e);
+    });
 }
 
 export function login(dispatch, history, params, email, password) {
@@ -203,7 +194,7 @@ export function manualTeam(dispatch, history, params) {
   });
 }
 
-export function getAllProjections(dispatch, weekId) {
+export async function getAllProjections(dispatch, weekId) {
   dispatch({
     type: 'SET_LOADING',
     payload: {
@@ -211,43 +202,13 @@ export function getAllProjections(dispatch, weekId) {
     },
   });
   const url = API_URL + '/api/player/projected-points/' + weekId;
-  // fetch(url, {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // })
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     const body = json.data;
-  let body = null;
-  if (weekId === 1) {
-    body = projections1.data;
-  } else if (weekId === 2) {
-    body = projections2.data;
-  } else if (weekId === 3) {
-    body = projections3.data;
-  }
-  dispatch({
-    type: 'SET_LOADING',
-    payload: {
-      value: false,
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
     },
   });
-  dispatch({
-    type: 'SET_PROJECTIONS',
-    payload: {
-      weekId: weekId,
-      value: body,
-    },
-  });
-  // })
-  // .catch(
-  //   e => {
-  //     console.log(e);
-  //   }
-  //   TODO dispatch error
-  // );
+  return response.json();
 }
 
 export function getAllInjuries(dispatch) {
@@ -258,35 +219,32 @@ export function getAllInjuries(dispatch) {
     },
   });
   const url = API_URL + '/api/player/injuries';
-  // fetch(url, {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // })
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     const body = json.data;
-  let body = mockInjuries.data;
-  dispatch({
-    type: 'SET_LOADING',
-    payload: {
-      value: false,
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  });
-  dispatch({
-    type: 'SET_INJURIES',
-    payload: {
-      value: body,
-    },
-  });
-  // })
-  // .catch(
-  //   e => {
-  //     console.log(e);
-  //   }
-  //   TODO dispatch error
-  // );
+  })
+    .then(response => response.json())
+    .then(json => {
+      const body = json.data;
+      // let body = mockInjuries.data;
+      dispatch({
+        type: 'SET_LOADING',
+        payload: {
+          value: false,
+        },
+      });
+      dispatch({
+        type: 'SET_INJURIES',
+        payload: {
+          value: body,
+        },
+      });
+    })
+    .catch(e => {
+      console.log(e);
+    });
 }
 
 export function getPlayerDetails(dispatch, id, name) {
@@ -297,36 +255,33 @@ export function getPlayerDetails(dispatch, id, name) {
     },
   });
   const url = API_URL + '/api/player/detail/' + id;
-  // fetch(url, {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // })
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     const body = json.data;
-  let body = mockMustafiData.data;
-  dispatch({
-    type: 'SET_LOADING',
-    payload: {
-      value: false,
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  });
-  dispatch({
-    type: 'SET_PLAYER_DETAILS',
-    payload: {
-      value: body,
-      playerCode: name,
-    },
-  });
-  // })
-  // .catch(
-  //   e => {
-  //     console.log(e);
-  //   }
-  //   TODO dispatch error
-  // );
+  })
+    .then(response => response.json())
+    .then(json => {
+      const body = json.data;
+      // let body = mockMustafiData.data;
+      dispatch({
+        type: 'SET_LOADING',
+        payload: {
+          value: false,
+        },
+      });
+      dispatch({
+        type: 'SET_PLAYER_DETAILS',
+        payload: {
+          value: body,
+          playerCode: name,
+        },
+      });
+    })
+    .catch(e => {
+      console.log(e);
+    });
 }
 
 export async function getProposedTransfersAndPredictions(dispatch, playerIds, options) {

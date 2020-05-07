@@ -18,7 +18,9 @@ const UnavailablePlayersTable = () => {
   const [excludeLoans, setExcludeLoans] = useState(false);
 
   useEffect(() => {
-    getAllInjuries(dispatch);
+    if (injuries.length === 0) {
+      getAllInjuries(dispatch);
+    }
   }, [dispatch]);
 
   useEffect(() => {

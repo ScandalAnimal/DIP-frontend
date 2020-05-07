@@ -6,7 +6,6 @@ import playerService from '../../service/playerService';
 
 const ProjectedPerformanceTable = () => {
   const dispatch = useDispatch();
-
   const projections = useSelector(state => state.app.projections);
   const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   const { currentTeam, additions } = useSelector(state => state.app.edit);
@@ -15,9 +14,30 @@ const ProjectedPerformanceTable = () => {
   const [team, setTeam] = useState([]);
 
   useEffect(() => {
-    getAllProjections(dispatch, 1);
-    getAllProjections(dispatch, 2);
-    getAllProjections(dispatch, 3);
+    if (projections.length === 0) {
+      Promise.all([
+        getAllProjections(dispatch, 1),
+        getAllProjections(dispatch, 2),
+        getAllProjections(dispatch, 3),
+      ]).then(values => {
+        dispatch({
+          type: 'SET_LOADING',
+          payload: {
+            value: false,
+          },
+        });
+        values.forEach((v, i) => {
+          dispatch({
+            type: 'SET_PROJECTIONS',
+            payload: {
+              weekId: i + 1,
+              value: v.data,
+            },
+          });
+        });
+        setLoading(false);
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -28,7 +48,7 @@ const ProjectedPerformanceTable = () => {
   }, [projections]);
 
   useEffect(() => {
-    if (projections !== []) {
+    if (projections.length > 0) {
       setTeamAndPoints();
     }
   }, [currentTeam, additions]);

@@ -20,14 +20,14 @@ const AllProjectionsTable = () => {
   const [selectedSortBy, setSelectedSortBy] = useState(0);
   const sortByOptions = ['-', 'Name', 'GameWeek 1', 'GameWeek 2', 'GameWeek 3'];
 
-  useEffect(() => {
-    getAllProjections(dispatch, 1);
-    getAllProjections(dispatch, 2);
-    getAllProjections(dispatch, 3);
-  }, []);
+  // useEffect(() => {
+  //   getAllProjections(dispatch, 1);
+  //   getAllProjections(dispatch, 2);
+  //   getAllProjections(dispatch, 3);
+  // }, []);
 
   useEffect(() => {
-    if (projections !== []) {
+    if (projections.length > 0) {
       setLoading(false);
       const x = projections.find(projection => projection.id === gameWeekCount);
       const remapped = _.mapValues(_.groupBy(x.value, 'player_name'), x =>
