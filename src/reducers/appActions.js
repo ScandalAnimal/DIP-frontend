@@ -1,12 +1,4 @@
 import { API_URL } from '../constants';
-import { mockApiPlayers } from '../mocks/mockApiPlayers';
-import { mockInjuries } from '../mocks/mockInjuries';
-import { mockLoginResponse } from '../mocks/mockLoginResponse';
-import { mockMustafiData } from '../mocks/mockPlayerDetails';
-import { mockPlayerIds } from '../mocks/mockPlayerIds';
-import { mockProposedTransfersAndPredictions } from '../mocks/mockProposedTransfersAndPredictions';
-import { mockTeams } from '../mocks/mockTeams';
-import { projections1, projections2, projections3 } from '../mocks/mockAllProjections';
 
 export function getAllPlayers(dispatch) {
   dispatch({

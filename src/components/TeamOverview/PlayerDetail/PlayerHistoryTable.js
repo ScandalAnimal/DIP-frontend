@@ -22,7 +22,7 @@ const PlayerHistoryTable = ({ player }) => {
       setFiltered(detail.value);
       setLoading(false);
     }
-  }, [playerDetails]);
+  }, [playerDetails, name]);
 
   useEffect(() => {
     getPlayerDetails(dispatch, id, name);

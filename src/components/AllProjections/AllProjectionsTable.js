@@ -1,6 +1,5 @@
 import { Form } from 'react-bootstrap';
-import { getAllProjections } from '../../reducers/appActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AllProjectionsPlayerList from './AllProjectionsPlayerList';
 import Loader from '../Homepage/Loader';
 import React, { useEffect, useState } from 'react';
