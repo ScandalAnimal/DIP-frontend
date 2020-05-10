@@ -21,7 +21,7 @@ const AllProjectionsTable = () => {
   useEffect(() => {
     if (projections.length > 0) {
       setLoading(false);
-      const x = projections.find(projection => projection.id === gameWeekCount);
+      const x = projections.find(projection => parseInt(projection.id) === parseInt(gameWeekCount));
       const remapped = _.mapValues(_.groupBy(x.value, 'player_name'), x =>
         x.map(y => _.omit(y, 'player_name'))
       );
@@ -39,7 +39,9 @@ const AllProjectionsTable = () => {
     }
 
     function filterPlayers(type, v) {
-      let combined = projections.find(projection => projection.id === gameWeekCount);
+      let combined = projections.find(
+        projection => parseInt(projection.id) === parseInt(gameWeekCount)
+      );
       const remapped = _.mapValues(_.groupBy(combined.value, 'player_name'), x =>
         x.map(y => _.omit(y, 'player_name'))
       );
@@ -48,7 +50,7 @@ const AllProjectionsTable = () => {
 
       if (type === 1) {
         if (parseInt(v) === 0) {
-          tmpFiltered = remapped;
+          tmpFiltered = Object.entries(remapped);
         } else {
           tmpFiltered = Object.entries(remapped).filter(([name, values]) => {
             const player = combinedPlayers.find(item => {
@@ -69,7 +71,7 @@ const AllProjectionsTable = () => {
         }
       } else if (type === 2) {
         if (parseInt(v) === 0) {
-          tmpFiltered = remapped;
+          tmpFiltered = Object.entries(remapped);
         } else {
           tmpFiltered = Object.entries(remapped).filter(([name, values]) => {
             const player = combinedPlayers.find(item => {
