@@ -169,8 +169,20 @@ function PlayerDetailPopup(props) {
     return team.length;
   }
 
+  function doesPlayerTeamHaveSpaces() {
+    const playerTeamCodes = currentTeam.map(player => player.team);
+    let occurrences = [];
+    for (let i = 1; i <= 20; i++) {
+      occurrences[i - 1] = playerTeamCodes.filter(code => parseInt(code) === i).length;
+    }
+    return occurrences[player.team - 1] < 3;
+  }
+
   function shouldShowAddButton() {
     if (isTeamFull()) {
+      return false;
+    }
+    if (!doesPlayerTeamHaveSpaces()) {
       return false;
     }
     const playerPosition = player.element_type;
