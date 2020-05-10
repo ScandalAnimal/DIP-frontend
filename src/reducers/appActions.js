@@ -296,6 +296,7 @@ export async function getProposedTransfersAndPredictions(dispatch, playerIds, op
     transfers: options.transfers,
     technique: options.selectionTechnique,
     gameWeeks: options.gameWeeks,
+    tips: options.tips,
   };
   const url = API_URL + '/api/player/optimize';
   const response = await fetch(url, {

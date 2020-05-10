@@ -5,8 +5,9 @@ import OptimizeSlider from './OptimizeSlider';
 import React, { useState } from 'react';
 
 const OptimizeOptions = ({ onClick }) => {
-  const [transfers, setTransfers] = useState(0);
+  const [transfers, setTransfers] = useState(1);
   const [gameWeek, setGameWeek] = useState(1);
+  const [options, setOptions] = useState(3);
   const [selectionTechnique, setSelectionTechnique] = useState('max');
   const params = useParams();
   const history = useHistory();
@@ -17,7 +18,7 @@ const OptimizeOptions = ({ onClick }) => {
   }
 
   function onButtonClick() {
-    onClick(transfers, selectionTechnique, gameWeek);
+    onClick(transfers, selectionTechnique, gameWeek, options);
   }
 
   return (
@@ -25,7 +26,13 @@ const OptimizeOptions = ({ onClick }) => {
       <div className='optimize-option-wrapper row'>
         <div className='col-xl-4 text-left'>Transfers:</div>
         <div className='col-xl-8 text-center'>
-          <OptimizeSlider setValue={setTransfers} min={0} max={2} withWildcard={false} />
+          <OptimizeSlider
+            setValue={setTransfers}
+            min={0}
+            max={2}
+            withWildcard={false}
+            selected={1}
+          />
         </div>
       </div>
       <div className='optimize-option-wrapper row'>
@@ -71,6 +78,12 @@ const OptimizeOptions = ({ onClick }) => {
         <div className='col-xl-4 text-left'>Game weeks:</div>
         <div className='col-xl-8 text-center'>
           <OptimizeSlider setValue={setGameWeek} min={1} max={3} />
+        </div>
+      </div>
+      <div className='optimize-option-wrapper row'>
+        <div className='col-xl-4 text-left'>Show up to this many tips:</div>
+        <div className='col-xl-8 text-center'>
+          <OptimizeSlider setValue={setOptions} min={1} max={5} selected={3} />
         </div>
       </div>
       <div className='row d-flex justify-content-center'>

@@ -2,7 +2,7 @@ import 'rc-slider/assets/index.css';
 import React from 'react';
 import Slider from 'rc-slider/lib/Slider';
 
-const OptimizeSlider = ({ setValue, min, max, withWildcard }) => {
+const OptimizeSlider = ({ setValue, min, max, withWildcard, selected }) => {
   const markStyle = {
     color: '#fff',
     fontSize: 16,
@@ -27,7 +27,7 @@ const OptimizeSlider = ({ setValue, min, max, withWildcard }) => {
         max={withWildcard ? max + 1 : max}
         step={1}
         onChange={setValue}
-        defaultValue={min}
+        defaultValue={selected !== undefined ? selected : min}
         marks={marks}
         railStyle={{ height: 8, backgroundColor: '#eee' }}
         trackStyle={{ height: 8, backgroundColor: '#a9c8c0' }}

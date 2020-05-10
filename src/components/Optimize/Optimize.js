@@ -22,7 +22,7 @@ const Optimize = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  function onOptimizeClick(transfers, selectionTechnique, gameWeeks) {
+  function onOptimizeClick(transfers, selectionTechnique, gameWeeks, tips) {
     setInProgress(true);
     setPredictionsLoaded(false);
     dispatch({
@@ -31,12 +31,13 @@ const Optimize = () => {
         value: [],
       },
     });
-    setHidden(!inProgress);
+    setHidden(true);
     const currentTeamIds = getCurrentTeam();
     const options = {
       transfers,
       selectionTechnique,
       gameWeeks,
+      tips,
     };
     getProposedTransfersAndPredictions(dispatch, currentTeamIds, options)
       .then(json => {

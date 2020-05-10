@@ -51,6 +51,9 @@ const Homepage = () => {
     if (allPlayers !== null && allPlayerIds !== null && teams !== null && currentTeam.length > 0) {
       setLoading(false);
     }
+    if (allPlayers !== null && allPlayerIds !== null && teams !== null && teamId === 'manual') {
+      setLoading(false);
+    }
     let combinedPlayers = [];
     let combinedAllPlayers = [];
 
