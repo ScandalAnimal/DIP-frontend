@@ -84,7 +84,7 @@ const Optimize = () => {
         {inProgress && !predictionsLoaded && (
           <div className='col-xl-12 d-flex flex-column'>
             <Card>
-              <Loader />
+              <Loader text='Loading predictions...' />
             </Card>
           </div>
         )}

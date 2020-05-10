@@ -2,6 +2,7 @@ import { Form } from 'react-bootstrap';
 import { getAllInjuries } from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
 import Checkbox from '../Common/Checkbox';
+import Loader from '../Homepage/Loader';
 import React, { useEffect, useState } from 'react';
 import UnavailablePlayersList from './UnavailablePlayersList';
 import playerService from '../../service/playerService';
@@ -212,6 +213,7 @@ const UnavailablePlayersTable = () => {
 
   return (
     <div className='unavailable'>
+      {loading && <Loader text='Loading player injury and suspension statuses...' />}
       {!loading && filteredPlayers.length > 0 && (
         <>
           <div className='unavailable-top'>

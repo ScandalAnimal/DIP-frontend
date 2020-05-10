@@ -47,6 +47,22 @@ const Homepage = () => {
     }
   }, [dispatch]);
 
+  function getLoaderText() {
+    if (allPlayers === null) {
+      return 'Fetching player data...';
+    }
+    if (allPlayerIds === null) {
+      return 'Fetching player identifications...';
+    }
+    if (teams === null) {
+      return 'Fetching team information...';
+    }
+    if (teamId !== 'manual' && currentTeam.length === 0) {
+      return 'Fetching current team information...';
+    }
+    return null;
+  }
+
   useEffect(() => {
     if (allPlayers !== null && allPlayerIds !== null && teams !== null && currentTeam.length > 0) {
       setLoading(false);
@@ -99,7 +115,7 @@ const Homepage = () => {
   return (
     <div className='main container homepage'>
       {loading ? (
-        <Loader />
+        <Loader text={getLoaderText()} />
       ) : (
         <div className='row'>
           <div className='col-xl-6 d-flex flex-column'>

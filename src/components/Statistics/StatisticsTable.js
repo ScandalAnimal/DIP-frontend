@@ -1,5 +1,6 @@
 import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import Loader from '../Homepage/Loader';
 import React, { useEffect, useState } from 'react';
 import StatisticsPlayerList from './StatisticsPlayerList';
 import playerService from '../../service/playerService';
@@ -201,7 +202,9 @@ const StatisticsTable = () => {
 
   return (
     <div className='all-stats'>
-      {!loading && (
+      {loading ? (
+        <Loader text='Loading player statistics...' />
+      ) : (
         <>
           {renderSelectBoxes()}
           {renderPlayerList()}

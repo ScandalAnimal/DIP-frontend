@@ -2,13 +2,12 @@ import { Form } from 'react-bootstrap';
 import { getAllProjections } from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
 import AllProjectionsPlayerList from './AllProjectionsPlayerList';
+import Loader from '../Homepage/Loader';
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import playerService from '../../service/playerService';
 
 const AllProjectionsTable = () => {
-  const dispatch = useDispatch();
-
   const teams = useSelector(state => state.app.teams);
   const projections = useSelector(state => state.app.projections);
   const [loading, setLoading] = useState(true);
@@ -19,12 +18,6 @@ const AllProjectionsTable = () => {
   const combinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   const [selectedSortBy, setSelectedSortBy] = useState(0);
   const sortByOptions = ['-', 'Name', 'GameWeek 1', 'GameWeek 2', 'GameWeek 3'];
-
-  // useEffect(() => {
-  //   getAllProjections(dispatch, 1);
-  //   getAllProjections(dispatch, 2);
-  //   getAllProjections(dispatch, 3);
-  // }, []);
 
   useEffect(() => {
     if (projections.length > 0) {
@@ -337,7 +330,9 @@ const AllProjectionsTable = () => {
 
   return (
     <div className='all-projections'>
-      {!loading && (
+      {loading ? (
+        <Loader text='Loading predictions...' />
+      ) : (
         <>
           {renderSelectBoxes()}
           {renderPlayerList()}
