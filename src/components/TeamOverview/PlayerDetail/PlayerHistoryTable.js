@@ -1,6 +1,7 @@
 import { Form } from 'react-bootstrap';
 import { getPlayerDetails } from '../../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../../Homepage/Loader';
 import PlayerHistoryList from './PlayerHistoryList';
 import React, { useEffect, useState } from 'react';
 
@@ -12,12 +13,14 @@ const PlayerHistoryTable = ({ player }) => {
   const [selectedSeason, setSelectedSeason] = useState(0);
   const [filtered, setFiltered] = useState([]);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const detail = playerDetails.find(d => d.playerName === name);
     if (detail) {
       setPlayerHistory(detail.value);
       setFiltered(detail.value);
+      setLoading(false);
     }
   }, [playerDetails]);
 
@@ -77,8 +80,14 @@ const PlayerHistoryTable = ({ player }) => {
 
   return (
     <div className='player-history'>
-      {renderSelectBoxes()}
-      {renderDataList()}
+      {loading ? (
+        <Loader text='Fetching historical player data...' />
+      ) : (
+        <>
+          {renderSelectBoxes()}
+          {renderDataList()}
+        </>
+      )}
     </div>
   );
 };

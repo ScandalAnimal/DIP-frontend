@@ -17,3 +17,16 @@
   width: 75%;
   max-width: 75%;
 }
+
+.loader-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loader-text {
+  margin-top: 20px;
+  color: $color-lynch;
+}

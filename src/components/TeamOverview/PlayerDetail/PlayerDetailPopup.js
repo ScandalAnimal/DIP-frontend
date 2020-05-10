@@ -30,6 +30,7 @@ function PlayerDetailPopup(props) {
     setValidationMessage('');
     setSubs([]);
     setPlayerDataDisplayed(false);
+    setPlayerDataDisplayed(false);
     props.onHide();
   }
 
@@ -208,6 +209,7 @@ function PlayerDetailPopup(props) {
   return (
     <Modal
       {...props}
+      onHide={closeModal}
       aria-labelledby='contained-modal-title-vcenter'
       dialogClassName={playerDataDisplayed ? 'player-data-displayed' : ''}
     >
