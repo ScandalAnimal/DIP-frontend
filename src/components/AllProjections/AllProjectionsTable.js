@@ -94,7 +94,7 @@ const AllProjectionsTable = () => {
 
       let reduced = {};
       tmpFiltered.forEach(item => {
-        reduced[item[0]] = [item[1][0]];
+        reduced[item[0]] = item[1];
       });
       setDisplayedProjections(reduced);
     }
@@ -170,6 +170,12 @@ const AllProjectionsTable = () => {
           };
         });
         let sorted = tmpPlayers.sort((a, b) => {
+          if (a.values.length < gameWeekCount) {
+            a.values.push(a.values[0]);
+          }
+          if (b.values.length < gameWeekCount) {
+            b.values.push(b.values[0]);
+          }
           return b.values[1].predicted_points - a.values[1].predicted_points;
         });
         let reduced = {};
@@ -192,6 +198,18 @@ const AllProjectionsTable = () => {
           };
         });
         let sorted = tmpPlayers.sort((a, b) => {
+          if (a.values.length < gameWeekCount) {
+            a.values.push(a.values[0]);
+            if (a.values.length < gameWeekCount) {
+              a.values.push(a.values[0]);
+            }
+          }
+          if (b.values.length < gameWeekCount) {
+            b.values.push(b.values[0]);
+            if (b.values.length < gameWeekCount) {
+              b.values.push(b.values[0]);
+            }
+          }
           return b.values[2].predicted_points - a.values[2].predicted_points;
         });
         let reduced = {};
@@ -251,7 +269,7 @@ const AllProjectionsTable = () => {
       }
       let reduced = {};
       tmpFiltered.forEach(item => {
-        reduced[item[0]] = [item[1][0]];
+        reduced[item[0]] = item[1];
       });
       setDisplayedProjections(reduced);
     }
