@@ -62,20 +62,26 @@ function PlayerHistoryList({ filteredData, selectedSeason }) {
 
   return (
     <div className='player-history-table'>
-      <ItemList items={currentData} selectedSeason={selectedSeason} />
-      <ReactPaginate
-        previousClassName={'d-none'}
-        nextClassName={'d-none'}
-        breakLabel={'...'}
-        breakClassName={'break-me'}
-        pageCount={pageCount}
-        marginPagesDisplayed={1}
-        pageRangeDisplayed={3}
-        onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        subContainerClassName={'pages pagination'}
-        activeClassName={'pagination-active'}
-      />
+      {currentData.length === 0 ? (
+        <div className='player-history-no-data'>No data available.</div>
+      ) : (
+        <>
+          <ItemList items={currentData} selectedSeason={selectedSeason} />
+          <ReactPaginate
+            previousClassName={'d-none'}
+            nextClassName={'d-none'}
+            breakLabel={'...'}
+            breakClassName={'break-me'}
+            pageCount={pageCount}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={3}
+            onPageChange={handlePageClick}
+            containerClassName={'pagination'}
+            subContainerClassName={'pages pagination'}
+            activeClassName={'pagination-active'}
+          />
+        </>
+      )}
     </div>
   );
 }
