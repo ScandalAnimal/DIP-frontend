@@ -6,7 +6,10 @@ const Footer = () => {
       <footer className='footer footer-bottom'>
         <div className='ml-auto'>
           <div>
-            Made by <a href='https://github.com/ScandalAnimal'>Maros</a>
+            Created by: {/* eslint-disable-next-line react/jsx-no-target-blank */}
+            <a href='https://github.com/ScandalAnimal' target='_blank'>
+              Maroš Vasilišin
+            </a>
           </div>
         </div>
       </footer>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
 import React, { useEffect, useState } from 'react';
+import plLogo from '../../assets/images/pl1.png';
 
 function Login() {
   const dispatch = useDispatch();
@@ -40,45 +41,59 @@ function Login() {
   }, [dispatch]);
 
   return (
-    <div className='header-link'>
-      <Form>
-        <Form.Group controlId='formEmail' className={'login-input'}>
-          {loginError && (
-            <Form.Label className='error-text'>Invalid credentials, try again.</Form.Label>
-          )}
-          <Form.Label>Insert your FPL email</Form.Label>
-          <Form.Control type='email' value={inputEmail} onChange={e => handleChangeEmail(e)} />
-          <Form.Text className='text-muted'>{`Use the same email that you use for the FPL.`}</Form.Text>
-        </Form.Group>
-        <Form.Group controlId='formPassword' className={'login-input'}>
-          <Form.Label>Insert your FPL password</Form.Label>
-          <Form.Control
-            type='password'
-            value={inputPassword}
-            onChange={e => handleChangePassword(e)}
-          />
-          <Form.Text className='text-muted'>{`Use your FPL password`}</Form.Text>
-        </Form.Group>
-        <div className='login-disclaimer'>
-          We do not store any personal data or passwords, these are used just for fetching data from
-          the FPL API.
-          <br />
-          If you do not wish to input your credentials, you can select your team manually by
-          clicking the button below.
-          <br />
-          (This way we must use current player prices, not original player purchase prices at the
-          time of your buying.)
+    <div className='login'>
+      <div className='homepage-logo'>
+        <img src={plLogo} alt='premier league logo' />
+      </div>
+      <div className='login-bottom-section row-cols-2'>
+        <div className='login-bottom-col header-link col-md-4'>
+          <Form>
+            <Form.Group controlId='formEmail' className={'login-input'}>
+              {loginError && (
+                <Form.Label className='error-text'>Invalid credentials, try again.</Form.Label>
+              )}
+              <Form.Label>Insert your FPL email</Form.Label>
+              <Form.Control type='email' value={inputEmail} onChange={e => handleChangeEmail(e)} />
+              <Form.Text className='text-muted'>{`Use the same email that you use for the FPL.`}</Form.Text>
+            </Form.Group>
+            <Form.Group controlId='formPassword' className={'login-input'}>
+              <Form.Label>Insert your FPL password</Form.Label>
+              <Form.Control
+                type='password'
+                value={inputPassword}
+                onChange={e => handleChangePassword(e)}
+              />
+              <Form.Text className='text-muted'>{`Use your FPL password`}</Form.Text>
+            </Form.Group>
+            <div className='login-disclaimer'>
+              We do not store any personal data or passwords, these are used just for fetching data
+              from the FPL API.
+              <br />
+              If you do not wish to input your credentials, you can select your team manually by
+              clicking the button below.
+            </div>
+            <div className='login-buttons'>
+              <Button variant='lightPrimary' text='Submit' type='submit' onClick={handleSubmit} />
+              <Button
+                variant='lightPrimary'
+                text='Input team manually'
+                type='submit'
+                onClick={handleManualInput}
+              />
+            </div>
+          </Form>
         </div>
-        <div className='login-buttons'>
-          <Button variant='lightPrimary' text='Submit' type='submit' onClick={handleSubmit} />
-          <Button
-            variant='lightPrimary'
-            text='Input team manually'
-            type='submit'
-            onClick={handleManualInput}
-          />
+        <div className='login-bottom-col login-bottom-right col-md-8'>
+          <div className='login-bottom-title'>
+            Recommendation system for the Fantasy Premier League
+          </div>
+          <div className='login-bottom-text'>
+            {`Using machine learning and data analysis, this web application predicts player's performances 
+            in the English Premier League and provides tools to improve user's Fantasy Premier League score 
+            and increase squad value.`}
+          </div>
         </div>
-      </Form>
+      </div>
     </div>
   );
 }

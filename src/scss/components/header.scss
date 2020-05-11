@@ -73,3 +73,38 @@
     margin-bottom: 5px;
   }
 }
+
+.homepage-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  box-shadow: $box-shadow-lg;
+}
+
+.login-bottom-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.login-bottom-col {
+  padding: 0 20px;
+}
+
+.login-bottom-right {
+  padding-left: 50px;
+}
+
+.login-bottom-title {
+  text-align: center;
+  text-transform: uppercase;
+  color: $color-dark;
+  font-size: 36px;
+  line-height: 1.15;
+  margin-bottom: 30px;
+}
+
+.login-bottom-text {
+  color: $color-ash;
+  font-size: 16px;
+  padding: 0 25px;
+}
