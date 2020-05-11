@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
 import React, { useEffect, useState } from 'react';
 import manLogo from '../../assets/images/man.png';
-import plLogo from '../../assets/images/pl1.png';
+import plLogo from '../../assets/images/p1trans.png';
 
 function Login() {
   const dispatch = useDispatch();
