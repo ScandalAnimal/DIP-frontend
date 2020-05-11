@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
 import React, { useEffect, useState } from 'react';
+import manLogo from '../../assets/images/man.png';
 import plLogo from '../../assets/images/pl1.png';
 
 function Login() {
@@ -91,6 +92,9 @@ function Login() {
             {`Using machine learning and data analysis, this web application predicts player's performances 
             in the English Premier League and provides tools to improve user's Fantasy Premier League score 
             and increase squad value.`}
+          </div>
+          <div className='homepage-logo-bottom'>
+            <img src={manLogo} alt='logo' />
           </div>
         </div>
       </div>

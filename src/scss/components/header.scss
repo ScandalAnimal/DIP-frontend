@@ -81,6 +81,16 @@
   box-shadow: $box-shadow-lg;
 }
 
+.homepage-logo-bottom {
+  display: flex;
+  justify-content: center;
+
+  img {
+    height: 300px;
+    width: 450px;
+  }
+}
+
 .login-bottom-section {
   display: flex;
   flex-direction: row;
