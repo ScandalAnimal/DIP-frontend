@@ -19,6 +19,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    div {
+      width: 33.3%;
+    }
   }
 
   .all-projections-weeks-single {
