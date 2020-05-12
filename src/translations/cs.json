@@ -61,6 +61,7 @@
   "optim.original": "Predikované body pro původní tým",
   "optim.suggested": "Predikované body pro navrhovaný tým",
   "optim.show": "Ukázat tým",
+  "optim.disclaimer": "Možnosti \"Doposud získané body\" a \"Forma\" nevyužívají algoritmem predikované body pro výpočet nejlepších prodejů a nákupů, využívají jenom statistická data. Tudíž vybráním jedné z těchto možností můžete vidět pokles v predikovaných bodech ve výsledcích. Tohle je očekávané chování, dostanete nejlepší návrhy, ale podle jiného kritéria.",
 
   "detail.title": "Detail hráče",
   "detail.percent": "Vlastnictví:",

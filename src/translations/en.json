@@ -61,6 +61,7 @@
   "optim.original": "Original team predicted points",
   "optim.suggested": "Suggested team predicted points",
   "optim.show": "Show team",
+  "optim.disclaimer": "Options \"Total points so far\" and \"Form\" are not using predicted points for calculating best transfer options, just statistical data. Therefore when using these options, you may see decrease in predicted points in results. This is the expected behavior, you still get best results, but based on different data.",
 
   "detail.title": "Player Detail",
   "detail.percent": "Selected by percent:",

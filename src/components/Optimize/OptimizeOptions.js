@@ -75,7 +75,7 @@ const OptimizeOptions = ({ onClick }) => {
           </div>
         </div>
       </div>
-
+      <div className='optimize-disclaimer'>{intl.messages['optim.disclaimer']}</div>
       <div className='optimize-option-wrapper row'>
         <div className='col-xl-4 text-left'>{intl.messages['optim.gws']}</div>
         <div className='col-xl-8 text-center'>

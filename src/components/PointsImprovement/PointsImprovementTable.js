@@ -238,21 +238,21 @@ const PointsImprovementTable = () => {
             {toShowOld.length === 0 && toShowNew.length === 0 && (
               <div className='all-projections-total'>{intl.messages['table.no']}</div>
             )}
-            {toShowOld.length !== 0 && (
-              <div className='points-improvement__col'>
-                <div className='points-improvement__title'>{intl.messages['table.original']}</div>
-                {renderTotalPoints(totalPointsOld)}
-                {displayHeader()}
-                {renderProjectionsTable(toShowOld, true)}
-              </div>
-            )}
-            {toShowNew.length !== 0 && (
-              <div className='points-improvement__col'>
-                <div className='points-improvement__title'>{intl.messages['table.current']}</div>
-                {renderTotalPoints(totalPointsNew)}
-                {displayHeader()}
-                {renderProjectionsTable(toShowNew, false)}
-              </div>
+            {toShowOld.length !== 0 && toShowNew.length !== 0 && (
+              <>
+                <div className='points-improvement__col'>
+                  <div className='points-improvement__title'>{intl.messages['table.original']}</div>
+                  {renderTotalPoints(totalPointsOld)}
+                  {displayHeader()}
+                  {renderProjectionsTable(toShowOld, true)}
+                </div>
+                <div className='points-improvement__col'>
+                  <div className='points-improvement__title'>{intl.messages['table.current']}</div>
+                  {renderTotalPoints(totalPointsNew)}
+                  {displayHeader()}
+                  {renderProjectionsTable(toShowNew, false)}
+                </div>
+              </>
             )}
           </div>
           {toShowOld.length !== 0 && toShowNew.length !== 0 && (
