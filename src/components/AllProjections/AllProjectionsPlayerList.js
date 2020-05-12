@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import playerService from '../../service/playerService';
@@ -56,6 +57,7 @@ function PlayerRow({ player, formattedName, i, correctValues }) {
 }
 
 function ItemList({ items, gameWeekCount }) {
+  const intl = useIntl();
   const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   const getPlayer = (firstName, secondName) => {
     return allCombinedPlayers.find(
@@ -68,11 +70,11 @@ function ItemList({ items, gameWeekCount }) {
     <>
       <div className='player-row player-row-heading row'>
         <div className='all-projections-id'>#</div>
-        <div className='all-projections-name'>Name</div>
+        <div className='all-projections-name'>{intl.messages['table.name']}</div>
         <div className='all-projections-weeks'>
-          <div>1 GameWeek ahead</div>
-          {gameWeekCount > 1 && <div>2 GameWeeks ahead</div>}
-          {gameWeekCount > 2 && <div>3 GameWeeks ahead</div>}
+          <div>1 {intl.messages['table.gw']}</div>
+          {gameWeekCount > 1 && <div>2 {intl.messages['table.gw.plural']}</div>}
+          {gameWeekCount > 2 && <div>3 {intl.messages['table.gw.plural']}</div>}
         </div>
       </div>
       {items.map(([name, values], i) => {

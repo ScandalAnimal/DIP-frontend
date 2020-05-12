@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl';
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
@@ -22,20 +23,21 @@ const PlayerRow = ({ player, selectedSeason }) => {
 };
 
 function ItemList({ items, selectedSeason }) {
+  const intl = useIntl();
   return (
     <>
       <div className='player-row player-row-heading row'>
-        {!selectedSeason && <div className='history-item'>Season</div>}
-        <div className='history-item'>GW</div>
-        <div className='history-item'>Goals</div>
-        <div className='history-item'>Assists</div>
-        <div className='history-item'>Points</div>
-        <div className='history-item'>Y/R Cards</div>
-        <div className='history-item'>Saves</div>
-        <div className='history-item'>Conceded</div>
-        <div className='history-item'>Own goals</div>
-        <div className='history-item'>Clean Sheets</div>
-        <div className='history-item'>BPS</div>
+        {!selectedSeason && <div className='history-item'>{intl.messages['detail.season']}</div>}
+        <div className='history-item'>{intl.messages['detail.gw']}</div>
+        <div className='history-item'>{intl.messages['detail.goals']}</div>
+        <div className='history-item'>{intl.messages['detail.assists']}</div>
+        <div className='history-item'>{intl.messages['table.points']}</div>
+        <div className='history-item'>{intl.messages['detail.cards']}</div>
+        <div className='history-item'>{intl.messages['detail.saves']}</div>
+        <div className='history-item'>{intl.messages['detail.conceded']}</div>
+        <div className='history-item'>{intl.messages['detail.own']}</div>
+        <div className='history-item'>{intl.messages['detail.clean']}</div>
+        <div className='history-item'>{intl.messages['detail.bps']}</div>
       </div>
       {items.map((item, i) => {
         return <PlayerRow player={item} key={i} selectedSeason={selectedSeason} />;
@@ -45,6 +47,7 @@ function ItemList({ items, selectedSeason }) {
 }
 
 function PlayerHistoryList({ filteredData, selectedSeason }) {
+  const intl = useIntl();
   let perPage = 10;
   let [currentData, setCurrentData] = useState(filteredData.slice(0, perPage));
 
@@ -63,7 +66,7 @@ function PlayerHistoryList({ filteredData, selectedSeason }) {
   return (
     <div className='player-history-table'>
       {currentData.length === 0 ? (
-        <div className='player-history-no-data'>No data available.</div>
+        <div className='player-history-no-data'>{intl.messages['detail.no']}</div>
       ) : (
         <>
           <ItemList items={currentData} selectedSeason={selectedSeason} />

@@ -1,4 +1,5 @@
 import { Form } from 'react-bootstrap';
+import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import AllProjectionsPlayerList from './AllProjectionsPlayerList';
 import Loader from '../Homepage/Loader';
@@ -7,6 +8,7 @@ import _ from 'lodash';
 import playerService from '../../service/playerService';
 
 const AllProjectionsTable = () => {
+  const intl = useIntl();
   const teams = useSelector(state => state.app.teams);
   const projections = useSelector(state => state.app.projections);
   const [loading, setLoading] = useState(true);
@@ -16,7 +18,13 @@ const AllProjectionsTable = () => {
   const [selectedTeam, setSelectedTeam] = useState(0);
   const combinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   const [selectedSortBy, setSelectedSortBy] = useState(0);
-  const sortByOptions = ['-', 'Name', 'GameWeek 1', 'GameWeek 2', 'GameWeek 3'];
+  const sortByOptions = [
+    '-',
+    intl.messages['sort.name'],
+    '1 ' + intl.messages['sort.gw'],
+    '2 ' + intl.messages['sort.gw.plural'],
+    '3 ' + intl.messages['sort.gw.plural'],
+  ];
 
   useEffect(() => {
     if (projections.length > 0) {
@@ -30,8 +38,14 @@ const AllProjectionsTable = () => {
   }, [projections]);
 
   function renderSelectBoxes() {
-    const positions = ['All positions', 'Goalkeeper', 'Defender', 'Midfielder', 'Forward'];
-    const teamNames = ['All teams'];
+    const positions = [
+      intl.messages['sort.positions.all'],
+      intl.messages['sort.positions.gk'],
+      intl.messages['sort.positions.df'],
+      intl.messages['sort.positions.md'],
+      intl.messages['sort.positions.fw'],
+    ];
+    const teamNames = [intl.messages['sort.teams.all']];
     const gameWeekCounts = ['1', '2', '3'];
 
     for (let i = 0; i < teams.length; i++) {
@@ -280,7 +294,7 @@ const AllProjectionsTable = () => {
             controlId='allProjectionsForm-gameweekCount'
             className={'d-flex flex-column custom-dropdown'}
           >
-            <Form.Label>GameWeeks</Form.Label>
+            <Form.Label>{intl.messages['sort.gw.plural']}</Form.Label>
             <Form.Control as='select' onChange={changeGameWeekCount} value={gameWeekCount}>
               {gameWeekCounts.map((gw, i) => {
                 return (
@@ -295,7 +309,7 @@ const AllProjectionsTable = () => {
             controlId='allProjectionsForm-position'
             className={'d-flex flex-column custom-dropdown'}
           >
-            <Form.Label>Position</Form.Label>
+            <Form.Label>{intl.messages['sort.position']}</Form.Label>
             <Form.Control as='select' onChange={changePosition} value={selectedPosition}>
               {positions.map((position, i) => {
                 return (
@@ -310,7 +324,7 @@ const AllProjectionsTable = () => {
             controlId='allProjectionsForm-team'
             className={'d-flex flex-column custom-dropdown'}
           >
-            <Form.Label>Team</Form.Label>
+            <Form.Label>{intl.messages['sort.team']}</Form.Label>
             <Form.Control as='select' onChange={changeTeam} value={selectedTeam}>
               {teamNames.map((team, i) => {
                 return (
@@ -325,7 +339,7 @@ const AllProjectionsTable = () => {
             controlId='allProjectionsForm-sort'
             className={'d-flex flex-column custom-dropdown'}
           >
-            <Form.Label>Sort by</Form.Label>
+            <Form.Label>{intl.messages['sort.sortby']}</Form.Label>
             <Form.Control as='select' onChange={changeSortBy} value={selectedSortBy}>
               {sortByOptions.map((option, i) => {
                 return (
@@ -350,7 +364,7 @@ const AllProjectionsTable = () => {
   return (
     <div className='all-projections'>
       {loading ? (
-        <Loader text='Loading predictions...' />
+        <Loader text={intl.messages['loading.pred']} />
       ) : (
         <>
           {renderSelectBoxes()}

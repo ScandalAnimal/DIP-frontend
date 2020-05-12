@@ -2,6 +2,7 @@ import { Form } from 'react-bootstrap';
 import { login, manualTeam } from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { useIntl } from 'react-intl';
 import Button from '../Button/Button';
 import React, { useEffect, useState } from 'react';
 import manLogo from '../../assets/images/man.png';
@@ -10,6 +11,7 @@ import plLogo from '../../assets/images/p1trans.png';
 function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const intl = useIntl();
   const loginError = useSelector(state => state.app.loginError);
 
   const params = useParams();
@@ -51,33 +53,36 @@ function Login() {
           <Form>
             <Form.Group controlId='formEmail' className={'login-input'}>
               {loginError && (
-                <Form.Label className='error-text'>Invalid credentials, try again.</Form.Label>
+                <Form.Label className='error-text'>{intl.messages['login.fail']}</Form.Label>
               )}
-              <Form.Label>Insert your FPL email</Form.Label>
+              <Form.Label>{intl.messages['login.email']}</Form.Label>
               <Form.Control type='email' value={inputEmail} onChange={e => handleChangeEmail(e)} />
-              <Form.Text className='text-muted'>{`Use the same email that you use for the FPL.`}</Form.Text>
+              <Form.Text className='text-muted'>{intl.messages['login.email.hint']}</Form.Text>
             </Form.Group>
             <Form.Group controlId='formPassword' className={'login-input'}>
-              <Form.Label>Insert your FPL password</Form.Label>
+              <Form.Label>{intl.messages['login.pwd']}</Form.Label>
               <Form.Control
                 type='password'
                 value={inputPassword}
                 onChange={e => handleChangePassword(e)}
               />
-              <Form.Text className='text-muted'>{`Use your FPL password`}</Form.Text>
+              <Form.Text className='text-muted'>{intl.messages['login.pwd.hint']}</Form.Text>
             </Form.Group>
             <div className='login-disclaimer'>
-              We do not store any personal data or passwords, these are used just for fetching data
-              from the FPL API.
+              {intl.messages['login.info.1']}
               <br />
-              If you do not wish to input your credentials, you can select your team manually by
-              clicking the button below.
+              {intl.messages['login.info.2']}
             </div>
             <div className='login-buttons'>
-              <Button variant='lightPrimary' text='Submit' type='submit' onClick={handleSubmit} />
               <Button
                 variant='lightPrimary'
-                text='Input team manually'
+                text={intl.messages['submit']}
+                type='submit'
+                onClick={handleSubmit}
+              />
+              <Button
+                variant='lightPrimary'
+                text={intl.messages['manual']}
                 type='submit'
                 onClick={handleManualInput}
               />
@@ -85,14 +90,8 @@ function Login() {
           </Form>
         </div>
         <div className='login-bottom-col login-bottom-right col-md-8'>
-          <div className='login-bottom-title'>
-            Recommendation system for the Fantasy Premier League
-          </div>
-          <div className='login-bottom-text'>
-            {`Using machine learning and data analysis, this web application predicts player's performances 
-            in the English Premier League and provides tools to improve user's Fantasy Premier League score 
-            and increase squad value.`}
-          </div>
+          <div className='login-bottom-title'>{intl.messages['title']}</div>
+          <div className='login-bottom-text'>{intl.messages['subtitle']}</div>
           <div className='homepage-logo-bottom'>
             <img src={manLogo} alt='logo' />
           </div>

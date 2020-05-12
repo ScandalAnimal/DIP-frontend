@@ -1,9 +1,11 @@
+import { useIntl } from 'react-intl';
 import Card from '../Common/Card';
 import React, { useEffect } from 'react';
 import StatisticsTable from './StatisticsTable';
 import UnavailablePlayersTable from './UnavailablePlayersTable';
 
 const Statistics = () => {
+  const intl = useIntl();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -11,10 +13,10 @@ const Statistics = () => {
     <div className='main container'>
       <div className='row'>
         <div className='col-xl-12 d-flex flex-column'>
-          <Card title='Player statistics'>
+          <Card title={intl.messages['menu.playerstats']}>
             <StatisticsTable />
           </Card>
-          <Card title='Unavailable players'>
+          <Card title={intl.messages['menu.unavailable']}>
             <UnavailablePlayersTable />
           </Card>
         </div>

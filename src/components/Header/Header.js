@@ -1,4 +1,6 @@
+import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
+import ChangeLanguage from './ChangeLanguage';
 import HamburgerIcon from './HamburgerIcon';
 import HeaderLink from './HeaderLink';
 import HomeLogo from './HomeLogo';
@@ -9,6 +11,7 @@ import TeamId from './TeamId';
 const Header = () => {
   const [mobileMenuOpened, setMobileMenuOpened] = useState(false);
   const teamId = useSelector(state => state.app.teamId);
+  const intl = useIntl();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpened(!mobileMenuOpened);
@@ -26,32 +29,31 @@ const Header = () => {
           <div className='col-auto d-flex align-items-center' onClick={closeMobileMenu}>
             <HomeLogo />
           </div>
+          {teamId === null && (
+            <div className='col align-items-center justify-content-end nav-link'>
+              <ChangeLanguage />
+            </div>
+          )}
           {teamId !== null && (
             <>
               <div className='col justify-content-end nav-hamburger'>
                 <HamburgerIcon action={toggleMobileMenu} />
               </div>
               <div className='col-auto align-items-center nav-link'>
-                <HeaderLink title={'Optimize'} url={'optimize'} />
+                <HeaderLink title={intl.messages['menu.optimize']} url={'optimize'} />
               </div>
               <div className='col-auto align-items-center nav-link'>
-                <HeaderLink title={'All projections'} url={'all-projections'} />
+                <HeaderLink title={intl.messages['menu.projections']} url={'all-projections'} />
               </div>
               <div className='col-auto align-items-center nav-link'>
-                <HeaderLink title={'Statistics'} url={'statistics'} />
+                <HeaderLink title={intl.messages['menu.stats']} url={'statistics'} />
               </div>
-              {/*<div className='col-auto align-items-center nav-link'>*/}
-              {/*  <HeaderLink title={'Statistics'} url={'fixtures'} />*/}
-              {/*</div>*/}
-              {/*<div className='col-auto align-items-center nav-link'>*/}
-              {/*  <HeaderLink title={'Injuries & Suspensions'} url={'injuries'} />*/}
-              {/*</div>*/}
               <div className='col align-items-center justify-content-end nav-link'>
                 <TeamId />
               </div>
-              {/*<div className='col-auto align-items-center justify-content-end nav-link'>*/}
-              {/*  <ChangeLanguage />*/}
-              {/*</div>*/}
+              <div className='col-auto align-items-center justify-content-end nav-link'>
+                <ChangeLanguage />
+              </div>
               <div className='col-auto align-items-center justify-content-end nav-link'>
                 <Logout />
               </div>
@@ -60,28 +62,26 @@ const Header = () => {
         </div>
         <div className={`row justify-content-space-between ` + mobileMenuClass}>
           <div className='col-auto align-items-center'>
-            <HeaderLink title={'Optimize'} url={'optimize'} action={closeMobileMenu} />
+            <HeaderLink
+              title={intl.messages['menu.optimize']}
+              url={'optimize'}
+              action={closeMobileMenu}
+            />
           </div>
           <div className='col-auto align-items-center'>
             <HeaderLink
-              title={'All projections'}
+              title={intl.messages['menu.projections']}
               url={'all-projections'}
               action={closeMobileMenu}
             />
           </div>
           <div className='col-auto align-items-center'>
-            <HeaderLink title={'Statistics'} url={'statistics'} action={closeMobileMenu} />
+            <HeaderLink
+              title={intl.messages['menu.stats']}
+              url={'statistics'}
+              action={closeMobileMenu}
+            />
           </div>
-          {/*<div className='col-auto align-items-center'>*/}
-          {/*  <HeaderLink title={'Statistics'} url={'fixtures'} action={closeMobileMenu} />*/}
-          {/*</div>*/}
-          {/*<div className='col-auto align-items-center'>*/}
-          {/*  <HeaderLink*/}
-          {/*    title={'Injuries & Suspensions'}*/}
-          {/*    url={'injuries'}*/}
-          {/*    action={closeMobileMenu}*/}
-          {/*  />*/}
-          {/*</div>*/}
         </div>
       </div>
     </header>

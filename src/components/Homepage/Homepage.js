@@ -1,5 +1,6 @@
 import { getAllPlayerIds, getAllPlayers, getAllTeams } from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import Card from '../Common/Card';
 import Loader from './Loader';
 import PointsImprovementTable from '../PointsImprovement/PointsImprovementTable';
@@ -28,6 +29,7 @@ function findPlayerById(allPlayerIds, allPlayers, id) {
 
 const Homepage = () => {
   const dispatch = useDispatch();
+  const intl = useIntl();
   const { teamPicks, allPlayers, allPlayerIds, teams } = useSelector(state => state.app);
   const currentTeam = useSelector(state => state.app.edit.currentTeam);
   const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
@@ -49,16 +51,16 @@ const Homepage = () => {
 
   function getLoaderText() {
     if (allPlayers === null) {
-      return 'Fetching player data...';
+      return intl.messages['loading.players'];
     }
     if (allPlayerIds === null) {
-      return 'Fetching player identifications...';
+      return intl.messages['loading.ids'];
     }
     if (teams === null) {
-      return 'Fetching team information...';
+      return intl.messages['loading.teams'];
     }
     if (teamId !== 'manual' && currentTeam.length === 0) {
-      return 'Fetching current team information...';
+      return intl.messages['loading.current'];
     }
     return null;
   }
@@ -119,19 +121,19 @@ const Homepage = () => {
       ) : (
         <div className='row'>
           <div className='col-xl-6 d-flex flex-column'>
-            <Card title='Team Overview'>
+            <Card title={intl.messages['menu.overview']}>
               <TeamOverview />
             </Card>
-            <Card title='Projected Performance'>
+            <Card title={intl.messages['menu.projected']}>
               <ProjectedPerformanceTable />
             </Card>
           </div>
           <div className='col-xl-6 d-flex flex-column'>
-            <Card title='Transfer Market'>
+            <Card title={intl.messages['menu.market']}>
               <TransferMarket />
             </Card>
             {teamId !== 'manual' && (
-              <Card title='Projected Point Differences'>
+              <Card title={intl.messages['menu.diff']}>
                 <PointsImprovementTable />
               </Card>
             )}

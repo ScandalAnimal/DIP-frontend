@@ -1,5 +1,6 @@
 import { POSITIONS } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import Bench from './Bench';
 import Button from '../Button/Button';
 import FootballField from './FootballField';
@@ -7,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import RemovedPlayers from './RemovedPlayers';
 
 const TeamOverview = () => {
+  const intl = useIntl();
   const { currentTeam, additions, removedPlayers } = useSelector(state => state.app.edit);
   const dispatch = useDispatch();
   const gks = [];
@@ -60,7 +62,9 @@ const TeamOverview = () => {
 
   const renderTotalCost = () => {
     return (
-      <div className='team-overview-cost'>{`Total cost: ` + totalCost.toFixed(1) + `/100M`}</div>
+      <div className='team-overview-cost'>
+        {intl.messages['table.cost'] + ' ' + totalCost.toFixed(1) + '/100M'}
+      </div>
     );
   };
 
@@ -74,16 +78,17 @@ const TeamOverview = () => {
     <div>
       {!loading && (
         <>
-          <div className='hint'>
-            Hint: You need to have at least 1 GK, 3 DEFs and 1 FWD at all times in the FPL. Full
-            team must consist of 2 GKs, 5 DEFs, 5 MIDs and 3 FWDs.
-          </div>
+          <div className='hint'>{intl.messages['team.hint']}</div>
           {renderTotalCost()}
           <FootballField gks={gks} defs={defs} mids={mids} fwds={fwds} />
           <Bench bench={bench} />
           <RemovedPlayers />
           <div className='reset-changes-wrapper'>
-            <Button onClick={resetChanges} text='Reset changes' variant='darkPrimary' />
+            <Button
+              onClick={resetChanges}
+              text={intl.messages['team.reset']}
+              variant='darkPrimary'
+            />
           </div>
         </>
       )}

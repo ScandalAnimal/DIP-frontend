@@ -1,8 +1,10 @@
+import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import ProposedTransfersCard from './ProposedTransfersCard';
 import React from 'react';
 
 function ProposedTransfers() {
+  const intl = useIntl();
   const { proposedTeams } = useSelector(state => state.app);
 
   if (proposedTeams.length === 0) {
@@ -11,10 +13,9 @@ function ProposedTransfers() {
   return (
     <>
       <div className='proposed-transfers-description'>
-        These are the proposed transfers and captain selections for your current squad.
+        {intl.messages['optim.info.1']}
         <br />
-        Below you can also see predicted points improvement. In some cases we provide multiple
-        predictions if the proposed results are similar for you to choose.
+        {intl.messages['optim.info.2']}
       </div>
       {proposedTeams.map((team, i) => {
         return <ProposedTransfersCard team={team} key={i} i={i} />;

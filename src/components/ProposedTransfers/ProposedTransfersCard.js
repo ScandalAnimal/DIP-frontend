@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
+import { useIntl } from 'react-intl';
 import Button from '../Button/Button';
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
@@ -16,6 +17,7 @@ const ProposedTransfersCard = ({ team, i }) => {
   const dispatch = useDispatch();
   const params = useParams();
   const history = useHistory();
+  const intl = useIntl();
 
   useEffect(() => {
     const newTeamIds = team.team;
@@ -142,17 +144,19 @@ const ProposedTransfersCard = ({ team, i }) => {
 
   return (
     <>
-      <div className='proposed-transfers-card__index'>Option {i + 1}</div>
+      <div className='proposed-transfers-card__index'>
+        {intl.messages['optim.option']} {i + 1}
+      </div>
       <div className='proposed-transfers-card__wrapper'>
         <div className='proposed-transfers-card__row'>
           <div className='proposed-transfers-card__item'>
-            <div className='proposed-transfers-card__title'>Transfers in</div>
+            <div className='proposed-transfers-card__title'>{intl.messages['optim.in']}</div>
             {playersToAdd.map((id, i) => {
               return getPlayerElement(id, i);
             })}
           </div>
           <div className='proposed-transfers-card__item'>
-            <div className='proposed-transfers-card__title'>Transfers out</div>
+            <div className='proposed-transfers-card__title'>{intl.messages['optim.out']}</div>
             {playersToRemove.map((id, i) => {
               return getPlayerElement(id, i);
             })}
@@ -161,28 +165,32 @@ const ProposedTransfersCard = ({ team, i }) => {
         <hr />
         <div className='proposed-transfers-card__row'>
           <div className='proposed-transfers-card__item'>
-            <div className='proposed-transfers-card__title'>Captain</div>
+            <div className='proposed-transfers-card__title'>{intl.messages['optim.c']}</div>
             {getPlayerElement(team.captain)}
           </div>
           <div className='proposed-transfers-card__item'>
-            <div className='proposed-transfers-card__title'>Vice-captain</div>
+            <div className='proposed-transfers-card__title'>{intl.messages['optim.vc']}</div>
             {getPlayerElement(team.viceCaptain)}
           </div>
         </div>
         <hr />
         <div className='proposed-transfers-card__row'>
           <div className='proposed-transfers-card__item'>
-            <div className='proposed-transfers-card__title'>Original team predicted points</div>
+            <div className='proposed-transfers-card__title'>{intl.messages['optim.original']}</div>
             <div className='proposed-transfers-card__number'>{totalPointsOld}</div>
           </div>
           <div className='proposed-transfers-card__item'>
-            <div className='proposed-transfers-card__title'>Suggested team predicted points</div>
+            <div className='proposed-transfers-card__title'>{intl.messages['optim.suggested']}</div>
             <div className='proposed-transfers-card__number'>{totalPointsNew}</div>
           </div>
         </div>
         <div className='proposed-transfers-card__row'>
           <div className='proposed-transfers-card__button'>
-            <Button onClick={showTeamWithChanges} text='Show team' variant='darkPrimary' />
+            <Button
+              onClick={showTeamWithChanges}
+              text={intl.messages['optim.show']}
+              variant='darkPrimary'
+            />
           </div>
         </div>
       </div>

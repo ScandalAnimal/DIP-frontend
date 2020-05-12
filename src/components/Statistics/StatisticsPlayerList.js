@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import playerService from '../../service/playerService';
@@ -31,14 +32,15 @@ const PlayerRow = ({ player }) => {
 };
 
 function ItemList({ items }) {
+  const intl = useIntl();
   return (
     <>
       <div className='player-row player-row-heading row'>
-        <div className='all-stats-name'>Name</div>
-        <div className='all-stats-team'>Team</div>
-        <div className='all-stats-selected'>Selected by</div>
-        <div className='all-stats-points'>Points</div>
-        <div className='all-stats-bps'>Bonus points</div>
+        <div className='all-stats-name'>{intl.messages['table.name']}</div>
+        <div className='all-stats-team'>{intl.messages['table.team']}</div>
+        <div className='all-stats-selected'>{intl.messages['table.selected']}</div>
+        <div className='all-stats-points'>{intl.messages['table.points']}</div>
+        <div className='all-stats-bps'>{intl.messages['table.bps']}</div>
       </div>
       {items.map((item, i) => {
         return <PlayerRow player={item} key={i} />;

@@ -1,7 +1,9 @@
+import { useIntl } from 'react-intl';
 import React from 'react';
 
 function ErrorPage() {
-  return <div className='header-link'>This is an error page.</div>;
+  const intl = useIntl();
+  return <div className='header-link'>{intl.messages['error.page']}</div>;
 }
 
 export default ErrorPage;

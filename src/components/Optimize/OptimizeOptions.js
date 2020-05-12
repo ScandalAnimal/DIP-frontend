@@ -1,5 +1,6 @@
 import 'rc-slider/assets/index.css';
 import { useHistory, useParams } from 'react-router';
+import { useIntl } from 'react-intl';
 import Button from '../Button/Button';
 import OptimizeSlider from './OptimizeSlider';
 import React, { useState } from 'react';
@@ -11,6 +12,7 @@ const OptimizeOptions = ({ onClick }) => {
   const [selectionTechnique, setSelectionTechnique] = useState('max');
   const params = useParams();
   const history = useHistory();
+  const intl = useIntl();
 
   function setSelection(event) {
     event.persist();
@@ -24,7 +26,7 @@ const OptimizeOptions = ({ onClick }) => {
   return (
     <div className='optimize-options col'>
       <div className='optimize-option-wrapper row'>
-        <div className='col-xl-4 text-left'>Transfers:</div>
+        <div className='col-xl-4 text-left'>{intl.messages['optim.transfers']}</div>
         <div className='col-xl-8 text-center'>
           <OptimizeSlider
             setValue={setTransfers}
@@ -36,7 +38,7 @@ const OptimizeOptions = ({ onClick }) => {
         </div>
       </div>
       <div className='optimize-option-wrapper row'>
-        <div className='col-xl-4 text-left'>Selection technique:</div>
+        <div className='col-xl-4 text-left'>{intl.messages['optim.tech']}</div>
         <div className='col-xl-8 text-center'>
           <div className='row d-flex align-items-center'>
             <input
@@ -47,7 +49,7 @@ const OptimizeOptions = ({ onClick }) => {
               id='selection-technique-1'
               checked={selectionTechnique === 'max'}
             />
-            <label htmlFor='selection-technique-1'>Maximum predicted points</label>
+            <label htmlFor='selection-technique-1'>{intl.messages['optim.tech.1']}</label>
           </div>
           <div className='row d-flex align-items-center'>
             <input
@@ -58,7 +60,7 @@ const OptimizeOptions = ({ onClick }) => {
               id='selection-technique-2'
               checked={selectionTechnique === 'total'}
             />
-            <label htmlFor='selection-technique-2'>Total points so far</label>
+            <label htmlFor='selection-technique-2'>{intl.messages['optim.tech.2']}</label>
           </div>
           <div className='row d-flex align-items-center'>
             <input
@@ -69,25 +71,29 @@ const OptimizeOptions = ({ onClick }) => {
               id='selection-technique-3'
               checked={selectionTechnique === 'form'}
             />
-            <label htmlFor='selection-technique-3'>Form</label>
+            <label htmlFor='selection-technique-3'>{intl.messages['optim.tech.3']}</label>
           </div>
         </div>
       </div>
 
       <div className='optimize-option-wrapper row'>
-        <div className='col-xl-4 text-left'>Game weeks:</div>
+        <div className='col-xl-4 text-left'>{intl.messages['optim.gws']}</div>
         <div className='col-xl-8 text-center'>
           <OptimizeSlider setValue={setGameWeek} min={1} max={3} />
         </div>
       </div>
       <div className='optimize-option-wrapper row'>
-        <div className='col-xl-4 text-left'>Show up to this many tips:</div>
+        <div className='col-xl-4 text-left'>{intl.messages['optim.tips']}</div>
         <div className='col-xl-8 text-center'>
           <OptimizeSlider setValue={setOptions} min={1} max={5} selected={3} />
         </div>
       </div>
       <div className='row d-flex justify-content-center'>
-        <Button onClick={onButtonClick} text='Optimize' variant='darkPrimary' />
+        <Button
+          onClick={onButtonClick}
+          text={intl.messages['optim.button']}
+          variant='darkPrimary'
+        />
       </div>
       <div className='row justify-content-center'>
         <Button
@@ -96,7 +102,7 @@ const OptimizeOptions = ({ onClick }) => {
               pathname: `/${params.langId}/home`,
             });
           }}
-          text='Cancel'
+          text={intl.messages['cancel']}
           variant='darkSecondary'
         />
       </div>

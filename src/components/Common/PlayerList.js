@@ -1,15 +1,17 @@
+import { useIntl } from 'react-intl';
 import PlayerRow from './PlayerRow';
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
 function ItemList({ items }) {
+  const intl = useIntl();
   return (
     <>
       <div className='player-row player-row-heading row'>
-        <div className='col-xl-3 text-left'>Name</div>
-        <div className='col-xl-3 text-center'>Team</div>
-        <div className='col-xl-3 text-center'>Points</div>
-        <div className='col-xl-3 text-right'>Price</div>
+        <div className='col-xl-3 text-left'>{intl.messages['table.name']}</div>
+        <div className='col-xl-3 text-center'>{intl.messages['table.team']}</div>
+        <div className='col-xl-3 text-center'>{intl.messages['table.points']}</div>
+        <div className='col-xl-3 text-right'>{intl.messages['table.price']}</div>
       </div>
       {items.map((item, i) => {
         return <PlayerRow player={item} key={i} />;

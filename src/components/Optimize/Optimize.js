@@ -1,6 +1,7 @@
 import { getProposedTransfersAndPredictions } from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
+import { useIntl } from 'react-intl';
 import Button from '../Button/Button';
 import Card from '../Common/Card';
 import Loader from '../Homepage/Loader';
@@ -17,6 +18,7 @@ const Optimize = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
+  const intl = useIntl();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -77,20 +79,20 @@ const Optimize = () => {
     return (
       <>
         <div className='col-xl-12 d-flex flex-column'>
-          <Card title='Optimization options' hidden={hidden}>
+          <Card title={intl.messages['optim.options']} hidden={hidden}>
             <OptimizeOptions onClick={onOptimizeClick} />
           </Card>
         </div>
         {inProgress && !predictionsLoaded && (
           <div className='col-xl-12 d-flex flex-column'>
             <Card>
-              <Loader text='Loading predictions...' />
+              <Loader text={intl.messages['loading.pred']} />
             </Card>
           </div>
         )}
         {(predictionsLoaded || proposedTeams.length > 0) && (
           <div className='col-xl-12 d-flex flex-column'>
-            <Card title='Proposed transfers'>
+            <Card title={intl.messages['optim.proposed']}>
               <ProposedTransfers />
             </Card>
           </div>
@@ -102,17 +104,14 @@ const Optimize = () => {
   const renderInfo = () => {
     return (
       <div className='col-xl-12 d-flex flex-column align-items-center'>
-        <div className='error-text'>
-          Optimization is disabled for teams with less than 15 players. Please fill your squad
-          first.
-        </div>
+        <div className='error-text'>{intl.messages['optim.disabled']}</div>
         <Button
           onClick={() => {
             history.push({
               pathname: `/${params.langId}/home`,
             });
           }}
-          text='Fill squad'
+          text={intl.messages['optim.fill']}
           variant='lightPrimary'
         />
       </div>

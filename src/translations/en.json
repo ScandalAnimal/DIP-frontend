@@ -29,6 +29,7 @@
 
   "menu.optimize": "Optimize",
   "menu.projections": "All projections",
+  "menu.projections.title": "All projections",
   "menu.stats": "Statistics",
   "menu.teamid": "Team ID:",
   "menu.overview": "Team Overview",

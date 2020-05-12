@@ -1,10 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useIntl } from 'react-intl';
 import React from 'react';
 
 function Logout() {
   const params = useParams();
   const dispatch = useDispatch();
+  const intl = useIntl();
 
   const clear = () => {
     dispatch({
@@ -15,7 +17,7 @@ function Logout() {
   return (
     <div className='header-link' onClick={clear}>
       <Link to={`/${params.langId}/`}>
-        <span>Logout</span>
+        <span>{intl.messages['logout']}</span>
       </Link>
     </div>
   );

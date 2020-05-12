@@ -121,13 +121,13 @@ const playerService = {
   getPositionLabel(player) {
     switch (player.element_type) {
       case POSITIONS.GK:
-        return 'Goalkeeper';
+        return 'sort.positions.gk';
       case POSITIONS.DF:
-        return 'Defender';
+        return 'sort.positions.df';
       case POSITIONS.MF:
-        return 'Midfielder';
+        return 'sort.positions.md';
       case POSITIONS.FW:
-        return 'Forward';
+        return 'sort.positions.fw';
       default:
         return null;
     }

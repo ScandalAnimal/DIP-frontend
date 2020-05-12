@@ -1,6 +1,7 @@
 import { Form } from 'react-bootstrap';
 import { getAllInjuries } from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import Checkbox from '../Common/Checkbox';
 import Loader from '../Homepage/Loader';
 import React, { useEffect, useState } from 'react';
@@ -9,6 +10,7 @@ import playerService from '../../service/playerService';
 
 const UnavailablePlayersTable = () => {
   const dispatch = useDispatch();
+  const intl = useIntl();
   const teams = useSelector(state => state.app.teams);
   const injuries = useSelector(state => state.app.injuries);
   const [selectedTeam, setSelectedTeam] = useState(0);
@@ -35,8 +37,14 @@ const UnavailablePlayersTable = () => {
   }, [injuries]);
 
   function renderSelectBoxes() {
-    const teamNames = ['All teams'];
-    const sortByOptions = ['-', 'Name', 'Team', 'Yellow cards', 'Red cards'];
+    const teamNames = [intl.messages['sort.teams.all']];
+    const sortByOptions = [
+      '-',
+      intl.messages['sort.name'],
+      intl.messages['sort.team'],
+      intl.messages['sort.yellow'],
+      intl.messages['sort.red'],
+    ];
 
     for (let i = 0; i < teams.length; i++) {
       teamNames.push(teams[i].name);
@@ -135,7 +143,7 @@ const UnavailablePlayersTable = () => {
             controlId='unavailableForm-team'
             className={'d-flex flex-column custom-dropdown'}
           >
-            <Form.Label>Team</Form.Label>
+            <Form.Label>{intl.messages['sort.team']}</Form.Label>
             <Form.Control as='select' onChange={changeTeam} value={selectedTeam}>
               {teamNames.map((team, i) => {
                 return (
@@ -150,7 +158,7 @@ const UnavailablePlayersTable = () => {
             controlId='unavailableForm-sort'
             className={'d-flex flex-column custom-dropdown'}
           >
-            <Form.Label>Sort by</Form.Label>
+            <Form.Label>{intl.messages['sort.sortby']}</Form.Label>
             <Form.Control as='select' onChange={changeSortBy} value={selectedSortBy}>
               {sortByOptions.map((option, i) => {
                 return (
@@ -201,7 +209,7 @@ const UnavailablePlayersTable = () => {
         <Checkbox
           action={excludeLoansAction}
           checked={excludeLoans}
-          text={'Exclude loans and transfers'}
+          text={intl.messages['table.exclude']}
         />
       </div>
     );
@@ -213,7 +221,7 @@ const UnavailablePlayersTable = () => {
 
   return (
     <div className='unavailable'>
-      {loading && <Loader text='Loading player injury and suspension statuses...' />}
+      {loading && <Loader text={intl.messages['loading.injuries']} />}
       {!loading && filteredPlayers.length > 0 && (
         <>
           <div className='unavailable-top'>

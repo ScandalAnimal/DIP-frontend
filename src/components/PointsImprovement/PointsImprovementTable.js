@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import playerService from '../../service/playerService';
 
 const PointsImprovementTable = () => {
   const dispatch = useDispatch();
+  const intl = useIntl();
   const projections = useSelector(state => state.app.projections);
   const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   const originalTeam = useSelector(state => state.app.originalTeam);
@@ -118,18 +120,20 @@ const PointsImprovementTable = () => {
     setTeamOld(oldTeam);
 
     function getCaptainsDiff(origCaptain, currCaptain) {
-      if (origCaptain[0].id !== currCaptain[0].id) {
-        const filterCaptainCurr = current.filter(([name, value], i) => {
-          return name === currCaptain[0].first_name + '_' + currCaptain[0].second_name;
-        });
-        const filterCaptainOrig = original.filter(([name, value], i) => {
-          return name === origCaptain[0].first_name + '_' + origCaptain[0].second_name;
-        });
-        if (!resultNew.includes(filterCaptainCurr[0])) {
-          resultNew.push(filterCaptainCurr[0]);
-        }
-        if (!resultOld.includes(filterCaptainOrig[0])) {
-          resultOld.push(filterCaptainOrig[0]);
+      if (origCaptain.length > 0 && currCaptain.length > 0) {
+        if (origCaptain[0].id !== currCaptain[0].id) {
+          const filterCaptainCurr = current.filter(([name, value], i) => {
+            return name === currCaptain[0].first_name + '_' + currCaptain[0].second_name;
+          });
+          const filterCaptainOrig = original.filter(([name, value], i) => {
+            return name === origCaptain[0].first_name + '_' + origCaptain[0].second_name;
+          });
+          if (!resultNew.includes(filterCaptainCurr[0])) {
+            resultNew.push(filterCaptainCurr[0]);
+          }
+          if (!resultOld.includes(filterCaptainOrig[0])) {
+            resultOld.push(filterCaptainOrig[0]);
+          }
         }
       }
     }
@@ -147,8 +151,8 @@ const PointsImprovementTable = () => {
   const displayHeader = () => {
     return (
       <div className='player-row player-row-heading row'>
-        <div className='all-projections-name'>Name</div>
-        <div className='all-projections-weeks-single'>Next round</div>
+        <div className='all-projections-name'>{intl.messages['table.name']}</div>
+        <div className='all-projections-weeks-single'>{intl.messages['table.next']}</div>
       </div>
     );
   };
@@ -219,7 +223,11 @@ const PointsImprovementTable = () => {
   };
 
   const renderTotalPoints = totalPoints => {
-    return <div className='all-projections-total'>Total points: {totalPoints}</div>;
+    return (
+      <div className='all-projections-total'>
+        {intl.messages['table.total']} {totalPoints}
+      </div>
+    );
   };
 
   return (
@@ -228,11 +236,11 @@ const PointsImprovementTable = () => {
         <>
           <div className='points-improvement__row'>
             {toShowOld.length === 0 && toShowNew.length === 0 && (
-              <div className='all-projections-total'>No changes made yet</div>
+              <div className='all-projections-total'>{intl.messages['table.no']}</div>
             )}
             {toShowOld.length !== 0 && (
               <div className='points-improvement__col'>
-                <div className='points-improvement__title'>Original</div>
+                <div className='points-improvement__title'>{intl.messages['table.original']}</div>
                 {renderTotalPoints(totalPointsOld)}
                 {displayHeader()}
                 {renderProjectionsTable(toShowOld, true)}
@@ -240,7 +248,7 @@ const PointsImprovementTable = () => {
             )}
             {toShowNew.length !== 0 && (
               <div className='points-improvement__col'>
-                <div className='points-improvement__title'>Current</div>
+                <div className='points-improvement__title'>{intl.messages['table.current']}</div>
                 {renderTotalPoints(totalPointsNew)}
                 {displayHeader()}
                 {renderProjectionsTable(toShowNew, false)}

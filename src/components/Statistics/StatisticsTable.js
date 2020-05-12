@@ -1,4 +1,5 @@
 import { Form } from 'react-bootstrap';
+import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import Loader from '../Homepage/Loader';
 import React, { useEffect, useState } from 'react';
@@ -13,6 +14,7 @@ const StatisticsTable = () => {
   const [selectedSortBy, setSelectedSortBy] = useState(0);
   const [filteredPlayers, setFilteredPlayers] = useState(combinedPlayers);
   const [loading, setLoading] = useState(true);
+  const intl = useIntl();
 
   useEffect(() => {
     if (teams !== null) {
@@ -25,9 +27,21 @@ const StatisticsTable = () => {
   }, [combinedPlayers]);
 
   function renderSelectBoxes() {
-    const positions = ['All positions', 'Goalkeeper', 'Defender', 'Midfielder', 'Forward'];
-    const teamNames = ['All teams'];
-    const sortByOptions = ['-', 'Name', 'Selected by', 'Points', 'Bonus points'];
+    const positions = [
+      intl.messages['sort.positions.all'],
+      intl.messages['sort.positions.gk'],
+      intl.messages['sort.positions.df'],
+      intl.messages['sort.positions.md'],
+      intl.messages['sort.positions.fw'],
+    ];
+    const teamNames = [intl.messages['sort.teams.all']];
+    const sortByOptions = [
+      '-',
+      intl.messages['table.name'],
+      intl.messages['table.selected'],
+      intl.messages['table.points'],
+      intl.messages['table.bps'],
+    ];
 
     for (let i = 0; i < teams.length; i++) {
       teamNames.push(teams[i].name);
@@ -150,7 +164,7 @@ const StatisticsTable = () => {
             controlId='allStatsForm-position'
             className={'d-flex flex-column custom-dropdown'}
           >
-            <Form.Label>Position</Form.Label>
+            <Form.Label>{intl.messages['sort.position']}</Form.Label>
             <Form.Control as='select' onChange={changePosition} value={selectedPosition}>
               {positions.map((position, i) => {
                 return (
@@ -165,7 +179,7 @@ const StatisticsTable = () => {
             controlId='allStatsForm-team'
             className={'d-flex flex-column custom-dropdown'}
           >
-            <Form.Label>Team</Form.Label>
+            <Form.Label>{intl.messages['sort.team']}</Form.Label>
             <Form.Control as='select' onChange={changeTeam} value={selectedTeam}>
               {teamNames.map((team, i) => {
                 return (
@@ -180,7 +194,7 @@ const StatisticsTable = () => {
             controlId='allStatsForm-sort'
             className={'d-flex flex-column custom-dropdown'}
           >
-            <Form.Label>Sort by</Form.Label>
+            <Form.Label>{intl.messages['sort.sortby']}</Form.Label>
             <Form.Control as='select' onChange={changeSortBy} value={selectedSortBy}>
               {sortByOptions.map((option, i) => {
                 return (
@@ -203,7 +217,7 @@ const StatisticsTable = () => {
   return (
     <div className='all-stats'>
       {loading ? (
-        <Loader text='Loading player statistics...' />
+        <Loader text={intl.messages['loading.stats']} />
       ) : (
         <>
           {renderSelectBoxes()}

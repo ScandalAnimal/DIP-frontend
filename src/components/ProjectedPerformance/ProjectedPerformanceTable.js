@@ -1,5 +1,6 @@
 import { getAllProjections } from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import playerService from '../../service/playerService';
@@ -12,6 +13,7 @@ const ProjectedPerformanceTable = () => {
   const [loading, setLoading] = useState(true);
   const [totalPoints, setTotalPoints] = useState(0);
   const [team, setTeam] = useState([]);
+  const intl = useIntl();
 
   useEffect(() => {
     if (projections.length === 0) {
@@ -97,8 +99,8 @@ const ProjectedPerformanceTable = () => {
     return (
       <div className='player-row player-row-heading row'>
         <div className='all-projections-id'>#</div>
-        <div className='all-projections-name'>Name</div>
-        <div className='all-projections-weeks-single'>Next round</div>
+        <div className='all-projections-name'>{intl.messages['table.name']}</div>
+        <div className='all-projections-weeks-single'>{intl.messages['table.next']}</div>
       </div>
     );
   };
@@ -162,7 +164,11 @@ const ProjectedPerformanceTable = () => {
   };
 
   const renderTotalPoints = () => {
-    return <div className='all-projections-total'>Total points: {totalPoints}</div>;
+    return (
+      <div className='all-projections-total'>
+        {intl.messages['table.total']} {totalPoints}
+      </div>
+    );
   };
 
   return (

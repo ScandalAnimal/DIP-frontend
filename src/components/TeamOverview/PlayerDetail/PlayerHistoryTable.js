@@ -1,6 +1,7 @@
 import { Form } from 'react-bootstrap';
 import { getPlayerDetails } from '../../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import Loader from '../../Homepage/Loader';
 import PlayerHistoryList from './PlayerHistoryList';
 import React, { useEffect, useState } from 'react';
@@ -14,6 +15,7 @@ const PlayerHistoryTable = ({ player }) => {
   const [filtered, setFiltered] = useState([]);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+  const intl = useIntl();
 
   useEffect(() => {
     const detail = playerDetails.find(d => d.playerName === name);
@@ -29,7 +31,13 @@ const PlayerHistoryTable = ({ player }) => {
   }, []);
 
   function renderSelectBoxes() {
-    const seasons = ['All seasons', '2016-17', '2017-18', '2018-19', '2019-20'];
+    const seasons = [
+      intl.messages['detail.all.seasons'],
+      '2016-17',
+      '2017-18',
+      '2018-19',
+      '2019-20',
+    ];
 
     function filterPlayers(v) {
       let tmpFiltered = [];
@@ -58,7 +66,7 @@ const PlayerHistoryTable = ({ player }) => {
             controlId='detailForm-season'
             className={'d-flex flex-column custom-dropdown'}
           >
-            <Form.Label>Season</Form.Label>
+            <Form.Label>{intl.messages['detail.season']}</Form.Label>
             <Form.Control as='select' onChange={changeSeason} value={selectedSeason}>
               {seasons.map((season, i) => {
                 return (
@@ -81,7 +89,7 @@ const PlayerHistoryTable = ({ player }) => {
   return (
     <div className='player-history'>
       {loading ? (
-        <Loader text='Fetching historical player data...' />
+        <Loader text={intl.messages['loading.detail']} />
       ) : (
         <>
           {renderSelectBoxes()}

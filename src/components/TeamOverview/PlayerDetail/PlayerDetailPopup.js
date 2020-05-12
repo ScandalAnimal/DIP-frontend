@@ -1,6 +1,7 @@
 import { Modal } from 'react-bootstrap';
 import { POSITIONS } from '../../../constants';
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import Button from '../../Button/Button';
 import PlayerHistoryTable from './PlayerHistoryTable';
 import PlayerSmallIcon from './PlayerSmallIcon';
@@ -15,6 +16,7 @@ function PlayerDetailPopup(props) {
   const teams = useSelector(state => state.app.teams);
   const dispatch = useDispatch();
   const [playerDataDisplayed, setPlayerDataDisplayed] = useState(false);
+  const intl = useIntl();
 
   function getTeamName() {
     for (let i = 0; i < teams.length; i++) {
@@ -215,7 +217,7 @@ function PlayerDetailPopup(props) {
     >
       <Modal.Header>
         <Modal.Title id='contained-modal-title-vcenter' className='player-detail-popup-title'>
-          Player Detail
+          {intl.messages['detail.title']}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -223,29 +225,33 @@ function PlayerDetailPopup(props) {
           <div className='container player-detail-popup-body'>
             <div className='player-detail-popup-body__wrapper'>
               <div className='row'>
-                <div className='col'>Name:</div>
+                <div className='col'>{intl.messages['table.name']}:</div>
                 <div className='col'>{playerService.getPlayerDetailName(player)}</div>
               </div>
               <div className='row'>
-                <div className='col'>Team:</div>
+                <div className='col'>{intl.messages['table.team']}:</div>
                 <div className='col'>{getTeamName()}</div>
               </div>
               <div className='row'>
-                <div className='col'>Position:</div>
-                <div className='col'>{playerService.getPositionLabel(player)}</div>
+                <div className='col'>{intl.messages['sort.position']}:</div>
+                <div className='col'>{intl.messages[playerService.getPositionLabel(player)]}</div>
               </div>
               <div className='row'>
-                <div className='col'>Total points:</div>
+                <div className='col'>{intl.messages['table.total']}</div>
                 <div className='col'>{player.total_points}</div>
               </div>
               <div className='row'>
-                <div className='col'>Selected by percent:</div>
+                <div className='col'>{intl.messages['detail.percent']}</div>
                 <div className='col'>{player.selected_by_percent + '%'}</div>
               </div>
               <div className='row spacing' />
               {!isPlayerInArray(player, removedPlayers) && player.position <= 11 && (
                 <div className='row player-detail-popup-button-row'>
-                  <Button onClick={openSubs} text='Substitute' variant='lightPrimary' />
+                  <Button
+                    onClick={openSubs}
+                    text={intl.messages['detail.sub']}
+                    variant='lightPrimary'
+                  />
                   {subs.length > 0 && (
                     <div className='player-detail-popup__subs'>
                       {subs.map(sub => {
@@ -265,7 +271,7 @@ function PlayerDetailPopup(props) {
                 <div className='row player-detail-popup-button-row'>
                   <Button
                     onClick={removeFromSquad}
-                    text='Remove from team'
+                    text={intl.messages['detail.remove']}
                     variant='lightPrimary'
                   />
                 </div>
@@ -274,7 +280,7 @@ function PlayerDetailPopup(props) {
                 <div className='row player-detail-popup-button-row'>
                   <Button
                     onClick={addToSquadFromRemoved}
-                    text='Add to team'
+                    text={intl.messages['detail.add']}
                     variant='lightPrimary'
                   />
                 </div>
@@ -283,7 +289,7 @@ function PlayerDetailPopup(props) {
                 <div className='row player-detail-popup-button-row'>
                   <Button
                     onClick={addToSquadFromTransferMarket}
-                    text='Add to team'
+                    text={intl.messages['detail.add']}
                     variant='lightPrimary'
                   />
                 </div>
@@ -292,7 +298,7 @@ function PlayerDetailPopup(props) {
                 <div className='row player-detail-popup-button-row'>
                   <Button
                     onClick={selectAsCaptain}
-                    text='Select as captain'
+                    text={intl.messages['detail.add.c']}
                     variant='lightPrimary'
                   />
                 </div>
@@ -301,7 +307,7 @@ function PlayerDetailPopup(props) {
                 <div className='row player-detail-popup-button-row'>
                   <Button
                     onClick={selectAsViceCaptain}
-                    text='Select as vicecaptain'
+                    text={intl.messages['detail.add.vc']}
                     variant='lightPrimary'
                   />
                 </div>
@@ -313,7 +319,11 @@ function PlayerDetailPopup(props) {
               <div className='row player-detail-popup-button-row'>
                 <Button
                   onClick={() => setPlayerDataDisplayed(!playerDataDisplayed)}
-                  text={playerDataDisplayed ? 'Hide past player data' : 'Show past player data'}
+                  text={
+                    playerDataDisplayed
+                      ? intl.messages['detail.hide']
+                      : intl.messages['detail.show']
+                  }
                   variant='lightPrimary'
                 />
               </div>
@@ -324,7 +334,11 @@ function PlayerDetailPopup(props) {
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={closeModal} text='Close' variant='lightSecondary' />
+        <Button
+          onClick={closeModal}
+          text={intl.messages['detail.close']}
+          variant='lightSecondary'
+        />
       </Modal.Footer>
     </Modal>
   );
