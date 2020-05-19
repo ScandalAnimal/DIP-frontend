@@ -1,4 +1,9 @@
-import { getAllPlayerIds, getAllPlayers, getAllTeams } from '../../reducers/appActions';
+import {
+  getAllInjuries,
+  getAllPlayerIds,
+  getAllPlayers,
+  getAllTeams,
+} from '../../reducers/appActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import Card from '../Common/Card';
@@ -34,6 +39,7 @@ const Homepage = () => {
   const currentTeam = useSelector(state => state.app.edit.currentTeam);
   const allCombinedPlayers = useSelector(state => state.app.allCombinedPlayers);
   const teamId = useSelector(state => state.app.teamId);
+  const injuries = useSelector(state => state.app.injuries);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -46,6 +52,9 @@ const Homepage = () => {
     }
     if (teams === null) {
       getAllTeams(dispatch);
+    }
+    if (injuries.length === 0) {
+      getAllInjuries(dispatch);
     }
   }, [dispatch]);
 
@@ -66,10 +75,22 @@ const Homepage = () => {
   }
 
   useEffect(() => {
-    if (allPlayers !== null && allPlayerIds !== null && teams !== null && currentTeam.length > 0) {
+    if (
+      allPlayers !== null &&
+      allPlayerIds !== null &&
+      teams !== null &&
+      currentTeam.length > 0 &&
+      injuries.length > 0
+    ) {
       setLoading(false);
     }
-    if (allPlayers !== null && allPlayerIds !== null && teams !== null && teamId === 'manual') {
+    if (
+      allPlayers !== null &&
+      allPlayerIds !== null &&
+      teams !== null &&
+      teamId === 'manual' &&
+      injuries.length > 0
+    ) {
       setLoading(false);
     }
     let combinedPlayers = [];
@@ -80,6 +101,7 @@ const Homepage = () => {
       allPlayerIds !== null &&
       teams !== null &&
       teamPicks !== null &&
+      injuries.length !== 0 &&
       currentTeam.length === 0 &&
       allCombinedPlayers.length === 0
     ) {

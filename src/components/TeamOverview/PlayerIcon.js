@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
 import kitLogoService from '../../service/kitLogoService';
 import playerService from '../../service/playerService';
@@ -8,6 +8,12 @@ const PlayerIcon = ({ player }) => {
   const isCaptain = player.is_captain === 'true';
   const isViceCaptain = player.is_vice_captain === 'true';
   const name = playerService.getPlayerName(player);
+  const injuries = useSelector(state => state.app.injuries);
+  const isUnavailable = playerService.isPlayerUnavailable(
+    injuries,
+    player.first_name,
+    player.second_name
+  );
 
   const openPlayerInfo = () => {
     dispatch({
@@ -30,6 +36,7 @@ const PlayerIcon = ({ player }) => {
           <div className='player__options'>
             {isCaptain && <div className='player__option-captain'>C</div>}
             {isViceCaptain && <div className='player__option-captain'>V</div>}
+            {isUnavailable && <div className='player__option-unavailable'>X</div>}
           </div>
         </>
       )}

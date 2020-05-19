@@ -17,7 +17,17 @@ function PlayerDetailPopup(props) {
   const dispatch = useDispatch();
   const [playerDataDisplayed, setPlayerDataDisplayed] = useState(false);
   const intl = useIntl();
-
+  const injuries = useSelector(state => state.app.injuries);
+  const isUnavailable = playerService.isPlayerUnavailable(
+    injuries,
+    player.first_name,
+    player.second_name
+  );
+  const injuryStatus = playerService.getInjuryStatus(
+    injuries,
+    player.first_name,
+    player.second_name
+  );
   function getTeamName() {
     for (let i = 0; i < teams.length; i++) {
       const team = teams[i];
@@ -244,6 +254,8 @@ function PlayerDetailPopup(props) {
                 <div className='col'>{intl.messages['detail.percent']}</div>
                 <div className='col'>{player.selected_by_percent + '%'}</div>
               </div>
+              <div className='row spacing' />
+              {isUnavailable && <div className='row injury-status'>{injuryStatus}</div>}
               <div className='row spacing' />
               {!isPlayerInArray(player, removedPlayers) && player.position <= 11 && (
                 <div className='row player-detail-popup-button-row'>

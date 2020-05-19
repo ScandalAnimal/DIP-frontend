@@ -132,6 +132,18 @@ const playerService = {
         return null;
     }
   },
+  isPlayerUnavailable(injuries, firstName, lastName) {
+    const match = injuries.find(
+      item => item.first_name === firstName && item.second_name === lastName
+    );
+    return match !== undefined;
+  },
+  getInjuryStatus(injuries, firstName, lastName) {
+    const match = injuries.find(
+      item => item.first_name === firstName && item.second_name === lastName
+    );
+    return match !== undefined ? match.news : null;
+  },
 };
 
 export default playerService;
