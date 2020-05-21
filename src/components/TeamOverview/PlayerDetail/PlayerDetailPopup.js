@@ -18,16 +18,14 @@ function PlayerDetailPopup(props) {
   const [playerDataDisplayed, setPlayerDataDisplayed] = useState(false);
   const intl = useIntl();
   const injuries = useSelector(state => state.app.injuries);
-  const isUnavailable = playerService.isPlayerUnavailable(
-    injuries,
-    player.first_name,
-    player.second_name
-  );
-  const injuryStatus = playerService.getInjuryStatus(
-    injuries,
-    player.first_name,
-    player.second_name
-  );
+  const isUnavailable =
+    player === null
+      ? false
+      : playerService.isPlayerUnavailable(injuries, player.first_name, player.second_name);
+  const injuryStatus =
+    player === null
+      ? ''
+      : playerService.getInjuryStatus(injuries, player.first_name, player.second_name);
   function getTeamName() {
     for (let i = 0; i < teams.length; i++) {
       const team = teams[i];
