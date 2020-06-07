@@ -25,4 +25,13 @@
   button {
     margin-right: 10px;
   }
+
+  @media screen and (max-width: $screen-lg) {
+    flex-direction: column;
+
+    button {
+      margin-top: 10px;
+      margin-right: 0;
+    }
+  }
 }
