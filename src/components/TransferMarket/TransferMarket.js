@@ -76,7 +76,8 @@ const TransferMarket = () => {
         }
       }
 
-      setFilteredPlayers(tmpFiltered);
+      const sorted = sortPlayers(parseInt(selectedSortBy), tmpFiltered);
+      setFilteredPlayers(sorted);
     }
 
     function compareNames(a, b) {
@@ -93,10 +94,14 @@ const TransferMarket = () => {
       return comparison;
     }
 
-    function sortPlayers(option) {
+    function sortPlayers(option, players) {
+      let toSort = filteredPlayers;
+      if (players !== undefined) {
+        toSort = players;
+      }
       if (option === 1) {
         // NAME
-        const tmpPlayers = filteredPlayers.map(player => {
+        const tmpPlayers = toSort.map(player => {
           return {
             ...player,
             display_name: playerService.getPlayerName(player) + player.first_name,
@@ -105,7 +110,7 @@ const TransferMarket = () => {
         return tmpPlayers.sort(compareNames);
       } else if (option === 2) {
         // POINTS
-        const tmpPlayers = filteredPlayers.map(player => {
+        const tmpPlayers = toSort.map(player => {
           return {
             ...player,
           };
@@ -115,7 +120,7 @@ const TransferMarket = () => {
         });
       } else if (option === 3) {
         // PRICE
-        const tmpPlayers = filteredPlayers.map(player => {
+        const tmpPlayers = toSort.map(player => {
           return {
             ...player,
           };
@@ -124,7 +129,7 @@ const TransferMarket = () => {
           return b.now_cost - a.now_cost;
         });
       }
-      return combinedPlayers;
+      return toSort;
     }
 
     function changePosition(e) {
